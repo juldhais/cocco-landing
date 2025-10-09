@@ -5,32 +5,156 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>cocco.id - Coming Soon</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
-</head>
-<body class="container">
-    <header>
-        <nav>
-            <ul>
-                <li></li>
-            </ul>
-            <ul>
-                <li><a type="button" href="https://app.cocco.id/">Login</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <main style="text-align: center; margin-top: 40px;">
-        <div>
-            <img src="logo-caption.png" alt="Cocco Logo">
-        </div>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0078D4;
+            --text-dark: #1f2937;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+        }
         
-        <div style="margin-top: 40px;">
-            <p>Cocco adalah aplikasi penjualan, pembelian, dan inventory yang dirancang khusus untuk toko grosir, tradisional, sembako, dan UMKM di Indonesia.</p>
-            <p>Kami sedang mempersiapkan solusi terbaik untuk membantu bisnis Anda tumbuh dengan kontrol yang lebih baik, kejelasan data, dan kepercayaan diri dalam pengambilan keputusan.</p>
-        </div>
-    </main>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: white;
+            min-height: 100vh;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            background: #0078D4;
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header style="padding: 20px 0;">
+            <nav style="padding: 20px 0; display: flex; justify-content: space-between; align-items: center;">
+                <div style="font-weight: 700; font-size: 1.5rem; color: var(--primary-color);">cocco.id</div>
+                <div>
+                    <a href="https://app.cocco.id/" class="btn-primary">Login</a>
+                </div>
+            </nav>
+        </header>
+        
+        <main style="text-align: center; padding: 60px 0;">
+            <div class="fade-in">
+                <div class="floating" style="margin-bottom: 50px;">
+                    <img src="logo-caption.png" alt="Cocco Logo" 
+                         style="max-width: 300px; height: auto; border-radius: 12px;">
+                </div>
+                
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <h1 style="font-size: 3rem; font-weight: 700; margin-bottom: 24px; color: var(--text-dark);">
+                        Coming Soon
+                    </h1>
+                    
+                    <div style="margin: 40px 0; font-size: 1.2rem; line-height: 1.8; color: var(--text-light);">
+                        <p style="margin-bottom: 24px;">
+                            <strong style="color: var(--primary-color);">cocco</strong> adalah aplikasi penjualan, pembelian, dan inventory yang dirancang khusus untuk 
+                            <span style="color: var(--primary-color); font-weight: 600;">toko grosir, tradisional, sembako, dan UMKM</span> 
+                            di Indonesia.
+                        </p>
+                        <p>
+                            Kami sedang mempersiapkan solusi terbaik untuk membantu bisnis Anda tumbuh dengan 
+                            <span style="color: var(--primary-color); font-weight: 600;">kontrol yang lebih baik</span>, 
+                            <span style="color: var(--primary-color); font-weight: 600;">kejelasan data</span>, dan 
+                            <span style="color: var(--primary-color); font-weight: 600;">kepercayaan diri</span> 
+                            dalam pengambilan keputusan.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer style="text-align: center; padding: 40px 0; margin-top: 60px;">
+            <p style="color: var(--text-light);">&copy; 2025 cocco.id</p>
+        </footer>
+    </div>
     
-    <footer style="text-align: center;">
-        <p>&copy; 2025 cocco.id</p>
-    </footer>
+    <style>
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            main {
+                padding: 40px 0 !important;
+            }
+            
+            .card {
+                padding: 20px !important;
+            }
+            
+            h1 {
+                font-size: 2.5rem !important;
+            }
+            
+            .floating img {
+                max-width: 200px !important;
+            }
+            
+            nav {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .btn-primary {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </body>
 </html>
