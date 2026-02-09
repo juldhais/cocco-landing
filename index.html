@@ -600,10 +600,10 @@ document.getElementById('trialForm').addEventListener('submit', function(e) {
     e.preventDefault();
     var nama = document.getElementById('nama').value;
     var whatsapp = document.getElementById('whatsapp').value;
-    var bisnis = document.getElementById('bisnis').value;
-    var bisnisText = bisnis ? document.querySelector('#bisnis option[value="' + bisnis + '"]').text : 'Tidak dipilih';
-    var message = 'Halo, saya ingin mendaftar trial gratis cocco.id%0A%0ANama: ' + encodeURIComponent(nama) + '%0AWhatsApp: ' + encodeURIComponent(whatsapp) + '%0AJenis Bisnis: ' + encodeURIComponent(bisnisText);
-    window.open('https://wa.me/6281314388508?text=' + message, '_blank');
+    var bisnisSelect = document.getElementById('bisnis');
+    var bisnisText = bisnisSelect.selectedOptions[0] ? bisnisSelect.selectedOptions[0].text : 'Tidak dipilih';
+    var message = 'Halo, saya ingin mendaftar trial gratis cocco.id\n\nNama: ' + nama + '\nWhatsApp: ' + whatsapp + '\nJenis Bisnis: ' + bisnisText;
+    window.open('https://wa.me/6281314388508?text=' + encodeURIComponent(message), '_blank');
 });
 </script>
 </body>
