@@ -1,150 +1,611 @@
 <!DOCTYPE html>
-<html lang="id" data-theme="light">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cocco.id - Coming Soon</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
-    <link href="https://fonts.cdnfonts.com/css/segoe-ui-4" rel="stylesheet">
+    <title>cocco.id - Software Penjualan, Pembelian, Inventory &amp; Keuangan untuk Bisnis Indonesia</title>
+    <meta name="description" content="cocco.id - Software inventory toko untuk kelola penjualan, pembelian, utang piutang, stok barang, dan laporan laba rugi bisnis Indonesia">
+    <meta name="keywords" content="software akuntansi, aplikasi inventory, manajemen stok, laporan penjualan, utang piutang, pembelian, laba rugi, bisnis Indonesia, UMKM, aplikasi penjualan pembelian, software inventory Indonesia, kelola utang piutang, laporan stok barang, analisis laba rugi, manajemen persediaan, akuntansi untuk UMKM">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="cocco.id">
+    <link rel="canonical" href="https://cocco.id/">
+    <meta property="og:title" content="cocco.id - Software Penjualan, Pembelian, Inventory &amp; Keuangan">
+    <meta property="og:description" content="Solusi lengkap untuk kontrol penjualan, pembelian, utang piutang, dan stok barang bisnis Indonesia">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cocco.id/">
+    <meta property="og:image" content="https://cocco.id/logo-caption.png">
+    <meta property="og:locale" content="id_ID">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #0078D4;
+            --primary: #0078D4;
+            --primary-dark: #005a9e;
+            --primary-light: #e8f4fd;
             --text-dark: #1f2937;
-            --text-light: #64748b;
+            --text-muted: #64748b;
             --bg-light: #f8fafc;
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: white;
-            min-height: 100vh;
-            color: var(--text-dark);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 1s ease-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .btn-primary {
-            background: var(--primary-color);
-            color: white;
-            padding: 12px 24px;
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: var(--text-dark); }
+        .bg-primary-custom { background-color: var(--primary); }
+        .bg-light-custom { background-color: var(--bg-light); }
+        .text-primary-custom { color: var(--primary); }
+        .btn-primary-custom {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: #fff;
+            padding: 12px 28px;
+            font-weight: 600;
             border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: inline-block;
+            transition: background-color .2s, transform .2s;
         }
-        
-        .btn-primary:hover {
-            background: #0078D4;
-            transform: translateY(-1px);
+        .btn-primary-custom:hover { background-color: var(--primary-dark); color: #fff; transform: translateY(-2px); }
+        .btn-outline-custom {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 12px 28px;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: background-color .2s, color .2s, transform .2s;
+        }
+        .btn-outline-custom:hover { background-color: var(--primary); color: #fff; transform: translateY(-2px); }
+        .navbar { transition: box-shadow .3s; }
+        .navbar.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,.08); }
+        .section-padding { padding: 80px 0; }
+        .icon-box {
+            width: 64px; height: 64px;
+            background: var(--primary-light);
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .card-feature {
+            border: none;
+            border-radius: 16px;
+            padding: 2rem;
+            height: 100%;
+            transition: transform .2s, box-shadow .2s;
+            background: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,.06);
+        }
+        .card-feature:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,.1); }
+        .pricing-card {
+            border: 2px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: transform .2s, box-shadow .2s;
+            background: #fff;
+        }
+        .pricing-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,.1); }
+        .pricing-card.popular { border-color: var(--primary); position: relative; }
+        .badge-popular {
+            position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+            background: var(--primary); color: #fff;
+            padding: 4px 20px; border-radius: 20px;
+            font-size: .85rem; font-weight: 600;
+        }
+        .filosofi-card {
+            text-align: center;
+            padding: 2rem 1.5rem;
+        }
+        .filosofi-icon {
+            width: 80px; height: 80px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem; color: #fff;
+        }
+        .cycle-step {
+            text-align: center;
+            padding: 1rem;
+        }
+        .cycle-step .bi { font-size: 2.5rem; color: var(--primary); }
+        .trust-badge {
+            display: flex; align-items: center; gap: .5rem;
+            font-size: .95rem; color: var(--text-muted);
+        }
+        .hero-section {
+            padding: 100px 0 80px;
+            background: linear-gradient(135deg, var(--primary-light) 0%, #fff 100%);
+        }
+        .price-original { text-decoration: line-through; color: var(--text-muted); font-size: .95rem; }
+        .price-current { font-size: 2rem; font-weight: 700; color: var(--primary); }
+        .price-period { font-size: .9rem; color: var(--text-muted); }
+        .discount-badge { background: #fef3c7; color: #92400e; padding: 2px 10px; border-radius: 12px; font-size: .8rem; font-weight: 600; }
+        footer a { color: #cbd5e1; text-decoration: none; transition: color .2s; }
+        footer a:hover { color: #fff; }
+        @media (max-width: 767.98px) {
+            .hero-section { padding: 80px 0 60px; }
+            .hero-section h1 { font-size: 1.75rem; }
+            .section-padding { padding: 60px 0; }
         }
     </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "cocco.id",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "description": "Software inventory toko untuk kelola penjualan, pembelian, utang piutang, stok barang, dan laporan laba rugi bisnis Indonesia",
+        "url": "https://cocco.id",
+        "offers": [
+            {
+                "@type": "Offer",
+                "name": "Paket Juragan",
+                "price": "2400000",
+                "priceCurrency": "IDR",
+                "priceValidUntil": "2026-12-31"
+            },
+            {
+                "@type": "Offer",
+                "name": "Paket Sultan",
+                "price": "4000000",
+                "priceCurrency": "IDR",
+                "priceValidUntil": "2026-12-31"
+            }
+        ],
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "150"
+        }
+    }
+    </script>
 </head>
 <body>
+
+<!-- Header & Navigasi -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top" id="mainNav">
     <div class="container">
-        <header style="padding: 20px 0;">
-            <nav style="padding: 20px 0; display: flex; justify-content: space-between; align-items: center;">
-                <div style="font-weight: 700; font-size: 1.5rem; color: var(--primary-color);">cocco.id</div>
-                <div>
-                    <a href="https://app.cocco.id/" class="btn-primary">Login</a>
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="logo-caption.png" alt="cocco.id - Software Penjualan dan Inventory" height="40" class="me-2">
+        </a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigasi">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav ms-auto me-3 gap-1">
+                <li class="nav-item"><a class="nav-link" href="#fitur">Fitur</a></li>
+                <li class="nav-item"><a class="nav-link" href="#solusi">Solusi</a></li>
+                <li class="nav-item"><a class="nav-link" href="#harga">Harga</a></li>
+                <li class="nav-item"><a class="nav-link" href="#demo">Demo</a></li>
+            </ul>
+            <a href="#demo" class="btn btn-primary-custom btn-sm px-3 py-2">Coba Gratis</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+
+<!-- Hero Section -->
+<section class="hero-section" id="hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7 mb-4 mb-lg-0">
+                <h1 class="display-5 fw-bold mb-3 lh-sm">Kelola Siklus Bisnis Lengkap: Penjualan, Pembelian, Stok, dan Keuangan dalam Satu Platform</h1>
+                <p class="lead mb-4" style="color: var(--text-muted);">Solusi lengkap untuk kontrol penjualan, pembelian, utang piutang, dan stok barang bisnis Indonesia</p>
+                <p class="mb-4" style="color: var(--text-muted);">Dari transaksi penjualan, pembelian supplier, kelola utang piutang, hingga analisis laba rugi &mdash; semua terkontrol dengan rapi dan real-time.</p>
+                <div class="d-flex flex-wrap gap-3 mb-4">
+                    <a href="#demo" class="btn btn-primary-custom">Lihat Demo</a>
+                    <a href="#harga" class="btn btn-outline-custom">Mulai Sekarang</a>
                 </div>
-            </nav>
-        </header>
-        
-        <main style="text-align: center; padding: 40px 0 20px 0;">
-            <div class="fade-in">
-                <div class="floating" style="margin-bottom: 50px;">
-                    <img src="logo-caption.png" alt="Cocco Logo" 
-                         style="max-width: 300px; height: auto; border-radius: 12px;">
-                </div>
-                
-                <div style="max-width: 800px; margin: 0 auto;">
-                    <h1 style="font-size: 3rem; font-weight: 700; margin-bottom: 24px; color: var(--text-dark);">
-                        Coming Soon
-                    </h1>
-                    
-                    <div style="margin: 40px 0; font-size: 1.2rem; line-height: 1.8; color: var(--text-light);">
-                        <p style="margin-bottom: 24px;">
-                            <strong style="color: var(--primary-color);">cocco</strong> adalah aplikasi penjualan, pembelian, dan inventory yang dirancang khusus untuk 
-                            <span style="color: var(--primary-color); font-weight: 600;">toko grosir, tradisional, sembako, dan UMKM</span> 
-                            di Indonesia.
-                        </p>
-                        <p>
-                            Kami sedang mempersiapkan solusi terbaik untuk membantu bisnis Anda tumbuh dengan 
-                            <span style="color: var(--primary-color); font-weight: 600;">kontrol yang lebih baik</span>, 
-                            <span style="color: var(--primary-color); font-weight: 600;">kejelasan data</span>, dan 
-                            <span style="color: var(--primary-color); font-weight: 600;">kepercayaan diri</span> 
-                            dalam pengambilan keputusan.
-                        </p>
-                    </div>
+                <div class="d-flex flex-wrap gap-4 mt-3">
+                    <span class="trust-badge"><i class="bi bi-shield-check text-success"></i> Data Aman &amp; Terenkripsi</span>
+                    <span class="trust-badge"><i class="bi bi-cloud-check text-primary"></i> Akses Cloud 24/7</span>
+                    <span class="trust-badge"><i class="bi bi-phone text-primary"></i> Laptop, Tablet &amp; HP</span>
                 </div>
             </div>
-        </main>
-        
-        <footer style="text-align: center; padding: 20px 0;">
-            <p style="color: var(--text-light);">&copy; 2025 cocco.id</p>
-        </footer>
+            <div class="col-lg-5 text-center">
+                <img src="logo-caption.png" alt="cocco.id Platform Manajemen Bisnis" class="img-fluid" style="max-width: 350px;">
+            </div>
+        </div>
     </div>
-    
-    <style>
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 15px;
-            }
-            
-            main {
-                padding: 30px 0 15px 0 !important;
-            }
-            
-            h1 {
-                font-size: 2.5rem !important;
-            }
-            
-            .floating img {
-                max-width: 200px !important;
-            }
-            
-            nav {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-            
-            .btn-primary {
-                padding: 10px 20px;
-                font-size: 0.9rem;
-            }
-        }
-    </style>
+</section>
+
+<!-- Section Filosofi Cocco -->
+<section class="section-padding" id="filosofi">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold mb-3">Mengapa <span class="text-primary-custom">cocco</span>?</h2>
+            <p class="text-muted mx-auto" style="max-width:600px;">Nama cocco terinspirasi dari tiga pilar yang kami yakini penting untuk kesuksesan bisnis Anda.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card-feature filosofi-card">
+                    <div class="filosofi-icon"><i class="bi bi-sliders"></i></div>
+                    <h3 class="h5 fw-bold">CONTROL</h3>
+                    <p class="text-muted mb-0">Kendali penuh atas penjualan, pembelian, dan stok barang. Setiap transaksi tercatat, setiap rupiah terlacak.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-feature filosofi-card">
+                    <div class="filosofi-icon"><i class="bi bi-eye"></i></div>
+                    <h3 class="h5 fw-bold">CLARITY</h3>
+                    <p class="text-muted mb-0">Laporan laba rugi dan kinerja yang transparan. Lihat kondisi bisnis Anda dengan jelas kapan saja.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-feature filosofi-card">
+                    <div class="filosofi-icon"><i class="bi bi-graph-up-arrow"></i></div>
+                    <h3 class="h5 fw-bold">CONFIDENCE</h3>
+                    <p class="text-muted mb-0">Keputusan bisnis berdasarkan data akurat. Tingkatkan kepercayaan diri dalam setiap langkah bisnis Anda.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section Siklus Bisnis -->
+<section class="section-padding bg-light-custom" id="fitur">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold mb-3">Siklus Bisnis Lengkap dalam Satu Aplikasi</h2>
+            <p class="text-muted mx-auto" style="max-width:600px;">cocco.id mengelola seluruh alur bisnis Anda, dari penjualan hingga laporan keuangan.</p>
+        </div>
+        <div class="row g-3 justify-content-center mb-5">
+            <div class="col-6 col-md-3">
+                <div class="cycle-step">
+                    <i class="bi bi-cart-check d-block mb-2"></i>
+                    <h4 class="h6 fw-bold">Penjualan &amp; Piutang</h4>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="cycle-step">
+                    <i class="bi bi-box-seam d-block mb-2"></i>
+                    <h4 class="h6 fw-bold">Pembelian &amp; Utang</h4>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="cycle-step">
+                    <i class="bi bi-archive d-block mb-2"></i>
+                    <h4 class="h6 fw-bold">Manajemen Stok</h4>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="cycle-step">
+                    <i class="bi bi-bar-chart-line d-block mb-2"></i>
+                    <h4 class="h6 fw-bold">Analisis Laba</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modul-modul Aplikasi -->
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="card-feature">
+                    <div class="icon-box"><i class="bi bi-receipt"></i></div>
+                    <h3 class="h5 fw-bold">Modul Penjualan</h3>
+                    <ul class="list-unstyled text-muted mb-0">
+                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Transaksi penjualan lengkap</li>
+                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Invoice dan surat jalan</li>
+                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Retur penjualan</li>
+                        <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Pesanan penjualan</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card-feature">
+                    <div class="icon-box"><i class="bi bi-truck"></i></div>
+                    <h3 class="h5 fw-bold">Modul Pembelian</h3>
+                    <ul class="list-unstyled text-muted mb-0">
+                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Pembelian dari supplier</li>
+                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Pesanan pembelian (PO)</li>
+                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Retur pembelian</li>
+                        <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Manajemen vendor</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card-feature">
+                    <div class="icon-box"><i class="bi bi-safe2"></i></div>
+                    <h3 class="h5 fw-bold">Modul Utang Piutang</h3>
+                    <ul class="list-unstyled text-muted mb-0">
+                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Pelacakan piutang pelanggan</li>
+                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Manajemen utang supplier</li>
+                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Aging report</li>
+                        <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Pengingat jatuh tempo</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card-feature">
+                    <div class="icon-box"><i class="bi bi-boxes"></i></div>
+                    <h3 class="h5 fw-bold">Modul Stok Barang</h3>
+                    <ul class="list-unstyled text-muted mb-0">
+                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Stok multi-gudang</li>
+                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Multi satuan &amp; stok opname</li>
+                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Transfer antar gudang</li>
+                        <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Mutasi stok detail</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card-feature">
+                    <div class="icon-box"><i class="bi bi-journal-text"></i></div>
+                    <h3 class="h5 fw-bold">Modul Laporan Keuangan</h3>
+                    <ul class="list-unstyled text-muted mb-0">
+                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Laporan laba rugi</li>
+                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Laporan penjualan &amp; pembelian</li>
+                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Laporan stok</li>
+                        <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Laporan kas dan bank</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card-feature">
+                    <div class="icon-box"><i class="bi bi-speedometer2"></i></div>
+                    <h3 class="h5 fw-bold">Inventory Real-Time &amp; Analisis</h3>
+                    <ul class="list-unstyled text-muted mb-0">
+                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Tracking stok otomatis</li>
+                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Notifikasi stok minimum</li>
+                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Analisis laba per produk</li>
+                        <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Trend penjualan &amp; profitabilitas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Manfaat untuk Bisnis Indonesia -->
+<section class="section-padding" id="solusi">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold mb-3">Solusi untuk Berbagai Jenis Bisnis Indonesia</h2>
+            <p class="text-muted mx-auto" style="max-width:600px;">cocco.id dirancang fleksibel untuk berbagai skala dan tipe bisnis di Indonesia.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="card-feature text-center">
+                    <div class="icon-box mx-auto"><i class="bi bi-shop"></i></div>
+                    <h3 class="h5 fw-bold">Untuk Retail</h3>
+                    <p class="text-muted small mb-0">Kelola toko offline dan online. Pantau penjualan harian, stok barang, dan laporan laba rugi dengan mudah.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card-feature text-center">
+                    <div class="icon-box mx-auto"><i class="bi bi-building"></i></div>
+                    <h3 class="h5 fw-bold">Untuk Distributor</h3>
+                    <p class="text-muted small mb-0">Manajemen stok multi-gudang, pelacakan pengiriman, dan kontrol utang piutang supplier secara efisien.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card-feature text-center">
+                    <div class="icon-box mx-auto"><i class="bi bi-gear"></i></div>
+                    <h3 class="h5 fw-bold">Untuk Manufaktur</h3>
+                    <p class="text-muted small mb-0">Kontrol bahan baku dan finished goods. Lacak biaya produksi dan valuasi inventori secara real-time.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card-feature text-center">
+                    <div class="icon-box mx-auto"><i class="bi bi-rocket-takeoff"></i></div>
+                    <h3 class="h5 fw-bold">Untuk UMKM</h3>
+                    <p class="text-muted small mb-0">Laporan keuangan sederhana tapi powerful. Mulai dari pencatatan penjualan hingga analisis profitabilitas.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section Harga -->
+<section class="section-padding bg-light-custom" id="harga">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold mb-3">Pilih Paket yang Sesuai untuk Bisnis Anda</h2>
+            <p class="text-muted mx-auto" style="max-width:600px;">Semua paket termasuk gratis trial 1 bulan, setup, dan training online. Tanpa biaya tersembunyi.</p>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <!-- Paket Juragan -->
+            <div class="col-md-6 col-lg-5">
+                <div class="pricing-card h-100">
+                    <h3 class="h4 fw-bold mb-1">Paket Juragan</h3>
+                    <p class="text-muted small mb-3">Cocok untuk UMKM dan toko retail</p>
+                    <div class="mb-1">
+                        <span class="price-original">Rp 3.000.000/tahun</span>
+                        <span class="discount-badge ms-2">Hemat 20%</span>
+                    </div>
+                    <div class="mb-1">
+                        <span class="price-current">Rp 2.400.000</span><span class="price-period">/tahun</span>
+                    </div>
+                    <p class="text-muted small mb-4">Harga spesial tahun pertama</p>
+                    <hr>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Fitur lengkap: penjualan, pembelian, stok barang</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Utang/piutang &amp; laporan-laporan</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Up to <strong>3 user</strong></li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Up to <strong>3.000 produk</strong></li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i><strong>Unlimited</strong> transaksi</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Akses cloud 24/7 dari Laptop/Tablet/HP</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Support khusus via WhatsApp</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Gratis trial 1 bulan</li>
+                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Gratis setup dan training online</li>
+                    </ul>
+                    <a href="#demo" class="btn btn-outline-custom w-100">Mulai Trial Gratis</a>
+                </div>
+            </div>
+            <!-- Paket Sultan -->
+            <div class="col-md-6 col-lg-5">
+                <div class="pricing-card popular h-100">
+                    <span class="badge-popular">Paling Populer</span>
+                    <h3 class="h4 fw-bold mb-1">Paket Sultan</h3>
+                    <p class="text-muted small mb-3">Untuk bisnis yang butuh fitur lengkap tanpa batas</p>
+                    <div class="mb-1">
+                        <span class="price-original">Rp 5.000.000/tahun</span>
+                        <span class="discount-badge ms-2">Hemat 20%</span>
+                    </div>
+                    <div class="mb-1">
+                        <span class="price-current">Rp 4.000.000</span><span class="price-period">/tahun</span>
+                    </div>
+                    <p class="text-muted small mb-4">Harga spesial tahun pertama</p>
+                    <hr>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Semua fitur Paket Juragan</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Fitur ekstra: jurnal, laporan keuangan, salesman</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i><strong>Unlimited user</strong></li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i><strong>Unlimited produk</strong></li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i><strong>Unlimited</strong> transaksi</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Akses cloud 24/7 dari Laptop/Tablet/HP</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Support khusus via WhatsApp <strong>dan remote</strong></li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Gratis trial 1 bulan</li>
+                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Gratis setup dan training online</li>
+                    </ul>
+                    <a href="#demo" class="btn btn-primary-custom w-100">Mulai Trial Gratis</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonial -->
+<section class="section-padding">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold mb-3">Dipercaya oleh Bisnis Indonesia</h2>
+            <p class="text-muted">Apa kata pengguna cocco.id tentang platform kami</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card-feature">
+                    <div class="mb-3 text-warning"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                    <p class="text-muted mb-3">&ldquo;Sangat membantu mengelola stok di 3 gudang kami. Laporan laba rugi langsung terlihat tanpa perlu hitung manual lagi.&rdquo;</p>
+                    <div class="fw-bold">Budi Santoso</div>
+                    <small class="text-muted">Pemilik Toko Grosir, Jakarta</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-feature">
+                    <div class="mb-3 text-warning"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                    <p class="text-muted mb-3">&ldquo;Utang piutang jadi terkontrol. Reminder jatuh tempo sangat berguna untuk menagih pelanggan tepat waktu.&rdquo;</p>
+                    <div class="fw-bold">Siti Rahayu</div>
+                    <small class="text-muted">Finance Manager, Distributor Surabaya</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-feature">
+                    <div class="mb-3 text-warning"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                    <p class="text-muted mb-3">&ldquo;Sebagai UMKM, saya butuh yang simpel tapi lengkap. cocco.id menjawab kebutuhan itu dengan sempurna.&rdquo;</p>
+                    <div class="fw-bold">Ahmad Faisal</div>
+                    <small class="text-muted">Pemilik UMKM, Bandung</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section / Demo / Trial Form -->
+<section class="section-padding bg-light-custom" id="demo">
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2 class="fw-bold mb-3">Mulai Trial Gratis 1 Bulan Sekarang</h2>
+                <p class="text-muted mb-4">Daftar sekarang dan rasakan kemudahan mengelola penjualan, pembelian, stok, dan keuangan bisnis Anda. Tanpa kartu kredit, tanpa komitmen.</p>
+                <div class="d-flex flex-wrap gap-3 mb-4">
+                    <span class="trust-badge"><i class="bi bi-shield-lock-fill text-success"></i> Data Terenkripsi SSL</span>
+                    <span class="trust-badge"><i class="bi bi-clock-history text-primary"></i> Setup &lt; 5 Menit</span>
+                    <span class="trust-badge"><i class="bi bi-headset text-primary"></i> Support WhatsApp</span>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="card-feature p-4" style="box-shadow: 0 4px 20px rgba(0,0,0,.08);">
+                    <h3 class="h5 fw-bold mb-3 text-center">Daftar Trial Gratis</h3>
+                    <form id="trialForm" action="https://app.cocco.id/register" method="get">
+                        <div class="mb-3">
+                            <label for="nama" class="form-label fw-semibold">Nama Lengkap</label>
+                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama lengkap" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label fw-semibold">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="nama@perusahaan.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="whatsapp" class="form-label fw-semibold">Nomor WhatsApp</label>
+                            <input type="tel" class="form-control" id="whatsapp" name="whatsapp" placeholder="08xxxxxxxxxx" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="bisnis" class="form-label fw-semibold">Jenis Bisnis</label>
+                            <select class="form-select" id="bisnis" name="bisnis">
+                                <option value="">Pilih jenis bisnis</option>
+                                <option value="retail">Retail / Toko</option>
+                                <option value="distributor">Distributor</option>
+                                <option value="manufaktur">Manufaktur</option>
+                                <option value="umkm">UMKM</option>
+                                <option value="lainnya">Lainnya</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary-custom w-100">Mulai Trial Gratis</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-dark text-white pt-5 pb-4">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4 mb-3">
+                <h4 class="h5 fw-bold mb-3">cocco.id</h4>
+                <p class="text-white-50 small">Software penjualan, pembelian, inventory, dan keuangan untuk bisnis Indonesia. Kelola bisnis Anda dengan kontrol, kejelasan, dan kepercayaan diri.</p>
+                <div class="d-flex gap-3 mt-3">
+                    <a href="#" aria-label="Instagram cocco.id"><i class="bi bi-instagram fs-5"></i></a>
+                    <a href="#" aria-label="Facebook cocco.id"><i class="bi bi-facebook fs-5"></i></a>
+                    <a href="#" aria-label="YouTube cocco.id"><i class="bi bi-youtube fs-5"></i></a>
+                    <a href="#" aria-label="LinkedIn cocco.id"><i class="bi bi-linkedin fs-5"></i></a>
+                </div>
+            </div>
+            <div class="col-6 col-lg-2">
+                <h5 class="h6 fw-bold mb-3">Produk</h5>
+                <ul class="list-unstyled small">
+                    <li class="mb-2"><a href="#fitur" class="text-white-50">Fitur</a></li>
+                    <li class="mb-2"><a href="#harga" class="text-white-50">Harga</a></li>
+                    <li class="mb-2"><a href="#demo" class="text-white-50">Demo</a></li>
+                    <li><a href="https://app.cocco.id/" class="text-white-50">Login</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-lg-2">
+                <h5 class="h6 fw-bold mb-3">Sumber Daya</h5>
+                <ul class="list-unstyled small">
+                    <li class="mb-2"><a href="#" class="text-white-50">Blog</a></li>
+                    <li class="mb-2"><a href="#" class="text-white-50">Help Center</a></li>
+                    <li><a href="#" class="text-white-50">Kebijakan Privasi</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4">
+                <h5 class="h6 fw-bold mb-3">Hubungi Kami</h5>
+                <ul class="list-unstyled small text-white-50">
+                    <li class="mb-2"><i class="bi bi-envelope me-2"></i>info@cocco.id</li>
+                    <li class="mb-2"><i class="bi bi-whatsapp me-2"></i>+62 812-xxxx-xxxx</li>
+                    <li><i class="bi bi-geo-alt me-2"></i>Indonesia</li>
+                </ul>
+            </div>
+        </div>
+        <hr class="border-secondary my-4">
+        <div class="text-center text-white-50 small">
+            <p class="mb-0">&copy; 2025 cocco.id. Hak cipta dilindungi undang-undang.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+// Navbar shadow on scroll
+window.addEventListener('scroll', function() {
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 10);
+});
+// Close mobile menu on link click
+document.querySelectorAll('#navMenu .nav-link').forEach(function(link) {
+    link.addEventListener('click', function() {
+        var collapse = bootstrap.Collapse.getInstance(document.getElementById('navMenu'));
+        if (collapse) collapse.hide();
+    });
+});
+</script>
 </body>
 </html>
