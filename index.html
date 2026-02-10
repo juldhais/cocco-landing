@@ -516,8 +516,8 @@
                     <h3 class="h5 fw-bold mb-3 text-center">Daftar Trial Gratis</h3>
                     <form id="trialForm">
                         <div class="mb-3">
-                            <label for="nama" class="form-label fw-semibold">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama lengkap" required>
+                            <label for="nama" class="form-label fw-semibold">Nama</label>
+                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama" required>
                         </div>
                         <div class="mb-3">
                             <label for="whatsapp" class="form-label fw-semibold">Nomor WhatsApp</label>
@@ -604,7 +604,7 @@ document.getElementById('trialForm').addEventListener('submit', function(e) {
     var whatsapp = document.getElementById('whatsapp').value;
     var bisnisSelect = document.getElementById('bisnis');
     var bisnisText = bisnisSelect.selectedOptions[0] ? bisnisSelect.selectedOptions[0].text : 'Tidak dipilih';
-    var message = 'Halo, saya ingin mendaftar trial gratis cocco.id\n\nNama: ' + nama + '\nWhatsApp: ' + whatsapp + '\nJenis Bisnis: ' + bisnisText;
+    var message = 'Halo, saya ingin mendaftar trial gratis cocco. \n\nNama: ' + nama + '\nWhatsApp: ' + whatsapp + '\nJenis Bisnis: ' + bisnisText;
     window.open('https://wa.me/6287882838508?text=' + encodeURIComponent(message), '_blank');
 });
 </script>
