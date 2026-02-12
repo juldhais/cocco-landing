@@ -137,6 +137,13 @@
         "offers": [
             {
                 "@type": "Offer",
+                "name": "Paket Gratisan",
+                "price": "0",
+                "priceCurrency": "IDR",
+                "priceValidUntil": "2026-12-31"
+            },
+            {
+                "@type": "Offer",
                 "name": "Paket Juragan",
                 "price": "1188000",
                 "priceCurrency": "IDR",
@@ -401,8 +408,29 @@
             <p class="text-muted mx-auto" style="max-width:600px;">Semua paket termasuk gratis trial 1 bulan, setup, dan training online. Tanpa biaya tersembunyi.</p>
         </div>
         <div class="row g-4 justify-content-center">
+            <!-- Paket Gratisan -->
+            <div class="col-md-6 col-lg-4">
+                <div class="pricing-card h-100">
+                    <h3 class="h4 fw-bold mb-1">Paket Gratisan</h3>
+                    <p class="text-muted small mb-3">Cocok untuk usaha kecil dan pemula</p>
+                    <div class="mb-1">
+                        <span class="price-current">Rp 0</span><span class="price-period">/bulan</span>
+                    </div>
+                    <p class="text-muted small mb-4">Gratis selamanya</p>
+                    <hr>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Fitur lengkap: penjualan, pembelian, stok barang</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Up to <strong>1 user</strong></li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Up to <strong>100 produk</strong></li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Up to <strong>1.000 transaksi/bulan</strong></li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Akses cloud 24/7 dari Laptop/Tablet/HP</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Support via WhatsApp</li>
+                    </ul>
+                    <a href="#demo" class="btn btn-outline-custom w-100">Mulai Gratis</a>
+                </div>
+            </div>
             <!-- Paket Juragan -->
-            <div class="col-md-6 col-lg-5">
+            <div class="col-md-6 col-lg-4">
                 <div class="pricing-card h-100">
                     <h3 class="h4 fw-bold mb-1">Paket Juragan</h3>
                     <p class="text-muted small mb-3">Cocok untuk UMKM dan toko retail</p>
@@ -430,7 +458,7 @@
                 </div>
             </div>
             <!-- Paket Sultan -->
-            <div class="col-md-6 col-lg-5">
+            <div class="col-md-6 col-lg-4">
                 <div class="pricing-card popular h-100">
                     <span class="badge-popular">Paling Populer</span>
                     <h3 class="h4 fw-bold mb-1">Paket Sultan</h3>
@@ -524,6 +552,10 @@
                             <input type="tel" class="form-control" id="whatsapp" name="whatsapp" placeholder="08xxxxxxxxxx" required>
                         </div>
                         <div class="mb-3">
+                            <label for="perusahaan" class="form-label fw-semibold">Nama Perusahaan</label>
+                            <input type="text" class="form-control" id="perusahaan" name="perusahaan" placeholder="Masukkan nama perusahaan" required>
+                        </div>
+                        <div class="mb-3">
                             <label for="bisnis" class="form-label fw-semibold">Jenis Bisnis</label>
                             <select class="form-select" id="bisnis" name="bisnis">
                                 <option value="">Pilih jenis bisnis</option>
@@ -532,6 +564,15 @@
                                 <option value="distributor">Distributor</option>
                                 <option value="manufaktur">Manufaktur</option>
                                 <option value="lainnya">Lainnya</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="paket" class="form-label fw-semibold">Paket yang dipilih</label>
+                            <select class="form-select" id="paket" name="paket" required>
+                                <option value="">Pilih paket</option>
+                                <option value="gratisan">Gratisan</option>
+                                <option value="juragan">Juragan</option>
+                                <option value="sultan">Sultan</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary-custom w-100">Mulai Trial Gratis</button>
@@ -602,9 +643,12 @@ document.getElementById('trialForm').addEventListener('submit', function(e) {
     e.preventDefault();
     var nama = document.getElementById('nama').value;
     var whatsapp = document.getElementById('whatsapp').value;
+    var perusahaan = document.getElementById('perusahaan').value;
     var bisnisSelect = document.getElementById('bisnis');
     var bisnisText = bisnisSelect.selectedOptions[0] ? bisnisSelect.selectedOptions[0].text : 'Tidak dipilih';
-    var message = 'Halo, saya ingin mendaftar trial gratis cocco. \n\nNama: ' + nama + '\nWhatsApp: ' + whatsapp + '\nJenis Bisnis: ' + bisnisText;
+    var paketSelect = document.getElementById('paket');
+    var paketText = paketSelect.selectedOptions[0] ? paketSelect.selectedOptions[0].text : 'Tidak dipilih';
+    var message = 'Halo, saya ingin mendaftar trial gratis cocco. \n\nNama: ' + nama + '\nWhatsApp: ' + whatsapp + '\nNama Perusahaan: ' + perusahaan + '\nJenis Bisnis: ' + bisnisText + '\nPaket yang dipilih: ' + paketText;
     window.open('https://wa.me/6287882838508?text=' + encodeURIComponent(message), '_blank');
 });
 </script>
