@@ -10,6 +10,7 @@
     <meta name="author" content="cocco.id">
     <meta name="theme-color" content="#0078D4">
     <link rel="canonical" href="https://cocco.id/">
+    <link rel="icon" type="image/png" href="icon.png">
     <meta property="og:title" content="cocco.id - Software Penjualan, Pembelian, Inventory &amp; Keuangan">
     <meta property="og:description" content="Solusi lengkap untuk kontrol penjualan, pembelian, utang piutang, dan stok barang bisnis Indonesia">
     <meta property="og:type" content="website">
@@ -85,6 +86,27 @@
         .card-feature:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,.1); }
         .card-feature.no-animation { transition: none; }
         .card-feature.no-animation:hover { transform: none; box-shadow: 0 4px 20px rgba(0,0,0,.08); }
+        .screenshot-card {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,.08);
+            transition: transform .3s, box-shadow .3s;
+            background: #fff;
+        }
+        .screenshot-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,.15); }
+        .screenshot-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .screenshot-card .screenshot-label {
+            padding: .75rem 1rem;
+            font-weight: 600;
+            font-size: .95rem;
+            text-align: center;
+            color: var(--text-dark);
+            background: #fff;
+        }
         .pricing-card {
             border: 2px solid #e5e7eb;
             border-radius: 20px;
@@ -172,7 +194,7 @@
         "operatingSystem": "Web",
         "description": "Software inventory toko untuk kelola penjualan, pembelian, utang piutang, stok barang, dan laporan laba rugi bisnis Indonesia",
         "url": "https://cocco.id",
-        "featureList": "Penjualan, Pembelian, Manajemen Stok, Utang Piutang, Laporan Keuangan, Multi Gudang, Laporan Laba Rugi",
+        "featureList": "Penjualan, Pembelian, Manajemen Stok, Utang Piutang, Laporan Keuangan, Multi Gudang, Laporan Laba Rugi, AI Chat Assistant, Salesman Tracking",
         "offers": [
             {
                 "@type": "Offer",
@@ -211,7 +233,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="logo-caption.png" alt="cocco.id - Software Penjualan dan Inventory" height="40" class="me-2">
+            <img src="logo-icon.png" alt="cocco.id - Software Penjualan dan Inventory" height="40" class="me-2">
         </a>
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigasi">
             <span class="navbar-toggler-icon"></span>
@@ -235,9 +257,9 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-7 mb-4 mb-lg-0">
-                <h1 class="display-5 fw-bold mb-3 lh-sm">Kelola Siklus Bisnis Lengkap: Penjualan, Pembelian, Stok, dan Keuangan dalam Satu Platform</h1>
+                <h1 class="display-5 fw-bold mb-3 lh-sm">Kelola Proses Bisnis Lengkap: Penjualan, Pembelian, Stok, dan Keuangan dalam Satu Platform</h1>
                 <p class="lead mb-4" style="color: var(--text-muted);">Solusi lengkap untuk kontrol penjualan, pembelian, utang piutang, dan stok barang bisnis Indonesia</p>
-                <p class="mb-4" style="color: var(--text-muted);">Dari transaksi penjualan, pembelian supplier, kelola utang piutang, hingga analisis laba rugi &mdash; semua terkontrol dengan rapi dan real-time.</p>
+                <p class="mb-4" style="color: var(--text-muted);">Dari transaksi penjualan, pembelian supplier, kelola utang piutang, hingga analisis laba rugi.<br/>Semua terkontrol dengan rapi dan real-time.</p>
                 <div class="d-flex flex-wrap gap-3 mb-4">
                     <a href="#demo" class="btn btn-primary-custom">Lihat Demo</a>
                     <a href="#harga" class="btn btn-outline-custom">Mulai Sekarang</a>
@@ -288,113 +310,211 @@
     </div>
 </section>
 
-<!-- Section Siklus Bisnis -->
+<!-- Section Fitur -->
 <section class="section-padding bg-light-custom" id="fitur">
     <div class="container">
         <div class="text-center mb-5">
             <h2 class="fw-bold mb-3">Siklus Bisnis Lengkap dalam Satu Aplikasi</h2>
-            <p class="text-muted mx-auto" style="max-width:600px;">cocco.id mengelola seluruh alur bisnis Anda, dari penjualan hingga laporan keuangan.</p>
+            <p class="text-muted mx-auto" style="max-width:600px;">cocco.id mengelola seluruh alur bisnis Anda, dari penjualan hingga laporan keuangan — dilengkapi dengan AI Assistant.</p>
         </div>
+
+        <!-- Siklus Bisnis Visual -->
         <div class="row g-3 justify-content-center mb-5">
-            <div class="col-6 col-md-3">
+            <div class="col-4 col-md-2">
                 <div class="cycle-step">
                     <i class="bi bi-cart-check d-block mb-2"></i>
-                    <h4 class="h6 fw-bold">Penjualan &amp; Piutang</h4>
+                    <h4 class="h6 fw-bold">Penjualan</h4>
                 </div>
             </div>
-            <div class="col-6 col-md-3">
+            <div class="col-4 col-md-2">
                 <div class="cycle-step">
                     <i class="bi bi-box-seam d-block mb-2"></i>
-                    <h4 class="h6 fw-bold">Pembelian &amp; Utang</h4>
+                    <h4 class="h6 fw-bold">Pembelian</h4>
                 </div>
             </div>
-            <div class="col-6 col-md-3">
+            <div class="col-4 col-md-2">
                 <div class="cycle-step">
                     <i class="bi bi-archive d-block mb-2"></i>
-                    <h4 class="h6 fw-bold">Manajemen Stok</h4>
+                    <h4 class="h6 fw-bold">Stok</h4>
                 </div>
             </div>
-            <div class="col-6 col-md-3">
+            <div class="col-4 col-md-2">
                 <div class="cycle-step">
-                    <i class="bi bi-bar-chart-line d-block mb-2"></i>
-                    <h4 class="h6 fw-bold">Analisis Laba</h4>
+                    <i class="bi bi-safe2 d-block mb-2"></i>
+                    <h4 class="h6 fw-bold">Keuangan</h4>
+                </div>
+            </div>
+            <div class="col-4 col-md-2">
+                <div class="cycle-step">
+                    <i class="bi bi-person-walking d-block mb-2"></i>
+                    <h4 class="h6 fw-bold">Salesman</h4>
+                </div>
+            </div>
+            <div class="col-4 col-md-2">
+                <div class="cycle-step">
+                    <i class="bi bi-robot d-block mb-2"></i>
+                    <h4 class="h6 fw-bold">AI Assistant</h4>
                 </div>
             </div>
         </div>
 
-        <!-- Modul-modul Aplikasi -->
+        <!-- Grup 1: Transaksi -->
+        <div class="mb-4">
+            <div class="d-flex align-items-center gap-2 mb-3">
+                <span class="badge rounded-pill bg-primary-custom text-white px-3 py-2" style="background-color: var(--primary) !important; font-size: .85rem;"><i class="bi bi-arrow-left-right me-1"></i> Transaksi</span>
+                <span class="text-muted small">Kelola seluruh arus jual-beli dan kewajiban keuangan</span>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-feature">
+                        <div class="icon-box"><i class="bi bi-receipt"></i></div>
+                        <h3 class="h5 fw-bold">Modul Penjualan</h3>
+                        <ul class="list-unstyled text-muted mb-0">
+                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Transaksi penjualan lengkap</li>
+                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Invoice dan surat jalan</li>
+                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Multi level harga</li>
+                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Retur penjualan</li>
+                            <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Pesanan penjualan</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-feature">
+                        <div class="icon-box"><i class="bi bi-truck"></i></div>
+                        <h3 class="h5 fw-bold">Modul Pembelian</h3>
+                        <ul class="list-unstyled text-muted mb-0">
+                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Pembelian dari supplier</li>
+                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Pesanan pembelian (PO)</li>
+                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Retur pembelian</li>
+                            <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Manajemen pemasok</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-feature">
+                        <div class="icon-box"><i class="bi bi-safe2"></i></div>
+                        <h3 class="h5 fw-bold">Modul Utang Piutang</h3>
+                        <ul class="list-unstyled text-muted mb-0">
+                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Pelacakan piutang pelanggan</li>
+                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Manajemen utang supplier</li>
+                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Aging report</li>
+                            <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Pengingat jatuh tempo</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grup 2: Inventory & Gudang -->
+        <div class="mb-4">
+            <div class="d-flex align-items-center gap-2 mb-3">
+                <span class="badge rounded-pill text-white px-3 py-2" style="background-color: #16a34a !important; font-size: .85rem;"><i class="bi bi-boxes me-1"></i> Inventory &amp; Gudang</span>
+                <span class="text-muted small">Kontrol stok barang dan multi-gudang secara real-time</span>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card-feature">
+                        <div class="icon-box" style="background: #dcfce7;"><i class="bi bi-boxes" style="color: #16a34a;"></i></div>
+                        <h3 class="h5 fw-bold">Modul Stok Barang</h3>
+                        <ul class="list-unstyled text-muted mb-0">
+                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Stok multi-gudang</li>
+                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Multi satuan</li>
+                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Transfer antar gudang &amp; stok opname</li>
+                            <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Mutasi stok detail</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-feature">
+                        <div class="icon-box" style="background: #dcfce7;"><i class="bi bi-speedometer2" style="color: #16a34a;"></i></div>
+                        <h3 class="h5 fw-bold">Inventory Real-Time &amp; Analisis</h3>
+                        <ul class="list-unstyled text-muted mb-0">
+                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Tracking stok otomatis</li>
+                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Notifikasi stok minimum</li>
+                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Analisis laba per produk</li>
+                            <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Trend penjualan &amp; profitabilitas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grup 3: Laporan & Kecerdasan -->
+        <div class="mb-5">
+            <div class="d-flex align-items-center gap-2 mb-3">
+                <span class="badge rounded-pill text-white px-3 py-2" style="background-color: #9333ea !important; font-size: .85rem;"><i class="bi bi-lightbulb me-1"></i> Laporan &amp; AI Assistant</span>
+                <span class="text-muted small">Insight cerdas, pantau tim lapangan, dan laporan keuangan lengkap</span>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-feature">
+                        <div class="icon-box" style="background: #f3e8ff;"><i class="bi bi-journal-text" style="color: #9333ea;"></i></div>
+                        <h3 class="h5 fw-bold">Modul Laporan Keuangan</h3>
+                        <ul class="list-unstyled text-muted mb-0">
+                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Laporan laba rugi</li>
+                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Laporan penjualan &amp; pembelian</li>
+                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Laporan stok</li>
+                            <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Laporan kas dan bank</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-feature">
+                        <div class="icon-box" style="background: #f3e8ff;"><i class="bi bi-person-walking" style="color: #9333ea;"></i></div>
+                        <h3 class="h5 fw-bold">Salesman Tracking</h3>
+                        <span class="badge rounded-pill text-white mb-3" style="background: linear-gradient(135deg, #9333ea, #ec4899); font-size: .75rem;">📍 GPS Tracking</span>
+                        <ul class="list-unstyled text-muted mb-0">
+                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Lacak lokasi salesman real-time</li>
+                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Riwayat kunjungan &amp; rute harian</li>
+                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Target &amp; pencapaian per salesman</li>
+                            <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Laporan aktivitas tim lapangan</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-feature">
+                        <div class="icon-box" style="background: #f3e8ff;"><i class="bi bi-robot" style="color: #9333ea;"></i></div>
+                        <h3 class="h5 fw-bold">AI Chat Assistant</h3>
+                        <span class="badge rounded-pill text-white mb-3" style="background: linear-gradient(135deg, #9333ea, #6366f1); font-size: .75rem;">✨ Fitur AI</span>
+                        <ul class="list-unstyled text-muted mb-0">
+                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Tanya data bisnis dengan bahasa sehari-hari</li>
+                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Ringkasan penjualan &amp; stok otomatis</li>
+                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Rekomendasi cerdas berbasis data</li>
+                            <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Analisis performa bisnis instan</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screenshot Aplikasi -->
+        <div class="text-center mt-5 mb-4">
+            <h3 class="fw-bold mb-2">Tampilan Aplikasi</h3>
+            <p class="text-muted mx-auto" style="max-width:600px;">Intip langsung tampilan cocco.id yang simpel, modern, dan mudah digunakan.</p>
+        </div>
         <div class="row g-4">
-            <div class="col-md-6 col-lg-4">
-                <div class="card-feature">
-                    <div class="icon-box"><i class="bi bi-receipt"></i></div>
-                    <h3 class="h5 fw-bold">Modul Penjualan</h3>
-                    <ul class="list-unstyled text-muted mb-0">
-                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Transaksi penjualan lengkap</li>
-                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Invoice dan surat jalan</li>
-                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Multi level harga</li>
-                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Retur penjualan</li>
-                        <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Pesanan penjualan</li>
-                    </ul>
+            <div class="col-md-6 col-lg-6">
+                <div class="screenshot-card">
+                    <img src="images/dashboard.jpg" alt="Dashboard cocco.id - Ringkasan bisnis real-time" loading="lazy">
+                    <div class="screenshot-label">Dashboard</div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="card-feature">
-                    <div class="icon-box"><i class="bi bi-truck"></i></div>
-                    <h3 class="h5 fw-bold">Modul Pembelian</h3>
-                    <ul class="list-unstyled text-muted mb-0">
-                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Pembelian dari supplier</li>
-                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Pesanan pembelian (PO)</li>
-                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Retur pembelian</li>
-                        <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Manajemen pemasok</li>
-                    </ul>
+            <div class="col-md-6 col-lg-6">
+                <div class="screenshot-card">
+                    <img src="images/penjualan.jpg" alt="Modul Penjualan cocco.id - Kelola transaksi penjualan" loading="lazy">
+                    <div class="screenshot-label">Penjualan</div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="card-feature">
-                    <div class="icon-box"><i class="bi bi-safe2"></i></div>
-                    <h3 class="h5 fw-bold">Modul Utang Piutang</h3>
-                    <ul class="list-unstyled text-muted mb-0">
-                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Pelacakan piutang pelanggan</li>
-                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Manajemen utang supplier</li>
-                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Aging report</li>
-                        <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Pengingat jatuh tempo</li>
-                    </ul>
+            <div class="col-md-6 col-lg-6">
+                <div class="screenshot-card">
+                    <img src="images/salesman-tracking.jpg" alt="Salesman Tracking cocco.id - Pantau aktivitas salesman" loading="lazy">
+                    <div class="screenshot-label">Salesman Tracking</div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="card-feature">
-                    <div class="icon-box"><i class="bi bi-boxes"></i></div>
-                    <h3 class="h5 fw-bold">Modul Stok Barang</h3>
-                    <ul class="list-unstyled text-muted mb-0">
-                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Stok multi-gudang</li>
-                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Multi satuan </li>
-                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Transfer antar gudang &amp; stok opname</li>
-                        <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Mutasi stok detail</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="card-feature">
-                    <div class="icon-box"><i class="bi bi-journal-text"></i></div>
-                    <h3 class="h5 fw-bold">Modul Laporan Keuangan</h3>
-                    <ul class="list-unstyled text-muted mb-0">
-                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Laporan laba rugi</li>
-                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Laporan penjualan &amp; pembelian</li>
-                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Laporan stok</li>
-                        <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Laporan kas dan bank</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="card-feature">
-                    <div class="icon-box"><i class="bi bi-speedometer2"></i></div>
-                    <h3 class="h5 fw-bold">Inventory Real-Time &amp; Analisis</h3>
-                    <ul class="list-unstyled text-muted mb-0">
-                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Tracking stok otomatis</li>
-                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Notifikasi stok minimum</li>
-                        <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Analisis laba per produk</li>
-                        <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Trend penjualan &amp; profitabilitas</li>
-                    </ul>
+            <div class="col-md-6 col-lg-6">
+                <div class="screenshot-card">
+                    <img src="images/cocco-ai-chat-assistant.jpg" alt="AI Chat Assistant cocco.id - Asisten AI untuk bisnis Anda" loading="lazy">
+                    <div class="screenshot-label">AI Chat Assistant</div>
                 </div>
             </div>
         </div>
@@ -486,7 +606,7 @@
                     <hr>
                     <ul class="list-unstyled mt-3 mb-4">
                         <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Fitur lengkap: penjualan, pembelian, stok barang</li>
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Utang/piutang &amp; laporan-laporan</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Fitur ekstra: utang, piutang, kas dan bank</li>
                         <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Up to <strong>3 user</strong></li>
                         <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Up to <strong>1.000 produk</strong></li>
                         <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i><strong>Unlimited</strong> transaksi</li>
@@ -515,7 +635,7 @@
                     <hr>
                     <ul class="list-unstyled mt-3 mb-4">
                         <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Semua fitur Paket Juragan</li>
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Fitur ekstra: jurnal, laporan keuangan, salesman</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Fitur ekstra: AI chat, dashboard, salesman tracking</li>
                         <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i><strong>Unlimited user</strong></li>
                         <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i><strong>Unlimited produk</strong></li>
                         <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i><strong>Unlimited</strong> transaksi</li>
@@ -528,47 +648,73 @@
                 </div>
             </div>
         </div>
-    </div>
-</section>
 
-<!-- Testimonial -->
-<section class="section-padding">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold mb-3">Dipercaya oleh Bisnis Indonesia</h2>
-            <p class="text-muted">Apa kata pengguna cocco.id tentang platform kami</p>
+        <!-- Priority Support -->
+        <div class="row justify-content-center mt-5">
+            <div class="col-lg-10">
+                <div class="rounded-4 overflow-hidden" style="background: linear-gradient(135deg, #0078D4 0%, #00b4d8 100%); box-shadow: 0 8px 30px rgba(0,120,212,0.25);">
+                    <div class="row g-0 align-items-center">
+                        <div class="col-lg-8 p-4 p-lg-5">
+                            <div class="d-flex align-items-center gap-2 mb-3">
+                                <i class="bi bi-headset text-white" style="font-size: 1.6rem;"></i>
+                                <h4 class="fw-bold text-white mb-0" style="font-size: 1.4rem;">Priority Support</h4>
+                            </div>
+                            <p class="mb-3" style="color: rgba(255,255,255,0.88); font-size: .92rem;">Kami hadir mendampingi Anda dari awal hingga bisnis berjalan lancar. Bukan hanya software, tapi solusi nyata bersama tim ahli kami.</p>
+                            <div class="row g-2">
+                                <div class="col-sm-6">
+                                    <div class="d-flex align-items-start gap-2">
+                                        <i class="bi bi-chat-dots-fill text-white mt-1" style="font-size: .9rem; flex-shrink: 0; opacity: .85;"></i>
+                                        <div>
+                                            <span class="fw-semibold text-white" style="font-size: .88rem;">Konsultasi Bisnis</span>
+                                            <p class="mb-0" style="color: rgba(255,255,255,0.75); font-size: .8rem;">Diskusi strategi dan kebutuhan bisnis Anda bersama tim kami.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="d-flex align-items-start gap-2">
+                                        <i class="bi bi-person-check-fill text-white mt-1" style="font-size: .9rem; flex-shrink: 0; opacity: .85;"></i>
+                                        <div>
+                                            <span class="fw-semibold text-white" style="font-size: .88rem;">Pendampingan Implementasi</span>
+                                            <p class="mb-0" style="color: rgba(255,255,255,0.75); font-size: .8rem;">Kami bantu setup, konfigurasi, dan migrasi data dari awal.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="d-flex align-items-start gap-2">
+                                        <i class="bi bi-geo-alt-fill text-white mt-1" style="font-size: .9rem; flex-shrink: 0; opacity: .85;"></i>
+                                        <div>
+                                            <span class="fw-semibold text-white" style="font-size: .88rem;">Onsite Support</span>
+                                            <p class="mb-0" style="color: rgba(255,255,255,0.75); font-size: .8rem;">Tim kami siap datang langsung ke lokasi usaha Anda.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="d-flex align-items-start gap-2">
+                                        <i class="bi bi-mortarboard-fill text-white mt-1" style="font-size: .9rem; flex-shrink: 0; opacity: .85;"></i>
+                                        <div>
+                                            <span class="fw-semibold text-white" style="font-size: .88rem;">Training Tim Anda</span>
+                                            <p class="mb-0" style="color: rgba(255,255,255,0.75); font-size: .8rem;">Pelatihan intensif agar seluruh tim mahir menggunakan cocco.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 p-4 p-lg-5 d-flex flex-column align-items-center justify-content-center text-center" style="background: rgba(0,0,0,0.1);">
+                            <p class="mb-4" style="color: rgba(255,255,255,0.75); font-size: .85rem;">Hubungi kami untuk mendapatkan penawaran terbaik sesuai skala bisnis Anda.</p>
+                            <a href="https://wa.me/6287882838508?text=Halo,%20saya%20ingin%20mengetahui%20lebih%20lanjut%20mengenai%20Priority%20Support%20cocco.id" target="_blank" rel="noopener noreferrer" class="btn fw-semibold w-100" style="background: #fff; color: #0078D4; border-radius: 8px; padding: 10px 20px;">
+                                <i class="bi bi-whatsapp me-2"></i>Hubungi Kami
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card-feature">
-                    <div class="mb-3 text-warning"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-                    <p class="text-muted mb-3">&ldquo;Sangat membantu mengelola stok di 3 gudang kami. Laporan laba rugi langsung terlihat tanpa perlu hitung manual lagi.&rdquo;</p>
-                    <div class="fw-bold">Santoso</div>
-                    <small class="text-muted">Pemilik Toko Grosir, Bogor</small>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card-feature">
-                    <div class="mb-3 text-warning"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-                    <p class="text-muted mb-3">&ldquo;Utang piutang jadi terkontrol. Reminder jatuh tempo sangat berguna untuk menagih pelanggan tepat waktu.&rdquo;</p>
-                    <div class="fw-bold">Siti</div>
-                    <small class="text-muted">Finance Manager Distributor, Jakarta</small>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card-feature">
-                    <div class="mb-3 text-warning"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-                    <p class="text-muted mb-3">&ldquo;Sebagai toko grosir, saya butuh yang simpel tapi lengkap. cocco.id menjawab kebutuhan itu dengan sempurna.&rdquo;</p>
-                    <div class="fw-bold">Faisal</div>
-                    <small class="text-muted">Pemilik Toko Grosir, Bandung</small>
-                </div>
-            </div>
-        </div>
+
     </div>
 </section>
 
 <!-- CTA Section / Demo / Trial Form -->
-<section class="section-padding bg-light-custom" id="demo">
+<section class="section-padding" id="demo">
     <div class="container">
         <div class="row align-items-center justify-content-center">
             <div class="col-lg-6 mb-4 mb-lg-0">
@@ -661,7 +807,7 @@
         </div>
         <hr class="border-secondary my-4">
         <div class="text-center text-white-50 small">
-            <p class="mb-0">&copy; 2026 cocco.id. Hak cipta dilindungi undang-undang.</p>
+            <p class="mb-0">&copy; 2026 cocco.id</p>
         </div>
     </div>
 </footer>
