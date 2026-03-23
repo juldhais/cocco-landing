@@ -8,14 +8,14 @@
     <meta name="keywords" content="software akuntansi, aplikasi inventory, manajemen stok, laporan penjualan, utang piutang, pembelian, laba rugi, bisnis Indonesia, UMKM, aplikasi penjualan pembelian, software inventory Indonesia, kelola utang piutang, laporan stok barang, analisis laba rugi, manajemen persediaan, akuntansi untuk UMKM">
     <meta name="robots" content="index, follow">
     <meta name="author" content="cocco.id">
-    <meta name="theme-color" content="#0077C8">
+    <meta name="theme-color" content="#0071CE">
     <link rel="canonical" href="https://cocco.id/">
     <link rel="icon" type="image/png" href="icon.png">
     <meta property="og:title" content="cocco.id - Software Penjualan, Pembelian, Inventory &amp; Keuangan">
     <meta property="og:description" content="Solusi lengkap untuk kontrol penjualan, pembelian, utang piutang, dan stok barang bisnis Indonesia">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://cocco.id/">
-    <meta property="og:image" content="https://cocco.id/logo-caption.png">
+    <meta property="og:image" content="https://cocco.id/logo-icon.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="775">
     <meta property="og:image:height" content="279">
@@ -25,28 +25,34 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="cocco.id - Software Penjualan, Pembelian, Inventory &amp; Keuangan">
     <meta name="twitter:description" content="Solusi lengkap untuk kontrol penjualan, pembelian, utang piutang, dan stok barang bisnis Indonesia">
-    <meta name="twitter:image" content="https://cocco.id/logo-caption.png">
+    <meta name="twitter:image" content="https://cocco.id/logo-icon.png">
     <meta name="twitter:image:alt" content="cocco.id - Software Penjualan dan Inventory">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <style>
-        /* ─── Pantone Color Palette ─── */
+        /* ─── Brand Colour Palette ─── */
+        /* Gradient: deep indigo → blue reflects how Cocco transforms
+           complex business operations into clear, structured insights
+           that empower better decision-making.                        */
         :root {
-            --p-light:  #3F8EB3; /* Pantone 2925 C */
-            --p-mid:    #0077C8; /* Pantone 285 C  */
-            --p-dark:   #002D5F; /* Pantone 2765 C */
-            --p-navy:   #001B4A; /* Pantone 2747 C */
+            --p-sky:    #009ADE; /* vibrant sky blue   */
+            --p-blue:   #0071CE; /* core brand blue    */
+            --p-dark:   #0071CE; /* mid deep blue      */
+            --p-navy:   #001B71; /* deep indigo anchor */
 
-            --primary:       var(--p-mid);
-            --primary-dark:  var(--p-dark);
-            --primary-light: rgba(63,142,179,0.12);
-            --accent:        var(--p-light);
+            --primary:       var(--p-blue);
+            --primary-dark:  var(--p-navy);
+            --primary-light: rgba(0,113,206,0.10);
+            --accent:        var(--p-sky);
             --text-dark:     #1f2937;
             --text-muted:    #64748b;
-            --bg-light:      #f0f5fb;
-            --glass-bg:      rgba(255,255,255,0.75);
-            --glass-border:  rgba(255,255,255,0.35);
+            --bg-light:      #f0f6fb;
+            --glass-bg:      rgba(255,255,255,0.78);
+            --glass-border:  rgba(255,255,255,0.38);
         }
 
         /* ─── Keyframes ─── */
@@ -80,9 +86,9 @@
             100% { background-position: 0%   50%; }
         }
         @keyframes pulse-ring {
-            0%   { transform: scale(0.9); box-shadow: 0 0 0 0   rgba(0,119,200,0.5); }
-            70%  { transform: scale(1);   box-shadow: 0 0 0 16px rgba(0,119,200,0);  }
-            100% { transform: scale(0.9); box-shadow: 0 0 0 0   rgba(0,119,200,0);  }
+            0%   { transform: scale(0.9); box-shadow: 0 0 0 0   rgba(0,113,206,0.5); }
+            70%  { transform: scale(1);   box-shadow: 0 0 0 16px rgba(0,113,206,0);  }
+            100% { transform: scale(0.9); box-shadow: 0 0 0 0   rgba(0,113,206,0);  }
         }
         @keyframes waveMove {
             0%   { transform: translateX(0); }
@@ -92,7 +98,7 @@
         /* ─── Base ─── */
         html { scroll-behavior: smooth; }
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
             color: var(--text-dark);
             overflow-x: hidden;
         }
@@ -118,16 +124,16 @@
             background: var(--glass-bg) !important;
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
-            box-shadow: 0 2px 24px rgba(0,29,74,.12);
+            box-shadow: 0 2px 24px rgba(0,27,113,.12);
             border-bottom: 1px solid var(--glass-border);
         }
         .navbar.scrolled-gradient {
-            background: linear-gradient(90deg, var(--p-navy) 0%, var(--p-dark) 50%, var(--p-mid) 100%) !important;
+            background: linear-gradient(90deg, var(--p-navy) 0%, var(--p-blue) 50%, var(--p-sky) 100%) !important;
             background-size: 200% 200% !important;
             animation: navGradient 6s ease infinite;
             backdrop-filter: none;
             -webkit-backdrop-filter: none;
-            box-shadow: 0 4px 24px rgba(0,29,74,.3);
+            box-shadow: 0 4px 24px rgba(0,27,113,.3);
         }
         .navbar.scrolled-gradient .nav-link,
         .navbar.scrolled-gradient .navbar-brand { color: #fff !important; }
@@ -144,14 +150,15 @@
 
         /* ─── Buttons (micro-interactions) ─── */
         .btn-primary-custom {
-            background: linear-gradient(135deg, var(--p-mid) 0%, var(--p-dark) 100%);
+            background: linear-gradient(135deg, var(--p-sky) 0%, var(--p-blue) 45%, var(--p-navy) 100%);
             border: none;
             color: #fff;
             padding: 12px 28px;
-            font-weight: 600;
+            font-weight: 700;
+            letter-spacing: .01em;
             border-radius: 8px;
             transition: transform .18s, box-shadow .18s, filter .18s;
-            box-shadow: 0 4px 14px rgba(0,119,200,.35);
+            box-shadow: 0 4px 14px rgba(0,113,206,.38);
             position: relative;
             overflow: hidden;
         }
@@ -165,7 +172,7 @@
         .btn-primary-custom:hover {
             color: #fff;
             transform: translateY(-2px) scale(1.03);
-            box-shadow: 0 8px 22px rgba(0,119,200,.5);
+            box-shadow: 0 8px 22px rgba(0,113,206,.5);
             filter: brightness(1.08);
         }
         .btn-primary-custom:active { transform: translateY(0) scale(.98); }
@@ -182,7 +189,7 @@
             background: var(--primary);
             color: #fff;
             transform: translateY(-2px) scale(1.03);
-            box-shadow: 0 6px 18px rgba(0,119,200,.35);
+            box-shadow: 0 6px 18px rgba(0,113,206,.38);
         }
         .btn-outline-custom:active { transform: translateY(0) scale(.98); }
 
@@ -190,7 +197,7 @@
         .hero-section {
             position: relative;
             padding: 110px 0 90px;
-            background: linear-gradient(135deg, var(--p-navy) 0%, var(--p-dark) 40%, var(--p-mid) 75%, var(--p-light) 100%);
+            background: linear-gradient(135deg, var(--p-navy) 0%, var(--p-blue) 38%, var(--p-blue) 65%, var(--p-sky) 100%);
             background-size: 300% 300%;
             animation: gradientShift 12s ease infinite;
             overflow: hidden;
@@ -199,7 +206,7 @@
         .hero-section::before {
             content: '';
             position: absolute; inset: 0;
-            background: radial-gradient(ellipse at 70% 50%, rgba(63,142,179,.25) 0%, transparent 65%);
+            background: radial-gradient(ellipse at 70% 50%, rgba(0,154,222,.22) 0%, transparent 65%);
             pointer-events: none;
         }
         .hero-section h1 { color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,.25); }
@@ -208,7 +215,7 @@
         .hero-section .trust-badge i { color: #fff !important; }
 
         .gradient-text {
-            background: linear-gradient(90deg, #fff 0%, var(--p-light) 50%, #a8d8f0 100%);
+            background: linear-gradient(90deg, #fff 0%, #a8d8f8 50%, var(--p-sky) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -227,7 +234,7 @@
 
         /* ─── Stats Section ─── */
         .stats-section {
-            background: linear-gradient(135deg, var(--p-dark) 0%, var(--p-navy) 100%);
+            background: linear-gradient(135deg, var(--p-navy) 0%, var(--p-blue) 100%);
             padding: 70px 0;
             position: relative;
             overflow: hidden;
@@ -265,7 +272,7 @@
         }
 
         .card-feature {
-            border: 1px solid rgba(0,119,200,.08);
+            border: 1px solid rgba(0,113,206,.09);
             border-radius: 20px;
             padding: 2rem;
             height: 100%;
@@ -273,13 +280,13 @@
                         box-shadow .28s cubic-bezier(.22,.61,.36,1),
                         border-color .28s;
             background: #fff;
-            box-shadow: 0 2px 12px rgba(0,29,74,.06);
+            box-shadow: 0 2px 12px rgba(0,27,113,.06);
             backdrop-filter: blur(4px);
         }
         .card-feature:hover {
             transform: translateY(-6px);
-            box-shadow: 0 18px 40px rgba(0,45,95,.14);
-            border-color: rgba(0,119,200,.2);
+            box-shadow: 0 18px 40px rgba(0,27,113,.14);
+            border-color: rgba(0,113,206,.22);
         }
         .card-feature:hover .icon-box {
             transform: scale(1.1) rotate(-4deg);
@@ -304,7 +311,7 @@
             background: #fff;
             cursor: pointer;
         }
-        .screenshot-card:hover { transform: translateY(-6px); box-shadow: 0 16px 36px rgba(0,45,95,.18); }
+        .screenshot-card:hover { transform: translateY(-6px); box-shadow: 0 16px 36px rgba(0,27,113,.18); }
         .screenshot-card img { width: 100%; height: auto; display: block; }
         .screenshot-card .screenshot-label {
             padding: .75rem 1rem;
@@ -325,27 +332,27 @@
         }
         .pricing-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 16px 40px rgba(0,45,95,.12);
-            border-color: rgba(0,119,200,.3);
+            box-shadow: 0 16px 40px rgba(0,27,113,.12);
+            border-color: rgba(0,113,206,.3);
         }
         .pricing-card.popular {
             border-color: var(--primary);
-            box-shadow: 0 8px 32px rgba(0,119,200,.2);
+            box-shadow: 0 8px 32px rgba(0,113,206,.22);
             position: relative;
         }
         .badge-popular {
             position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
-            background: linear-gradient(90deg, var(--p-mid), var(--p-dark));
+            background: linear-gradient(90deg, var(--p-sky), var(--p-blue), var(--p-navy));
             color: #fff;
             padding: 4px 20px; border-radius: 20px;
-            font-size: .85rem; font-weight: 600;
+            font-size: .85rem; font-weight: 700;
         }
 
         /* ─── Filosofi ─── */
         .filosofi-card { text-align: center; padding: 2rem 1.5rem; }
         .filosofi-icon {
             width: 80px; height: 80px;
-            background: linear-gradient(135deg, var(--p-mid), var(--p-dark));
+            background: linear-gradient(135deg, var(--p-sky) 0%, var(--p-blue) 50%, var(--p-navy) 100%);
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             margin: 0 auto 1.5rem;
@@ -355,7 +362,7 @@
         }
         .card-feature:hover .filosofi-icon {
             transform: scale(1.1);
-            box-shadow: 0 8px 24px rgba(0,119,200,.4);
+            box-shadow: 0 8px 24px rgba(0,113,206,.42);
             animation: none;
         }
 
@@ -371,7 +378,7 @@
 
         /* ─── Testimonials ─── */
         .testimonials-section {
-            background: linear-gradient(135deg, var(--p-navy) 0%, var(--p-dark) 100%);
+            background: linear-gradient(135deg, var(--p-navy) 0%, var(--p-blue) 100%);
             padding: 90px 0;
             position: relative;
             overflow: hidden;
@@ -379,7 +386,7 @@
         .testimonials-section::before {
             content: '';
             position: absolute; inset: 0;
-            background: radial-gradient(ellipse at 30% 50%, rgba(63,142,179,.18) 0%, transparent 65%);
+            background: radial-gradient(ellipse at 30% 50%, rgba(0,154,222,.18) 0%, transparent 65%);
         }
         .testimonial-card {
             background: rgba(255,255,255,.08);
@@ -421,7 +428,7 @@
             position: absolute;
             top: 0; left: 0; right: 0;
             height: 3px;
-            background: linear-gradient(90deg, var(--p-light), var(--p-mid), var(--p-dark), var(--p-navy));
+            background: linear-gradient(90deg, var(--p-sky), var(--p-blue), var(--p-navy));
             background-size: 200% 100%;
             animation: gradientShift 6s ease infinite;
         }
@@ -462,7 +469,7 @@
         "@type": "Organization",
         "name": "cocco.id",
         "url": "https://cocco.id",
-        "logo": "https://cocco.id/logo-caption.png",
+        "logo": "https://cocco.id/logo-icon.png",
         "description": "Software penjualan, pembelian, inventory, dan keuangan untuk bisnis Indonesia",
         "email": "info@cocco.id",
         "telephone": "+6287882838508",
@@ -522,7 +529,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="logo-icon.png" alt="cocco.id - Software Penjualan dan Inventory" height="40" class="me-2">
+            <img src="logo-icon.png" id="navLogo" alt="cocco.id - Software Penjualan dan Inventory" height="40" class="me-2">
         </a>
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigasi">
             <span class="navbar-toggler-icon"></span>
@@ -547,8 +554,8 @@
         <div class="row justify-content-center">
             <div class="col-lg-10 col-xl-9 text-center mb-4 mb-lg-0">
                 <h1 class="display-4 fw-bold mb-3 lh-sm">
-                    <span id="typingTarget">Kelola Proses Bisnis Lengkap: Penjualan, Pembelian, Stok, dan Keuangan dalam Satu Aplikasi</span>
-                    <noscript>Kelola Proses Bisnis Lengkap: Penjualan, Pembelian, Stok, dan Keuangan dalam Satu Aplikasi</noscript>
+                    <span id="typingTarget">Penjualan, Pembelian, Stok, dan Keuangan dalam Satu Aplikasi</span>
+                    <noscript>Kelola Proses Bisnis Lengkap: Penjualan, Pembelian, Utang, Piutang, Stok, dan Keuangan dalam Satu Aplikasi</noscript>
                 </h1>
                 <p class="mb-4 mx-auto" style="color:rgba(255,255,255,.82); max-width:680px;">Dari transaksi penjualan, pembelian supplier, kelola utang piutang, hingga analisis laba rugi dan laporan keuangan. Semua terkontrol dengan rapi dan real-time.</p>
                 <div class="d-flex flex-wrap gap-3 mb-4 justify-content-center">
@@ -968,7 +975,7 @@
         <!-- Priority Support -->
         <div class="row justify-content-center mt-5">
             <div class="col-lg-10">
-                <div class="rounded-4 overflow-hidden" style="background: linear-gradient(135deg, var(--p-mid) 0%, var(--p-dark) 100%); box-shadow: 0 8px 30px rgba(0,45,95,0.3);">
+                <div class="rounded-4 overflow-hidden" style="background: linear-gradient(135deg, var(--p-sky) 0%, var(--p-blue) 50%, var(--p-navy) 100%); box-shadow: 0 8px 30px rgba(0,27,113,0.3);">
                     <div class="row g-0 align-items-center">
                         <div class="col-lg-8 p-4 p-lg-5">
                             <div class="d-flex align-items-center gap-2 mb-3">
@@ -1021,7 +1028,7 @@
                         </div>
                         <div class="col-lg-4 p-4 p-lg-5 d-flex flex-column align-items-center justify-content-center text-center" style="background: rgba(0,0,0,0.1);">
                             <p class="mb-4" style="color: rgba(255,255,255,0.75); font-size: .85rem;">Hubungi kami untuk mendapatkan penawaran terbaik sesuai skala bisnis Anda.</p>
-                            <a href="https://wa.me/6287882838508?text=Halo,%20saya%20ingin%20mengetahui%20lebih%20lanjut%20mengenai%20Priority%20Support%20cocco" target="_blank" rel="noopener noreferrer" class="btn fw-semibold w-100" style="background: #fff; color: #0078D4; border-radius: 8px; padding: 10px 20px;">
+                            <a href="https://wa.me/6287882838508?text=Halo,%20saya%20ingin%20mengetahui%20lebih%20lanjut%20mengenai%20Priority%20Support%20cocco" target="_blank" rel="noopener noreferrer" class="btn fw-semibold w-100" style="background: #fff; color: #0071CE; border-radius: 8px; padding: 10px 20px;">
                                 <i class="bi bi-whatsapp me-2"></i>Hubungi Kami
                             </a>
                         </div>
@@ -1151,7 +1158,7 @@
 <div class="modal fade" id="modalPrioritySupport" tabindex="-1" aria-labelledby="modalPrioritySupportLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
         <div class="modal-content border-0 rounded-4 overflow-hidden">
-            <div class="modal-header text-white border-0 pb-2" style="background: linear-gradient(135deg, var(--p-mid) 0%, var(--p-dark) 100%);">
+            <div class="modal-header text-white border-0 pb-2" style="background: linear-gradient(135deg, var(--p-sky) 0%, var(--p-blue) 50%, var(--p-navy) 100%);">
                 <div class="d-flex align-items-center gap-2">
                     <i class="bi bi-headset" style="font-size: 1.4rem;"></i>
                     <div>
@@ -1164,7 +1171,7 @@
             <div class="modal-body p-4">
 
                 <!-- Sudah Termasuk -->
-                <div class="mb-3 p-3 rounded-3 text-white" style="background: linear-gradient(135deg, var(--p-mid) 0%, var(--p-dark) 100%);">
+                <div class="mb-3 p-3 rounded-3 text-white" style="background: linear-gradient(135deg, var(--p-sky) 0%, var(--p-blue) 50%, var(--p-navy) 100%);">
                     <i class="bi bi-gift-fill me-2"></i>
                     <span class="fw-semibold">Sudah termasuk Paket Sultan selama 1 tahun</span>
                 </div>
@@ -1304,17 +1311,21 @@
 /* ─── Navbar: glass + gradient on scroll ─── */
 (function() {
     var nav = document.getElementById('mainNav');
+    var logo = document.getElementById('navLogo');
     if (!nav) return;
     window.addEventListener('scroll', function() {
         var y = window.scrollY;
         if (y > 80) {
             nav.classList.remove('glass');
             nav.classList.add('scrolled-gradient');
+            if (logo) logo.src = 'logo-icon-white.png';
         } else if (y > 10) {
             nav.classList.remove('scrolled-gradient');
             nav.classList.add('glass');
+            if (logo) logo.src = 'logo-icon.png';
         } else {
             nav.classList.remove('glass', 'scrolled-gradient');
+            if (logo) logo.src = 'logo-icon.png';
         }
     }, { passive: true });
 })();
