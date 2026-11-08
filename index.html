@@ -29,430 +29,457 @@
     <meta name="twitter:image:alt" content="cocco.id - Software Penjualan dan Inventory">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <style>
-        /* ─── Brand Colour Palette ─── */
-        /* Gradient: deep indigo → blue reflects how Cocco transforms
-           complex business operations into clear, structured insights
-           that empower better decision-making.                        */
+        /* ─── Design tokens ─── */
         :root {
-            --p-sky:    #009ADE; /* vibrant sky blue   */
-            --p-blue:   #0071CE; /* core brand blue    */
-            --p-dark:   #0071CE; /* mid deep blue      */
-            --p-navy:   #001B71; /* deep indigo anchor */
-
-            --primary:       var(--p-blue);
-            --primary-dark:  var(--p-navy);
-            --primary-light: rgba(0,113,206,0.10);
-            --accent:        var(--p-sky);
-            --text-dark:     #1f2937;
-            --text-muted:    #64748b;
-            --bg-light:      #f0f6fb;
-            --glass-bg:      rgba(255,255,255,0.78);
-            --glass-border:  rgba(255,255,255,0.38);
-        }
-
-        /* ─── Keyframes ─── */
-        @keyframes gradientShift {
-            0%   { background-position: 0%   50%; }
-            50%  { background-position: 100% 50%; }
-            100% { background-position: 0%   50%; }
-        }
-        @keyframes welcome-float {
-            0%,  100% { transform: translate(0, 0)        rotate(0deg)   scale(1);    opacity: 0.7; }
-            25%        { transform: translate(20px, -15px) rotate(15deg)  scale(1.05); opacity: 1;   }
-            50%        { transform: translate(30px,  10px) rotate(30deg)  scale(0.97); opacity: 0.8; }
-            75%        { transform: translate(-15px, 20px) rotate(10deg)  scale(1.02); opacity: 0.9; }
-        }
-        @keyframes welcome-float-reverse {
-            0%,  100% { transform: translate(0, 0)        rotate(0deg)   scale(1);    opacity: 0.5; }
-            33%        { transform: translate(-15px, 20px) rotate(-12deg) scale(1.06); opacity: 0.8; }
-            66%        { transform: translate(12px, -12px) rotate(-24deg) scale(0.95); opacity: 0.6; }
-        }
-        @keyframes blink {
-            0%,100% { opacity: 1; }
-            50%     { opacity: 0; }
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(36px); }
-            to   { opacity: 1; transform: translateY(0);    }
-        }
-        @keyframes navGradient {
-            0%   { background-position: 0%   50%; }
-            50%  { background-position: 100% 50%; }
-            100% { background-position: 0%   50%; }
-        }
-        @keyframes pulse-ring {
-            0%   { transform: scale(0.9); box-shadow: 0 0 0 0   rgba(0,113,206,0.5); }
-            70%  { transform: scale(1);   box-shadow: 0 0 0 16px rgba(0,113,206,0);  }
-            100% { transform: scale(0.9); box-shadow: 0 0 0 0   rgba(0,113,206,0);  }
-        }
-        @keyframes waveMove {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            --sky:   #009ADE;
+            --blue:  #0071CE;
+            --navy:  #001B71;
+            --ink:   #0B1230;
+            --ink-2: #334155;
+            --muted: #64748B;
+            --line:  #E6EBF2;
+            --surface: #FFFFFF;
+            --surface-2: #F6F8FB;
+            --tint:  #EEF5FC;
+            --green: #16A34A;
+            --violet:#7C3AED;
+            --radius: 20px;
+            --radius-sm: 12px;
+            --shadow-sm: 0 1px 2px rgba(11,18,48,.06), 0 1px 1px rgba(11,18,48,.04);
+            --shadow-md: 0 12px 32px -12px rgba(11,18,48,.18), 0 2px 6px rgba(11,18,48,.05);
+            --shadow-lg: 0 40px 80px -24px rgba(0,27,113,.35), 0 12px 24px -12px rgba(0,27,113,.18);
+            --grad: linear-gradient(135deg, var(--sky) 0%, var(--blue) 50%, var(--navy) 100%);
+            --ease: cubic-bezier(.22,.61,.36,1);
         }
 
         /* ─── Base ─── */
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; scroll-padding-top: 84px; }
         body {
             font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-            color: var(--text-dark);
+            color: var(--ink-2);
+            background: var(--surface);
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+        h1, h2, h3, h4, h5, h6 { color: var(--ink); letter-spacing: -.02em; }
+        a { color: var(--blue); }
+        ::selection { background: rgba(0,113,206,.18); }
+        :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 6px; }
+
+        .section { padding: 112px 0; position: relative; }
+        .section-alt { background: var(--surface-2); }
+        .section-head { max-width: 680px; margin: 0 auto 56px; text-align: center; }
+        .section-head h2 { font-size: clamp(1.9rem, 1.2rem + 2.2vw, 2.75rem); font-weight: 800; line-height: 1.15; margin-bottom: 16px; }
+        .section-head p { color: var(--muted); font-size: 1.075rem; margin: 0; }
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+            color: var(--blue); margin-bottom: 14px;
+        }
+        .eyebrow::before { content: ''; width: 18px; height: 2px; border-radius: 2px; background: var(--grad); }
+        .text-grad {
+            background: var(--grad);
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        /* ─── Utilities ─── */
-        .bg-primary-custom  { background-color: var(--primary); }
-        .bg-light-custom    { background-color: var(--bg-light); }
-        .text-primary-custom { color: var(--primary); }
-        .section-padding    { padding: 90px 0; }
+        /* ─── Reveal ─── */
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+        .reveal.visible { opacity: 1; transform: none; }
+        .reveal-d1 { transition-delay: .08s; } .reveal-d2 { transition-delay: .16s; } .reveal-d3 { transition-delay: .24s; }
 
-        /* ─── Scroll Reveal ─── */
-        .reveal {
-            opacity: 0;
-            transform: translateY(36px);
-            transition: opacity .65s cubic-bezier(.22,.61,.36,1),
-                        transform .65s cubic-bezier(.22,.61,.36,1);
+        /* ─── Buttons ─── */
+        .btn-c {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            font-weight: 600; font-size: .975rem; line-height: 1;
+            padding: 15px 24px; border-radius: 999px; border: 1px solid transparent;
+            text-decoration: none; cursor: pointer;
+            transition: transform .2s var(--ease), box-shadow .2s var(--ease), background .2s, color .2s, border-color .2s;
         }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .btn-c:active { transform: scale(.98); }
+        .btn-c-primary {
+            color: #fff; background: var(--ink);
+            box-shadow: 0 1px 0 rgba(255,255,255,.12) inset, 0 8px 20px -8px rgba(11,18,48,.5);
+        }
+        .btn-c-primary:hover { color: #fff; background: var(--navy); transform: translateY(-1px); box-shadow: 0 1px 0 rgba(255,255,255,.12) inset, 0 14px 28px -10px rgba(0,27,113,.6); }
+        .btn-c-primary .bi { transition: transform .2s var(--ease); }
+        .btn-c-primary:hover .bi { transform: translateX(3px); }
+        .btn-c-brand { color: #fff; background: var(--blue); box-shadow: 0 10px 24px -10px rgba(0,113,206,.7); }
+        .btn-c-brand:hover { color: #fff; background: #0064B8; transform: translateY(-1px); }
+        .btn-c-ghost { color: var(--ink); background: #fff; border-color: var(--line); box-shadow: var(--shadow-sm); }
+        .btn-c-ghost:hover { color: var(--ink); border-color: #CBD5E1; transform: translateY(-1px); }
+        .btn-c-light { color: var(--ink); background: #fff; }
+        .btn-c-light:hover { color: var(--ink); background: #F1F5F9; transform: translateY(-1px); }
+        .btn-c-sm { padding: 10px 18px; font-size: .9rem; }
+        .btn-c-block { width: 100%; }
 
         /* ─── Navbar ─── */
-        .navbar { transition: background .4s, box-shadow .4s, backdrop-filter .4s; }
-        .navbar.glass {
-            background: var(--glass-bg) !important;
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            box-shadow: 0 2px 24px rgba(0,27,113,.12);
-            border-bottom: 1px solid var(--glass-border);
+        #mainNav {
+            padding: 14px 0;
+            transition: background .3s, box-shadow .3s, padding .3s, border-color .3s;
+            border-bottom: 1px solid transparent;
         }
-        .navbar.scrolled-gradient {
-            background: linear-gradient(90deg, var(--p-navy) 0%, var(--p-blue) 50%, var(--p-sky) 100%) !important;
-            background-size: 200% 200% !important;
-            animation: navGradient 6s ease infinite;
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
-            box-shadow: 0 4px 24px rgba(0,27,113,.3);
+        #mainNav.scrolled {
+            padding: 10px 0;
+            background: rgba(255,255,255,.78);
+            backdrop-filter: saturate(180%) blur(16px);
+            -webkit-backdrop-filter: saturate(180%) blur(16px);
+            border-bottom-color: rgba(230,235,242,.9);
         }
-        .navbar.scrolled-gradient .nav-link,
-        .navbar.scrolled-gradient .navbar-brand { color: #fff !important; }
-        .navbar.scrolled-gradient .navbar-toggler-icon {
-            filter: invert(1);
+        #mainNav .nav-link { color: var(--ink-2); font-weight: 500; font-size: .95rem; padding: 8px 14px !important; border-radius: 999px; transition: color .2s, background .2s; }
+        #mainNav .nav-link:hover { color: var(--ink); background: rgba(11,18,48,.05); }
+        #mainNav .nav-login { color: var(--ink); font-weight: 600; font-size: .95rem; text-decoration: none; padding: 8px 12px; }
+        #mainNav .nav-login:hover { color: var(--blue); }
+        .navbar-toggler:focus { box-shadow: none; }
+        @media (max-width: 991.98px) {
+            #mainNav .navbar-collapse {
+                margin-top: 12px; padding: 12px; border-radius: 16px;
+                background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow-md);
+            }
+            #mainNav .nav-actions { padding-top: 12px; margin-top: 8px; border-top: 1px solid var(--line); }
         }
-        .navbar.scrolled-gradient .btn-primary-custom {
-            background: rgba(255,255,255,0.2);
-            border: 1.5px solid rgba(255,255,255,0.6);
-        }
-        .navbar.scrolled-gradient .btn-primary-custom:hover {
-            background: rgba(255,255,255,0.35);
-        }
-
-        /* ─── Buttons (micro-interactions) ─── */
-        .btn-primary-custom {
-            background: linear-gradient(135deg, var(--p-sky) 0%, var(--p-blue) 45%, var(--p-navy) 100%);
-            border: none;
-            color: #fff;
-            padding: 12px 28px;
-            font-weight: 700;
-            letter-spacing: .01em;
-            border-radius: 8px;
-            transition: transform .18s, box-shadow .18s, filter .18s;
-            box-shadow: 0 4px 14px rgba(0,113,206,.38);
-            position: relative;
-            overflow: hidden;
-        }
-        .btn-primary-custom::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(255,255,255,0);
-            transition: background .18s;
-        }
-        .btn-primary-custom:hover {
-            color: #fff;
-            transform: translateY(-2px) scale(1.03);
-            box-shadow: 0 8px 22px rgba(0,113,206,.5);
-            filter: brightness(1.08);
-        }
-        .btn-primary-custom:active { transform: translateY(0) scale(.98); }
-
-        .btn-outline-custom {
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            padding: 12px 28px;
-            font-weight: 600;
-            border-radius: 8px;
-            transition: background .18s, color .18s, transform .18s, box-shadow .18s;
-        }
-        .btn-outline-custom:hover {
-            background: var(--primary);
-            color: #fff;
-            transform: translateY(-2px) scale(1.03);
-            box-shadow: 0 6px 18px rgba(0,113,206,.38);
-        }
-        .btn-outline-custom:active { transform: translateY(0) scale(.98); }
 
         /* ─── Hero ─── */
-        .hero-section {
-            position: relative;
-            padding: 110px 0 90px;
-            background: linear-gradient(135deg, var(--p-navy) 0%, var(--p-blue) 38%, var(--p-blue) 65%, var(--p-sky) 100%);
-            background-size: 300% 300%;
-            animation: gradientShift 12s ease infinite;
-            overflow: hidden;
-            color: #fff;
+        .hero {
+            position: relative; overflow: hidden;
+            padding: 156px 0 0;
+            background:
+                radial-gradient(60% 50% at 50% 0%, rgba(0,154,222,.16) 0%, transparent 70%),
+                radial-gradient(40% 40% at 85% 30%, rgba(0,27,113,.08) 0%, transparent 70%),
+                #fff;
         }
-        .hero-section::before {
-            content: '';
-            position: absolute; inset: 0;
-            background: radial-gradient(ellipse at 70% 50%, rgba(0,154,222,.22) 0%, transparent 65%);
-            pointer-events: none;
+        .hero::before {
+            content: ''; position: absolute; inset: 0; pointer-events: none;
+            background-image:
+                linear-gradient(to right, rgba(11,18,48,.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(11,18,48,.05) 1px, transparent 1px);
+            background-size: 56px 56px;
+            -webkit-mask-image: radial-gradient(ellipse 70% 55% at 50% 20%, #000 30%, transparent 80%);
+                    mask-image: radial-gradient(ellipse 70% 55% at 50% 20%, #000 30%, transparent 80%);
         }
-        .hero-section h1 { color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,.25); }
-        .hero-section p   { color: rgba(255,255,255,.88); }
-        .hero-section .trust-badge { color: rgba(255,255,255,.82); }
-        .hero-section .trust-badge i { color: #fff !important; }
+        .hero-pill {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 6px 14px 6px 6px; border-radius: 999px;
+            background: rgba(255,255,255,.8); border: 1px solid var(--line); box-shadow: var(--shadow-sm);
+            font-size: .85rem; font-weight: 500; color: var(--ink-2); text-decoration: none;
+            transition: border-color .2s, transform .2s var(--ease);
+        }
+        .hero-pill:hover { color: var(--ink); border-color: #CBD5E1; transform: translateY(-1px); }
+        .hero-pill .tag { background: var(--grad); color: #fff; font-weight: 700; font-size: .72rem; letter-spacing: .04em; padding: 4px 10px; border-radius: 999px; }
+        .hero h1 {
+            font-size: clamp(2.4rem, 1.4rem + 4.2vw, 4.4rem);
+            font-weight: 800; line-height: 1.04; letter-spacing: -.035em;
+            margin: 24px auto 22px; max-width: 920px;
+        }
+        .hero-lead { font-size: clamp(1.05rem, .95rem + .4vw, 1.2rem); color: var(--muted); max-width: 640px; margin: 0 auto 36px; line-height: 1.65; }
+        .hero-trust { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; margin-top: 28px; font-size: .9rem; color: var(--muted); }
+        .hero-trust span { display: inline-flex; align-items: center; gap: 8px; }
+        .hero-trust .bi { color: var(--green); }
 
-        .gradient-text {
-            background: linear-gradient(90deg, #fff 0%, #a8d8f8 50%, var(--p-sky) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        /* Product mockup */
+        .mockup-wrap { position: relative; max-width: 1120px; margin: 72px auto 0; padding: 0 12px; }
+        .mockup-glow {
+            position: absolute; inset: 10% 5% -10%; z-index: 0;
+            background: var(--grad); filter: blur(80px); opacity: .28; border-radius: 50%;
         }
+        .browser {
+            position: relative; z-index: 1;
+            background: #fff; border-radius: 16px; overflow: hidden;
+            border: 1px solid rgba(11,18,48,.08);
+            box-shadow: var(--shadow-lg);
+        }
+        .browser-bar {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px 16px; background: #F8FAFC; border-bottom: 1px solid var(--line);
+        }
+        .browser-dots { display: flex; gap: 6px; }
+        .browser-dots i { width: 11px; height: 11px; border-radius: 50%; background: #E2E8F0; display: block; }
+        .browser-dots i:nth-child(1) { background: #FF5F57; } .browser-dots i:nth-child(2) { background: #FEBC2E; } .browser-dots i:nth-child(3) { background: #28C840; }
+        .browser-url {
+            flex: 1; max-width: 360px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+            background: #fff; border: 1px solid var(--line); border-radius: 8px;
+            padding: 5px 12px; font-size: .78rem; color: var(--muted);
+        }
+        .browser img { display: block; width: 100%; height: auto; }
+        .browser-spacer { width: 45px; }
+        .phone {
+            position: absolute; z-index: 2; right: -8px; bottom: -48px;
+            width: 22%; max-width: 230px; min-width: 130px;
+            padding: 8px; border-radius: 34px; background: var(--ink);
+            box-shadow: 0 30px 60px -20px rgba(11,18,48,.55);
+        }
+        .phone img { display: block; width: 100%; height: auto; border-radius: 26px; }
+        .float-chip {
+            position: absolute; z-index: 3; left: -16px; top: 34%;
+            display: flex; align-items: center; gap: 12px;
+            background: rgba(255,255,255,.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--line); border-radius: 16px; padding: 12px 16px 12px 12px;
+            box-shadow: var(--shadow-md);
+            animation: floaty 6s ease-in-out infinite;
+        }
+        .float-chip .ic { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: #DCFCE7; color: var(--green); font-size: 1.15rem; }
+        .float-chip small { display: block; color: var(--muted); font-size: .72rem; font-weight: 500; }
+        .float-chip strong { color: var(--ink); font-size: .95rem; }
+        .float-chip-2 { left: auto; right: 18%; top: -22px; animation-delay: -3s; }
+        .float-chip-2 .ic { background: #EDE9FE; color: var(--violet); }
+        @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
-        /* ─── SVG Wave Divider ─── */
-        .wave-divider {
-            position: relative;
-            overflow: hidden;
-            line-height: 0;
-            font-size: 0;
-            margin-bottom: -1px;
-        }
-        .wave-divider svg { display: block; width: 100%; }
-        .wave-divider-flip { transform: rotate(180deg); }
+        /* ─── Stats ─── */
+        .stats { padding: 120px 0 72px; border-bottom: 1px solid var(--line); }
+        .stat { text-align: center; padding: 8px 0; }
+        .stat-num { font-size: clamp(2.2rem, 1.6rem + 2vw, 3rem); font-weight: 800; letter-spacing: -.03em; color: var(--ink); line-height: 1; }
+        .stat-num .suf { color: var(--blue); }
+        .stat-label { color: var(--muted); font-size: .92rem; margin-top: 8px; }
+        @media (min-width: 768px) { .stat-col + .stat-col { border-left: 1px solid var(--line); } }
 
-        /* ─── Stats Section ─── */
-        .stats-section {
-            background: linear-gradient(135deg, var(--p-navy) 0%, var(--p-blue) 100%);
-            padding: 70px 0;
-            position: relative;
-            overflow: hidden;
+        /* ─── Pillars ─── */
+        .pillar {
+            height: 100%; padding: 36px 32px; border-radius: var(--radius);
+            background: #fff; border: 1px solid var(--line);
+            transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s;
+            position: relative; overflow: hidden;
         }
-        .stat-item { text-align: center; }
-        .stat-number {
-            font-size: 2.8rem;
-            font-weight: 800;
-            color: #fff;
-            line-height: 1;
-            margin-bottom: .25rem;
+        .pillar:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: transparent; }
+        .pillar-num { font-size: .8rem; font-weight: 700; color: var(--muted); letter-spacing: .08em; }
+        .pillar-ic {
+            width: 52px; height: 52px; border-radius: 14px; margin: 20px 0 22px;
+            display: grid; place-items: center; font-size: 1.35rem; color: #fff; background: var(--grad);
+            box-shadow: 0 10px 20px -8px rgba(0,113,206,.6);
         }
-        .stat-number .stat-suffix { font-size: 1.8rem; }
-        .stat-label {
-            font-size: .95rem;
-            color: rgba(255,255,255,.72);
-            font-weight: 500;
-        }
-        .stat-divider {
-            width: 1px;
-            background: rgba(255,255,255,.15);
-            align-self: stretch;
-        }
+        .pillar h3 { font-size: 1.3rem; font-weight: 800; letter-spacing: -.01em; margin-bottom: 10px; }
+        .pillar h3 span { color: var(--blue); }
+        .pillar p { color: var(--muted); margin: 0; line-height: 1.65; }
 
-        /* ─── Cards ─── */
-        .icon-box {
-            width: 64px; height: 64px;
-            background: var(--primary-light);
-            border-radius: 16px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            transition: transform .25s, background .25s;
+        /* ─── Flow (business cycle) ─── */
+        .flow { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 56px; }
+        .flow-step {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 10px 18px 10px 10px; border-radius: 999px; background: #fff; border: 1px solid var(--line);
+            font-weight: 600; font-size: .92rem; color: var(--ink); box-shadow: var(--shadow-sm);
         }
+        .flow-step .bi { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--tint); color: var(--blue); font-size: 1rem; }
+        .flow-arrow { display: grid; place-items: center; color: #CBD5E1; font-size: 1rem; }
+        @media (max-width: 767.98px) { .flow-arrow { display: none; } }
 
-        .card-feature {
-            border: 1px solid rgba(0,113,206,.09);
-            border-radius: 20px;
-            padding: 2rem;
-            height: 100%;
-            transition: transform .28s cubic-bezier(.22,.61,.36,1),
-                        box-shadow .28s cubic-bezier(.22,.61,.36,1),
-                        border-color .28s;
-            background: #fff;
-            box-shadow: 0 2px 12px rgba(0,27,113,.06);
-            backdrop-filter: blur(4px);
+        /* ─── Feature bento ─── */
+        .feature {
+            height: 100%; padding: 30px; border-radius: var(--radius);
+            background: #fff; border: 1px solid var(--line);
+            transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s;
+            display: flex; flex-direction: column;
         }
-        .card-feature:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 18px 40px rgba(0,27,113,.14);
-            border-color: rgba(0,113,206,.22);
+        .feature:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: transparent; }
+        .feature-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+        .feature-ic { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; font-size: 1.25rem; background: var(--tint); color: var(--blue); }
+        .feature-tag { font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 5px 10px; border-radius: 999px; background: var(--tint); color: var(--blue); }
+        .feature.is-green .feature-ic, .feature.is-green .feature-tag { background: #DCFCE7; color: var(--green); }
+        .feature.is-violet .feature-ic, .feature.is-violet .feature-tag { background: #EDE9FE; color: var(--violet); }
+        .feature h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 14px; }
+        .feature ul { list-style: none; padding: 0; margin: 0; }
+        .feature li { position: relative; padding-left: 26px; color: var(--muted); font-size: .95rem; margin-bottom: 8px; }
+        .feature li:last-child { margin-bottom: 0; }
+        .feature li::before {
+            content: '\F633'; font-family: 'bootstrap-icons'; position: absolute; left: 0; top: 1px;
+            color: var(--blue); font-size: .95rem;
         }
-        .card-feature:hover .icon-box {
-            transform: scale(1.1) rotate(-4deg);
-            background: var(--primary-light);
+        .feature.is-green li::before { color: var(--green); }
+        .feature.is-violet li::before { color: var(--violet); }
+        .feature-dark {
+            background: var(--ink); border-color: var(--ink); color: rgba(255,255,255,.75);
+            position: relative; overflow: hidden;
         }
-        .card-feature.no-animation { transition: none; }
-        .card-feature.no-animation:hover { transform: none; box-shadow: 0 4px 20px rgba(0,0,0,.08); }
+        .feature-dark::after {
+            content: ''; position: absolute; width: 320px; height: 320px; right: -120px; bottom: -160px;
+            background: var(--grad); filter: blur(60px); opacity: .55; border-radius: 50%;
+        }
+        .feature-dark > * { position: relative; z-index: 1; }
+        .feature-dark h3 { color: #fff; }
+        .feature-dark li { color: rgba(255,255,255,.72); }
+        .feature-dark li::before { color: #7DD3FC !important; }
+        .feature-dark .feature-ic { background: rgba(255,255,255,.1); color: #fff; }
+        .feature-dark .feature-tag { background: rgba(255,255,255,.12); color: #fff; }
+        .feature-dark:hover { border-color: var(--ink); }
 
-        /* Glass card variant */
-        .card-glass {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+        /* ─── Showcase tabs ─── */
+        .showcase-tabs {
+            display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 4px;
+            padding: 5px; border-radius: 999px; background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow-sm);
+            margin-bottom: 40px;
         }
+        .showcase-tab {
+            border: 0; background: transparent; color: var(--muted);
+            font-weight: 600; font-size: .9rem; padding: 10px 18px; border-radius: 999px;
+            display: inline-flex; align-items: center; gap: 8px;
+            transition: background .2s, color .2s;
+        }
+        .showcase-tab:hover { color: var(--ink); }
+        .showcase-tab.active { background: var(--ink); color: #fff; }
+        .showcase-stage { position: relative; max-width: 1040px; margin: 0 auto; }
+        .showcase-stage .browser { cursor: zoom-in; }
+        .showcase-stage .browser img { transition: opacity .35s var(--ease); }
+        .showcase-stage .browser img.fading { opacity: 0; }
+        .showcase-caption { text-align: center; color: var(--muted); margin-top: 20px; font-size: .95rem; }
 
-        .screenshot-card {
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 2px 12px rgba(0,0,0,.08);
-            transition: transform .3s, box-shadow .3s;
-            background: #fff;
-            cursor: pointer;
+        /* ─── Industries ─── */
+        .industry {
+            height: 100%; padding: 28px; border-radius: var(--radius);
+            background: #fff; border: 1px solid var(--line);
+            transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s;
         }
-        .screenshot-card:hover { transform: translateY(-6px); box-shadow: 0 16px 36px rgba(0,27,113,.18); }
-        .screenshot-card img { width: 100%; height: auto; display: block; }
-        .screenshot-card .screenshot-label {
-            padding: .75rem 1rem;
-            font-weight: 600;
-            font-size: .95rem;
-            text-align: center;
-            color: var(--text-dark);
-            background: #fff;
-        }
+        .industry:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: transparent; }
+        .industry .bi { font-size: 1.6rem; color: var(--blue); display: block; margin-bottom: 18px; }
+        .industry h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+        .industry p { color: var(--muted); font-size: .93rem; margin: 0; line-height: 1.6; }
 
         /* ─── Pricing ─── */
-        .pricing-card {
-            border: 2px solid #e5e7eb;
-            border-radius: 20px;
-            padding: 2.5rem;
-            transition: transform .25s, box-shadow .25s, border-color .25s;
-            background: #fff;
+        .plan {
+            height: 100%; padding: 40px 36px; border-radius: 24px;
+            background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow-sm);
+            display: flex; flex-direction: column; position: relative;
         }
-        .pricing-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 16px 40px rgba(0,27,113,.12);
-            border-color: rgba(0,113,206,.3);
+        .plan-name { font-size: 1.05rem; font-weight: 700; color: var(--ink); display: flex; align-items: center; gap: 10px; }
+        .plan-desc { color: var(--muted); font-size: .93rem; margin: 6px 0 24px; }
+        .plan-price { display: flex; align-items: baseline; gap: 6px; }
+        .plan-price .amt { font-size: 2.75rem; font-weight: 800; letter-spacing: -.03em; color: var(--ink); line-height: 1; }
+        .plan-price .per { color: var(--muted); font-size: .95rem; }
+        .plan-note { color: var(--muted); font-size: .88rem; margin: 10px 0 28px; min-height: 1.3em; }
+        .plan ul { list-style: none; padding: 0; margin: 0 0 32px; flex: 1; }
+        .plan li { position: relative; padding-left: 30px; margin-bottom: 12px; font-size: .95rem; color: var(--ink-2); }
+        .plan li::before {
+            content: '\F272'; font-family: 'bootstrap-icons'; position: absolute; left: 0; top: 0;
+            width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center;
+            font-size: .85rem; background: var(--tint); color: var(--blue);
         }
-        .pricing-card.popular {
-            border-color: var(--primary);
-            box-shadow: 0 8px 32px rgba(0,113,206,.22);
-            position: relative;
+        .plan-featured { background: var(--ink); border-color: var(--ink); box-shadow: var(--shadow-lg); overflow: hidden; }
+        .plan-featured::before {
+            content: ''; position: absolute; width: 420px; height: 420px; right: -180px; top: -200px;
+            background: var(--grad); filter: blur(70px); opacity: .5; border-radius: 50%; pointer-events: none;
         }
-        .badge-popular {
-            position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
-            background: linear-gradient(90deg, var(--p-sky), var(--p-blue), var(--p-navy));
-            color: #fff;
-            padding: 4px 20px; border-radius: 20px;
-            font-size: .85rem; font-weight: 700;
+        .plan-featured > * { position: relative; z-index: 1; }
+        .plan-featured .plan-name, .plan-featured .plan-price .amt { color: #fff; }
+        .plan-featured .plan-desc, .plan-featured .plan-note, .plan-featured .plan-price .per { color: rgba(255,255,255,.62); }
+        .plan-featured li { color: rgba(255,255,255,.85); }
+        .plan-featured li strong { color: #fff; }
+        .plan-featured li::before { background: rgba(125,211,252,.16); color: #7DD3FC; }
+        .plan-badge { font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: var(--grad); color: #fff; }
+        .info-dot {
+            width: 20px; height: 20px; border-radius: 50%; padding: 0; margin-left: 4px;
+            display: inline-grid; place-items: center; vertical-align: middle;
+            border: 1px solid rgba(255,255,255,.35); background: transparent; color: #fff; font-size: .7rem; font-weight: 700;
+            transition: background .2s, color .2s;
         }
+        .info-dot:hover { background: #fff; color: var(--ink); }
 
-        /* ─── Filosofi ─── */
-        .filosofi-card { text-align: center; padding: 2rem 1.5rem; }
-        .filosofi-icon {
-            width: 80px; height: 80px;
-            background: linear-gradient(135deg, var(--p-sky) 0%, var(--p-blue) 50%, var(--p-navy) 100%);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 2rem; color: #fff;
-            transition: transform .3s, box-shadow .3s;
-            animation: pulse-ring 2.8s ease-out infinite;
+        /* ─── FAQ ─── */
+        .faq { max-width: 780px; margin: 0 auto; }
+        .faq .accordion-item { border: 0; border-bottom: 1px solid var(--line); background: transparent; }
+        .faq .accordion-button {
+            background: transparent; box-shadow: none; padding: 24px 0;
+            font-weight: 600; font-size: 1.05rem; color: var(--ink);
         }
-        .card-feature:hover .filosofi-icon {
-            transform: scale(1.1);
-            box-shadow: 0 8px 24px rgba(0,113,206,.42);
-            animation: none;
+        .faq .accordion-button:not(.collapsed) { color: var(--ink); }
+        .faq .accordion-button::after {
+            background-image: none; content: '\F64D'; font-family: 'bootstrap-icons';
+            display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%;
+            background: var(--surface-2); color: var(--ink); font-size: 1rem; transition: transform .25s var(--ease);
         }
+        .faq .accordion-button:not(.collapsed)::after { transform: rotate(45deg); background-image: none; }
+        .faq .accordion-body { padding: 0 48px 24px 0; color: var(--muted); line-height: 1.7; }
 
-        /* ─── Cycle Steps ─── */
-        .cycle-step { text-align: center; padding: 1rem; }
-        .cycle-step .bi { font-size: 2.5rem; color: var(--primary); }
-
-        /* ─── Trust Badge ─── */
-        .trust-badge {
-            display: flex; align-items: center; gap: .5rem;
-            font-size: .95rem; color: var(--text-muted);
+        /* ─── CTA / Form ─── */
+        .cta-panel {
+            position: relative; overflow: hidden;
+            border-radius: 32px; padding: 72px 56px;
+            background: var(--ink); color: rgba(255,255,255,.75);
         }
-
-        /* ─── Testimonials ─── */
-        .testimonials-section {
-            background: linear-gradient(135deg, var(--p-navy) 0%, var(--p-blue) 100%);
-            padding: 90px 0;
-            position: relative;
-            overflow: hidden;
+        .cta-panel::before {
+            content: ''; position: absolute; inset: 0; pointer-events: none;
+            background:
+                radial-gradient(50% 60% at 0% 0%, rgba(0,154,222,.35) 0%, transparent 70%),
+                radial-gradient(50% 60% at 100% 100%, rgba(0,113,206,.35) 0%, transparent 70%);
         }
-        .testimonials-section::before {
-            content: '';
-            position: absolute; inset: 0;
-            background: radial-gradient(ellipse at 30% 50%, rgba(0,154,222,.18) 0%, transparent 65%);
+        .cta-panel::after {
+            content: ''; position: absolute; inset: 0; pointer-events: none;
+            background-image:
+                linear-gradient(to right, rgba(255,255,255,.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,.05) 1px, transparent 1px);
+            background-size: 48px 48px;
+            -webkit-mask-image: radial-gradient(ellipse at 30% 40%, #000 10%, transparent 70%);
+                    mask-image: radial-gradient(ellipse at 30% 40%, #000 10%, transparent 70%);
         }
-        .testimonial-card {
-            background: rgba(255,255,255,.08);
-            border: 1px solid rgba(255,255,255,.14);
-            border-radius: 20px;
-            padding: 2rem;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            color: #fff;
-            transition: transform .3s, background .3s;
+        .cta-panel > .row { position: relative; z-index: 1; }
+        .cta-panel h2 { color: #fff; font-size: clamp(1.9rem, 1.2rem + 2.2vw, 2.75rem); font-weight: 800; line-height: 1.12; margin-bottom: 18px; }
+        .cta-panel .lead-text { font-size: 1.075rem; line-height: 1.7; margin-bottom: 32px; }
+        .cta-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+        .cta-list li { display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,.85); }
+        .cta-list .bi { width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center; background: rgba(255,255,255,.08); color: #7DD3FC; }
+        .form-card { background: #fff; border-radius: 24px; padding: 32px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.45); }
+        .form-card h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: 4px; }
+        .form-card .sub { color: var(--muted); font-size: .9rem; margin-bottom: 24px; }
+        .form-card .form-label { font-weight: 600; font-size: .85rem; color: var(--ink); margin-bottom: 6px; }
+        .form-card .form-control, .form-card .form-select {
+            border-radius: 12px; border: 1px solid var(--line); background-color: var(--surface-2);
+            padding: 12px 14px; font-size: .95rem; color: var(--ink);
+            transition: border-color .2s, box-shadow .2s, background-color .2s;
         }
-        .testimonial-card:hover {
-            transform: translateY(-4px);
-            background: rgba(255,255,255,.12);
+        .form-card .form-control:focus, .form-card .form-select:focus {
+            background-color: #fff; border-color: var(--blue); box-shadow: 0 0 0 4px rgba(0,113,206,.12);
         }
-        .testimonial-avatar {
-            width: 52px; height: 52px;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.4rem;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-        .stars { color: #fbbf24; letter-spacing: 1px; }
-        .testimonial-quote { color: rgba(255,255,255,.88); line-height: 1.7; }
-
-        /* ─── Pricing prices ─── */
-        .price-original { text-decoration: line-through; color: var(--text-muted); font-size: .95rem; }
-        .price-current  { font-size: 2rem; font-weight: 700; color: var(--primary); }
-        .price-period   { font-size: .9rem; color: var(--text-muted); }
-        .discount-badge { background: #fef3c7; color: #92400e; padding: 2px 10px; border-radius: 12px; font-size: .8rem; font-weight: 600; }
+        .form-card .fine { font-size: .8rem; color: var(--muted); text-align: center; margin: 14px 0 0; }
 
         /* ─── Footer ─── */
-        footer {
-            position: relative;
-        }
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--p-sky), var(--p-blue), var(--p-navy));
-            background-size: 200% 100%;
-            animation: gradientShift 6s ease infinite;
-        }
-        footer a { color: #cbd5e1; text-decoration: none; transition: color .2s; }
-        footer a:hover { color: #fff; }
+        footer { padding: 72px 0 36px; color: var(--muted); font-size: .93rem; }
+        footer h5 { font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); margin-bottom: 18px; }
+        footer ul { list-style: none; padding: 0; margin: 0; }
+        footer li { margin-bottom: 10px; }
+        footer a { color: var(--muted); text-decoration: none; transition: color .2s; }
+        footer a:hover { color: var(--ink); }
+        .footer-bottom { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; font-size: .85rem; }
 
-        /* ─── Hero CTA Buttons ─── */
-        .btn-hero-primary {
-            background: rgba(255,255,255,.18);
-            border: 1.5px solid rgba(255,255,255,.6);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+        /* ─── Floating WhatsApp ─── */
+        .wa-fab {
+            position: fixed; right: 20px; bottom: 20px; z-index: 1030;
+            width: 56px; height: 56px; border-radius: 50%;
+            display: grid; place-items: center; font-size: 1.6rem; color: #fff; background: #25D366;
+            box-shadow: 0 12px 28px -8px rgba(37,211,102,.7);
+            transition: transform .2s var(--ease);
         }
-        .btn-hero-outline {
-            border-color: rgba(255,255,255,.7) !important;
-            color: #fff !important;
-        }
+        .wa-fab:hover { color: #fff; transform: scale(1.06); }
+
+        /* ─── Lightbox ─── */
+        #modalLightbox .modal-content { background: transparent; border: 0; }
+        #modalLightbox img { max-height: 86vh; border-radius: 14px; box-shadow: 0 30px 80px rgba(0,0,0,.5); }
+        .modal-backdrop.show { opacity: .7; }
 
         /* ─── Responsive ─── */
+        @media (max-width: 991.98px) {
+            .section { padding: 88px 0; }
+            .cta-panel { padding: 48px 28px; border-radius: 24px; }
+            .float-chip { display: none; }
+        }
         @media (max-width: 767.98px) {
-            .hero-section { padding: 90px 0 70px; }
-            .hero-section h1 { font-size: 2rem; }
-            .section-padding { padding: 60px 0; }
-            .stat-number { font-size: 2.1rem; }
+            .section { padding: 72px 0; }
+            .hero { padding-top: 120px; }
+            .mockup-wrap { margin-top: 48px; }
+            .phone { right: 4px; bottom: -32px; border-radius: 22px; padding: 5px; }
+            .phone img { border-radius: 18px; }
+            .stats { padding-top: 88px; }
+            .plan { padding: 32px 24px; }
+            .form-card { padding: 24px; }
+            .browser-url { font-size: .7rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+            .reveal { opacity: 1; transform: none; }
         }
     </style>
     <script type="application/ld+json">
@@ -519,474 +546,451 @@
 <body>
 
 <!-- Header & Navigasi -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top" id="mainNav">
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="logo-icon.png" id="navLogo" alt="cocco.id - Software Penjualan dan Inventory" height="40" class="me-2">
+            <img src="logo-icon.png" alt="cocco.id - Software Penjualan dan Inventory" height="34">
         </a>
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigasi">
+        <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigasi">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navMenu">
-            <ul class="navbar-nav ms-auto me-3 gap-1">
+            <ul class="navbar-nav mx-auto gap-lg-1">
                 <li class="nav-item"><a class="nav-link" href="#fitur">Fitur</a></li>
+                <li class="nav-item"><a class="nav-link" href="#tampilan">Tampilan</a></li>
                 <li class="nav-item"><a class="nav-link" href="#solusi">Solusi</a></li>
                 <li class="nav-item"><a class="nav-link" href="#harga">Harga</a></li>
-                <li class="nav-item"><a class="nav-link" href="#demo">Demo</a></li>
+                <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
             </ul>
-            <a href="#demo" class="btn btn-primary-custom btn-sm px-3 py-2">Coba Gratis</a>
+            <div class="nav-actions d-flex align-items-center gap-2">
+                <a href="https://app.cocco.id/" class="nav-login">Masuk</a>
+                <a href="#demo" class="btn-c btn-c-primary btn-c-sm">Coba Gratis <i class="bi bi-arrow-right"></i></a>
+            </div>
         </div>
     </div>
 </nav>
 
 <main>
 
-<!-- Hero Section -->
-<section class="hero-section" id="hero">
-    <div class="container position-relative">
-        <div class="row justify-content-center">
-            <div class="col-lg-10 col-xl-9 text-center mb-4 mb-lg-0">
-                <h1 class="display-4 fw-bold mb-3 lh-sm">
-                    <span id="typingTarget">Penjualan, Pembelian, Stok, dan Keuangan dalam Satu Aplikasi</span>
-                    <noscript>Kelola Proses Bisnis Lengkap: Penjualan, Pembelian, Utang, Piutang, Stok, dan Keuangan dalam Satu Aplikasi</noscript>
-                </h1>
-                <p class="mb-4 mx-auto" style="color:rgba(255,255,255,.82); max-width:680px;">Dari transaksi penjualan, pembelian supplier, kelola utang piutang, hingga analisis laba rugi dan laporan keuangan. Semua terkontrol dengan rapi dan real-time.</p>
-                <div class="d-flex flex-wrap gap-3 mb-4 justify-content-center">
-                    <a href="#demo" class="btn btn-outline-custom btn-hero-outline">Mulai Gratis</a>
+<!-- Hero -->
+<section class="hero" id="hero">
+    <div class="container position-relative text-center">
+        <a href="#fitur" class="hero-pill reveal">
+            <span class="tag">BARU</span>
+            AI Chat Assistant &amp; Salesman Tracking
+            <i class="bi bi-chevron-right small"></i>
+        </a>
+        <h1 class="reveal reveal-d1">Penjualan, pembelian, stok &amp; keuangan. <span class="text-grad">Satu aplikasi.</span></h1>
+        <p class="hero-lead reveal reveal-d2">Dari transaksi penjualan, pembelian supplier, utang piutang, hingga laporan laba rugi. Semua terkontrol dengan rapi dan real-time.</p>
+        <div class="d-flex flex-wrap gap-3 justify-content-center reveal reveal-d3">
+            <a href="#demo" class="btn-c btn-c-primary">Mulai Gratis <i class="bi bi-arrow-right"></i></a>
+            <a href="#tampilan" class="btn-c btn-c-ghost"><i class="bi bi-play-circle"></i> Lihat Tampilan</a>
+        </div>
+        <div class="hero-trust reveal reveal-d3">
+            <span><i class="bi bi-check-circle-fill"></i> Gratis selamanya untuk usaha kecil</span>
+            <span><i class="bi bi-check-circle-fill"></i> Tanpa kartu kredit</span>
+            <span><i class="bi bi-check-circle-fill"></i> Laptop, tablet &amp; HP</span>
+        </div>
+
+        <div class="mockup-wrap reveal">
+            <div class="mockup-glow"></div>
+            <div class="float-chip">
+                <div class="ic"><i class="bi bi-graph-up-arrow"></i></div>
+                <div class="text-start"><small>Penjualan bulan ini</small><strong>+5,0% vs periode lalu</strong></div>
+            </div>
+            <div class="float-chip float-chip-2">
+                <div class="ic"><i class="bi bi-stars"></i></div>
+                <div class="text-start"><small>AI Assistant</small><strong>"Produk terlaris minggu ini?"</strong></div>
+            </div>
+            <div class="browser">
+                <div class="browser-bar">
+                    <div class="browser-dots"><i></i><i></i><i></i></div>
+                    <div class="browser-url"><i class="bi bi-lock-fill"></i> app.cocco.id/dashboard</div>
+                    <div class="browser-spacer"></div>
                 </div>
-                <div class="d-flex flex-wrap gap-4 mt-3 justify-content-center">
-                    <span class="trust-badge"><i class="bi bi-shield-check"></i> Data Aman &amp; Terenkripsi</span>
-                    <span class="trust-badge"><i class="bi bi-cloud-check"></i> Akses Cloud 24/7</span>
-                    <span class="trust-badge"><i class="bi bi-phone"></i> Laptop, Tablet &amp; HP</span>
-                </div>
+                <img src="images/dashboard.jpg" alt="Dashboard cocco.id - Ringkasan bisnis real-time" width="1663" height="862" fetchpriority="high">
+            </div>
+            <div class="phone">
+                <img src="images/penjualan-mobile.jpg" alt="Penjualan mobile cocco.id" width="393" height="757" loading="lazy">
             </div>
         </div>
     </div>
-    <!-- Wave inside hero so it inherits the animated gradient -->
-    <div style="position:absolute;bottom:0;left:0;width:100%;line-height:0;font-size:0;">
-        <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;height:80px;width:100%;">
-            <path d="M0,40 C360,90 1080,-10 1440,40 L1440,80 L0,80 Z" fill="#fff"/>
-        </svg>
+</section>
+
+<!-- Stats -->
+<section class="stats" id="stats">
+    <div class="container">
+        <div class="row g-4 justify-content-center">
+            <div class="col-6 col-md-3 stat-col reveal">
+                <div class="stat"><div class="stat-num"><span class="counter" data-target="100">100</span><span class="suf">+</span></div><div class="stat-label">Bisnis aktif</div></div>
+            </div>
+            <div class="col-6 col-md-3 stat-col reveal reveal-d1">
+                <div class="stat"><div class="stat-num"><span class="counter" data-target="1">1</span><span class="suf">Jt+</span></div><div class="stat-label">Transaksi diproses</div></div>
+            </div>
+            <div class="col-6 col-md-3 stat-col reveal reveal-d2">
+                <div class="stat"><div class="stat-num">99.9<span class="suf">%</span></div><div class="stat-label">Uptime</div></div>
+            </div>
+            <div class="col-6 col-md-3 stat-col reveal reveal-d3">
+                <div class="stat"><div class="stat-num">24<span class="suf">/7</span></div><div class="stat-label">Akses cloud</div></div>
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- (wave is now inside hero above) -->
-
-<!-- Section Filosofi Cocco -->
-<section class="section-padding" id="filosofi" style="position:relative;overflow:hidden;padding-bottom:162px;">
+<!-- Filosofi -->
+<section class="section" id="filosofi">
     <div class="container">
-        <div class="text-center mb-5 reveal">
-            <h2 class="fw-bold mb-3">Mengapa <span class="text-primary-custom">cocco</span>?</h2>
-            <p class="text-muted mx-auto" style="max-width:600px;">Nama cocco terinspirasi dari tiga pilar yang kami yakini penting untuk kesuksesan bisnis Anda.</p>
+        <div class="section-head reveal">
+            <div class="eyebrow">Filosofi</div>
+            <h2>Mengapa <span class="text-grad">cocco</span>?</h2>
+            <p>Nama cocco terinspirasi dari tiga pilar yang kami yakini penting untuk kesuksesan bisnis Anda.</p>
         </div>
         <div class="row g-4">
             <div class="col-md-4 reveal">
-                <div class="card-feature filosofi-card">
-                    <div class="filosofi-icon"><i class="bi bi-sliders"></i></div>
-                    <h3 class="h5 fw-bold">CONTROL</h3>
-                    <p class="text-muted mb-0">Kendali penuh atas penjualan, pembelian, dan stok barang. Setiap transaksi tercatat, setiap rupiah terlacak.</p>
+                <div class="pillar">
+                    <div class="pillar-num">01</div>
+                    <div class="pillar-ic"><i class="bi bi-sliders"></i></div>
+                    <h3><span>Co</span>ntrol</h3>
+                    <p>Kendali penuh atas penjualan, pembelian, dan stok barang. Setiap transaksi tercatat, setiap rupiah terlacak.</p>
                 </div>
             </div>
-            <div class="col-md-4 reveal">
-                <div class="card-feature filosofi-card">
-                    <div class="filosofi-icon"><i class="bi bi-eye"></i></div>
-                    <h3 class="h5 fw-bold">CLARITY</h3>
-                    <p class="text-muted mb-0">Laporan laba rugi dan kinerja yang transparan. Lihat kondisi bisnis Anda dengan jelas kapan saja.</p>
+            <div class="col-md-4 reveal reveal-d1">
+                <div class="pillar">
+                    <div class="pillar-num">02</div>
+                    <div class="pillar-ic"><i class="bi bi-eye"></i></div>
+                    <h3><span>C</span>larity</h3>
+                    <p>Laporan laba rugi dan kinerja yang transparan. Lihat kondisi bisnis Anda dengan jelas kapan saja.</p>
                 </div>
             </div>
-            <div class="col-md-4 reveal">
-                <div class="card-feature filosofi-card">
-                    <div class="filosofi-icon"><i class="bi bi-graph-up-arrow"></i></div>
-                    <h3 class="h5 fw-bold">CONFIDENCE</h3>
-                    <p class="text-muted mb-0">Keputusan bisnis berdasarkan data akurat. Tingkatkan kepercayaan diri dalam setiap langkah bisnis Anda.</p>
+            <div class="col-md-4 reveal reveal-d2">
+                <div class="pillar">
+                    <div class="pillar-num">03</div>
+                    <div class="pillar-ic"><i class="bi bi-graph-up-arrow"></i></div>
+                    <h3><span>Co</span>nfidence</h3>
+                    <p>Keputusan bisnis berdasarkan data akurat. Tingkatkan kepercayaan diri dalam setiap langkah bisnis Anda.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Stats Section -->
-<section class="stats-section" id="stats">
+<!-- Fitur -->
+<section class="section section-alt" id="fitur">
     <div class="container">
-        <div class="row g-4 align-items-center justify-content-center text-center">
-            <div class="col-6 col-md-3 stat-item reveal">
-                <div class="stat-number"><span class="counter" data-target="100">100</span><span class="stat-suffix">+</span></div>
-                <div class="stat-label">Bisnis Aktif</div>
-            </div>
-            <div class="d-none d-md-block stat-divider"></div>
-            <div class="col-6 col-md-3 stat-item reveal">
-                <div class="stat-number"><span class="counter" data-target="1">1</span><span class="stat-suffix">Jt+</span></div>
-                <div class="stat-label">Transaksi Diproses</div>
-            </div>
-            <div class="d-none d-md-block stat-divider"></div>
-            <div class="col-6 col-md-3 stat-item reveal">
-                <div class="stat-number">99.9<span class="stat-suffix">%</span></div>
-                <div class="stat-label">Uptime</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Section Fitur -->
-<section class="section-padding bg-light-custom" id="fitur">
-    <div class="container">
-        <div class="text-center mb-5 reveal">
-            <h2 class="fw-bold mb-3">Siklus Bisnis Lengkap dalam Satu Aplikasi</h2>
-            <p class="text-muted mx-auto" style="max-width:600px;">cocco.id mengelola seluruh alur bisnis Anda, dari penjualan hingga laporan keuangan — dilengkapi dengan AI Assistant.</p>
+        <div class="section-head reveal">
+            <div class="eyebrow">Fitur</div>
+            <h2>Siklus bisnis lengkap dalam satu aplikasi</h2>
+            <p>cocco.id mengelola seluruh alur bisnis Anda, dari penjualan hingga laporan keuangan — dilengkapi dengan AI Assistant.</p>
         </div>
 
-        <!-- Siklus Bisnis Visual -->
-        <div class="row g-3 justify-content-center mb-5">
-            <div class="col-4 col-md-2">
-                <div class="cycle-step">
-                    <i class="bi bi-cart-check d-block mb-2"></i>
-                    <h4 class="h6 fw-bold">Penjualan</h4>
-                </div>
-            </div>
-            <div class="col-4 col-md-2">
-                <div class="cycle-step">
-                    <i class="bi bi-box-seam d-block mb-2"></i>
-                    <h4 class="h6 fw-bold">Pembelian</h4>
-                </div>
-            </div>
-            <div class="col-4 col-md-2">
-                <div class="cycle-step">
-                    <i class="bi bi-archive d-block mb-2"></i>
-                    <h4 class="h6 fw-bold">Stok</h4>
-                </div>
-            </div>
-            <div class="col-4 col-md-2">
-                <div class="cycle-step">
-                    <i class="bi bi-safe2 d-block mb-2"></i>
-                    <h4 class="h6 fw-bold">Keuangan</h4>
-                </div>
-            </div>
-            <div class="col-4 col-md-2">
-                <div class="cycle-step">
-                    <i class="bi bi-person-walking d-block mb-2"></i>
-                    <h4 class="h6 fw-bold">Salesman</h4>
-                </div>
-            </div>
-            <div class="col-4 col-md-2">
-                <div class="cycle-step">
-                    <i class="bi bi-robot d-block mb-2"></i>
-                    <h4 class="h6 fw-bold">AI Assistant</h4>
-                </div>
-            </div>
+        <div class="flow reveal">
+            <span class="flow-step"><i class="bi bi-cart-check"></i>Penjualan</span>
+            <span class="flow-arrow"><i class="bi bi-arrow-right"></i></span>
+            <span class="flow-step"><i class="bi bi-box-seam"></i>Pembelian</span>
+            <span class="flow-arrow"><i class="bi bi-arrow-right"></i></span>
+            <span class="flow-step"><i class="bi bi-archive"></i>Stok</span>
+            <span class="flow-arrow"><i class="bi bi-arrow-right"></i></span>
+            <span class="flow-step"><i class="bi bi-safe2"></i>Keuangan</span>
+            <span class="flow-arrow"><i class="bi bi-arrow-right"></i></span>
+            <span class="flow-step"><i class="bi bi-person-walking"></i>Salesman</span>
+            <span class="flow-arrow"><i class="bi bi-arrow-right"></i></span>
+            <span class="flow-step"><i class="bi bi-robot"></i>AI Assistant</span>
         </div>
 
-        <!-- Grup 1: Transaksi -->
-        <div class="mb-4">
-            <div class="d-flex align-items-center gap-2 mb-3">
-                <span class="badge rounded-pill bg-primary-custom text-white px-3 py-2" style="background-color: var(--primary) !important; font-size: .85rem;"><i class="bi bi-arrow-left-right me-1"></i> Transaksi</span>
-                <span class="text-muted small">Kelola seluruh arus jual-beli dan kewajiban keuangan</span>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card-feature">
-                        <div class="icon-box"><i class="bi bi-receipt"></i></div>
-                        <h3 class="h5 fw-bold">Modul Penjualan</h3>
-                        <ul class="list-unstyled text-muted mb-0">
-                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Transaksi penjualan lengkap</li>
-                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Invoice dan surat jalan</li>
-                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Multi level harga</li>
-                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Retur penjualan</li>
-                            <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Pesanan penjualan</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card-feature">
-                        <div class="icon-box"><i class="bi bi-truck"></i></div>
-                        <h3 class="h5 fw-bold">Modul Pembelian</h3>
-                        <ul class="list-unstyled text-muted mb-0">
-                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Pembelian dari supplier</li>
-                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Pesanan pembelian (PO)</li>
-                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Retur pembelian</li>
-                            <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Manajemen pemasok</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card-feature">
-                        <div class="icon-box"><i class="bi bi-safe2"></i></div>
-                        <h3 class="h5 fw-bold">Modul Utang Piutang</h3>
-                        <ul class="list-unstyled text-muted mb-0">
-                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Pelacakan piutang pelanggan</li>
-                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Manajemen utang supplier</li>
-                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Aging report</li>
-                            <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Pengingat jatuh tempo</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Grup 2: Inventory & Gudang -->
-        <div class="mb-4">
-            <div class="d-flex align-items-center gap-2 mb-3">
-                <span class="badge rounded-pill text-white px-3 py-2" style="background-color: #16a34a !important; font-size: .85rem;"><i class="bi bi-boxes me-1"></i> Inventory &amp; Gudang</span>
-                <span class="text-muted small">Kontrol stok barang dan multi-gudang secara real-time</span>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-6">
-                    <div class="card-feature">
-                        <div class="icon-box" style="background: #dcfce7;"><i class="bi bi-boxes" style="color: #16a34a;"></i></div>
-                        <h3 class="h5 fw-bold">Modul Stok Barang</h3>
-                        <ul class="list-unstyled text-muted mb-0">
-                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Stok multi-gudang</li>
-                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Multi satuan</li>
-                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Transfer antar gudang &amp; stok opname</li>
-                            <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Mutasi stok detail</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card-feature">
-                        <div class="icon-box" style="background: #dcfce7;"><i class="bi bi-speedometer2" style="color: #16a34a;"></i></div>
-                        <h3 class="h5 fw-bold">Inventory Real-Time &amp; Analisis</h3>
-                        <ul class="list-unstyled text-muted mb-0">
-                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Tracking stok otomatis</li>
-                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Notifikasi stok minimum</li>
-                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Analisis laba per produk</li>
-                            <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Trend penjualan &amp; profitabilitas</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Grup 3: Laporan & Kecerdasan -->
-        <div class="mb-5">
-            <div class="d-flex align-items-center gap-2 mb-3">
-                <span class="badge rounded-pill text-white px-3 py-2" style="background-color: #9333ea !important; font-size: .85rem;"><i class="bi bi-lightbulb me-1"></i> Laporan &amp; AI Assistant</span>
-                <span class="text-muted small">Insight cerdas, pantau tim lapangan, dan laporan keuangan lengkap</span>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card-feature">
-                        <div class="icon-box" style="background: #f3e8ff;"><i class="bi bi-journal-text" style="color: #9333ea;"></i></div>
-                        <h3 class="h5 fw-bold">Modul Laporan Keuangan</h3>
-                        <ul class="list-unstyled text-muted mb-0">
-                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Laporan neraca & laba rugi</li>
-                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Laporan arus kas & buku besar</li>
-                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Jurnal umum</li>
-                            <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Chart of account</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card-feature">
-                        <div class="icon-box" style="background: #f3e8ff;"><i class="bi bi-person-walking" style="color: #9333ea;"></i></div>
-                        <h3 class="h5 fw-bold">Salesman Tracking</h3>
-                        <span class="badge rounded-pill text-white mb-3" style="background: linear-gradient(135deg, #9333ea, #ec4899); font-size: .75rem;">📍 GPS Tracking</span>
-                        <ul class="list-unstyled text-muted mb-0">
-                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Lacak lokasi salesman real-time</li>
-                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Riwayat kunjungan &amp; rute harian</li>
-                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Target &amp; pencapaian per salesman</li>
-                            <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Laporan aktivitas tim lapangan</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card-feature">
-                        <div class="icon-box" style="background: #f3e8ff;"><i class="bi bi-robot" style="color: #9333ea;"></i></div>
-                        <h3 class="h5 fw-bold">AI Chat Assistant</h3>
-                        <span class="badge rounded-pill text-white mb-3" style="background: linear-gradient(135deg, #9333ea, #6366f1); font-size: .75rem;">✨ Fitur AI</span>
-                        <ul class="list-unstyled text-muted mb-0">
-                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Tanya data bisnis dengan bahasa sehari-hari</li>
-                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Ringkasan penjualan &amp; stok otomatis</li>
-                            <li class="mb-1"><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Rekomendasi cerdas berbasis data</li>
-                            <li><i class="bi bi-check-circle-fill text-primary-custom me-2"></i>Analisis performa bisnis instan</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Screenshot Aplikasi -->
-        <div class="text-center mt-5 mb-4">
-            <h3 class="fw-bold mb-2">Tampilan Aplikasi</h3>
-            <p class="text-muted mx-auto" style="max-width:600px;">Intip langsung tampilan cocco.id yang simpel, modern, dan mudah digunakan.</p>
-        </div>
         <div class="row g-4">
-            <div class="col-md-6 col-lg-6">
-                <div class="screenshot-card" onclick="openLightbox('images/dashboard.jpg', 'Dashboard')">
-                    <img src="images/dashboard.jpg" alt="Dashboard cocco.id - Ringkasan bisnis real-time" loading="lazy">
-                    <div class="screenshot-label">Dashboard</div>
+            <!-- Transaksi -->
+            <div class="col-md-6 col-lg-4 reveal">
+                <div class="feature">
+                    <div class="feature-top"><div class="feature-ic"><i class="bi bi-receipt"></i></div><span class="feature-tag">Transaksi</span></div>
+                    <h3>Penjualan</h3>
+                    <ul>
+                        <li>Transaksi penjualan lengkap</li>
+                        <li>Invoice dan surat jalan</li>
+                        <li>Multi level harga</li>
+                        <li>Retur penjualan</li>
+                        <li>Pesanan penjualan</li>
+                    </ul>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-6">
-                <div class="screenshot-card" onclick="openLightbox('images/penjualan.jpg', 'Penjualan')">
-                    <img src="images/penjualan.jpg" alt="Modul Penjualan cocco.id - Kelola transaksi penjualan" loading="lazy">
-                    <div class="screenshot-label">Penjualan</div>
+            <div class="col-md-6 col-lg-4 reveal reveal-d1">
+                <div class="feature">
+                    <div class="feature-top"><div class="feature-ic"><i class="bi bi-truck"></i></div><span class="feature-tag">Transaksi</span></div>
+                    <h3>Pembelian</h3>
+                    <ul>
+                        <li>Pembelian dari supplier</li>
+                        <li>Pesanan pembelian (PO)</li>
+                        <li>Retur pembelian</li>
+                        <li>Manajemen pemasok</li>
+                    </ul>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-6">
-                <div class="screenshot-card" onclick="openLightbox('images/salesman-tracking.jpg', 'Salesman Tracking')">
-                    <img src="images/salesman-tracking.jpg" alt="Salesman Tracking cocco.id - Pantau aktivitas salesman" loading="lazy">
-                    <div class="screenshot-label">Salesman Tracking</div>
+            <div class="col-md-6 col-lg-4 reveal reveal-d2">
+                <div class="feature">
+                    <div class="feature-top"><div class="feature-ic"><i class="bi bi-wallet2"></i></div><span class="feature-tag">Transaksi</span></div>
+                    <h3>Utang Piutang</h3>
+                    <ul>
+                        <li>Pelacakan piutang pelanggan</li>
+                        <li>Manajemen utang supplier</li>
+                        <li>Aging report</li>
+                        <li>Pengingat jatuh tempo</li>
+                    </ul>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-6">
-                <div class="screenshot-card" onclick="openLightbox('images/cocco-ai-chat-assistant.jpg', 'AI Chat Assistant')">
-                    <img src="images/cocco-ai-chat-assistant.jpg" alt="AI Chat Assistant cocco.id - Asisten AI untuk bisnis Anda" loading="lazy">
-                    <div class="screenshot-label">AI Chat Assistant</div>
+
+            <!-- Inventory -->
+            <div class="col-md-6 reveal">
+                <div class="feature is-green">
+                    <div class="feature-top"><div class="feature-ic"><i class="bi bi-boxes"></i></div><span class="feature-tag">Inventory &amp; Gudang</span></div>
+                    <h3>Stok Barang</h3>
+                    <ul>
+                        <li>Stok multi-gudang</li>
+                        <li>Multi satuan</li>
+                        <li>Transfer antar gudang &amp; stok opname</li>
+                        <li>Mutasi stok detail</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 reveal reveal-d1">
+                <div class="feature is-green">
+                    <div class="feature-top"><div class="feature-ic"><i class="bi bi-speedometer2"></i></div><span class="feature-tag">Inventory &amp; Gudang</span></div>
+                    <h3>Inventory Real-Time &amp; Analisis</h3>
+                    <ul>
+                        <li>Tracking stok otomatis</li>
+                        <li>Notifikasi stok minimum</li>
+                        <li>Analisis laba per produk</li>
+                        <li>Trend penjualan &amp; profitabilitas</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Laporan & AI -->
+            <div class="col-md-6 col-lg-4 reveal">
+                <div class="feature is-violet">
+                    <div class="feature-top"><div class="feature-ic"><i class="bi bi-journal-text"></i></div><span class="feature-tag">Laporan</span></div>
+                    <h3>Laporan Keuangan</h3>
+                    <ul>
+                        <li>Laporan neraca &amp; laba rugi</li>
+                        <li>Laporan arus kas &amp; buku besar</li>
+                        <li>Jurnal umum</li>
+                        <li>Chart of account</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 reveal reveal-d1">
+                <div class="feature is-violet">
+                    <div class="feature-top"><div class="feature-ic"><i class="bi bi-geo-alt"></i></div><span class="feature-tag">GPS Tracking</span></div>
+                    <h3>Salesman Tracking</h3>
+                    <ul>
+                        <li>Lacak lokasi salesman real-time</li>
+                        <li>Riwayat kunjungan &amp; rute harian</li>
+                        <li>Target &amp; pencapaian per salesman</li>
+                        <li>Laporan aktivitas tim lapangan</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4 reveal reveal-d2">
+                <div class="feature feature-dark">
+                    <div class="feature-top"><div class="feature-ic"><i class="bi bi-stars"></i></div><span class="feature-tag">Fitur AI</span></div>
+                    <h3>AI Chat Assistant</h3>
+                    <ul>
+                        <li>Tanya data bisnis dengan bahasa sehari-hari</li>
+                        <li>Ringkasan penjualan &amp; stok otomatis</li>
+                        <li>Rekomendasi cerdas berbasis data</li>
+                        <li>Analisis performa bisnis instan</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Manfaat untuk Bisnis Indonesia -->
-<section class="section-padding" id="solusi">
+<!-- Tampilan Aplikasi -->
+<section class="section" id="tampilan">
     <div class="container">
-        <div class="text-center mb-5 reveal">
-            <h2 class="fw-bold mb-3">Solusi untuk Berbagai Jenis Bisnis Indonesia</h2>
-            <p class="text-muted mx-auto" style="max-width:600px;">cocco.id dirancang fleksibel untuk berbagai skala dan tipe bisnis di Indonesia.</p>
+        <div class="section-head reveal">
+            <div class="eyebrow">Tampilan Aplikasi</div>
+            <h2>Simpel, modern, mudah digunakan</h2>
+            <p>Intip langsung tampilan cocco.id. Klik gambar untuk memperbesar.</p>
+        </div>
+        <div class="text-center reveal">
+            <div class="showcase-tabs" role="tablist" aria-label="Tampilan aplikasi">
+                <button class="showcase-tab active" role="tab" aria-selected="true" data-src="images/dashboard.jpg" data-label="Dashboard" data-url="app.cocco.id/dashboard" data-caption="Ringkasan penjualan, piutang, stok, dan laba dalam satu layar."><i class="bi bi-grid-1x2"></i>Dashboard</button>
+                <button class="showcase-tab" role="tab" aria-selected="false" data-src="images/penjualan.jpg" data-label="Penjualan" data-url="app.cocco.id/penjualan" data-caption="Kelola transaksi penjualan, invoice, dan surat jalan."><i class="bi bi-receipt"></i>Penjualan</button>
+                <button class="showcase-tab" role="tab" aria-selected="false" data-src="images/salesman-tracking.jpg" data-label="Salesman Tracking" data-url="app.cocco.id/salesman-tracking" data-caption="Pantau lokasi dan kunjungan tim lapangan secara real-time."><i class="bi bi-geo-alt"></i>Salesman Tracking</button>
+                <button class="showcase-tab" role="tab" aria-selected="false" data-src="images/cocco-ai-chat-assistant.jpg" data-label="AI Chat Assistant" data-url="app.cocco.id/ai-assistant" data-caption="Tanya apa saja tentang bisnis Anda dengan bahasa sehari-hari."><i class="bi bi-stars"></i>AI Assistant</button>
+            </div>
+        </div>
+        <div class="showcase-stage reveal">
+            <div class="browser" id="showcaseBrowser" role="button" tabindex="0" aria-label="Perbesar gambar">
+                <div class="browser-bar">
+                    <div class="browser-dots"><i></i><i></i><i></i></div>
+                    <div class="browser-url"><i class="bi bi-lock-fill"></i> <span id="showcaseUrl">app.cocco.id/dashboard</span></div>
+                    <div class="browser-spacer"></div>
+                </div>
+                <img id="showcaseImg" src="images/dashboard.jpg" alt="Dashboard" width="1663" height="862" loading="lazy">
+            </div>
+            <p class="showcase-caption" id="showcaseCaption">Ringkasan penjualan, piutang, stok, dan laba dalam satu layar.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Solusi -->
+<section class="section section-alt" id="solusi">
+    <div class="container">
+        <div class="section-head reveal">
+            <div class="eyebrow">Solusi</div>
+            <h2>Untuk berbagai jenis bisnis Indonesia</h2>
+            <p>cocco.id dirancang fleksibel untuk berbagai skala dan tipe bisnis di Indonesia.</p>
         </div>
         <div class="row g-4">
             <div class="col-md-6 col-lg-3 reveal">
-                <div class="card-feature text-center">
-                    <div class="icon-box mx-auto"><i class="bi bi-shop"></i></div>
-                    <h3 class="h5 fw-bold">Retail</h3>
-                    <p class="text-muted small mb-0">Kelola toko offline dan online. Pantau penjualan harian, stok barang, dan laporan laba rugi dengan mudah.</p>
-                </div>
+                <div class="industry"><i class="bi bi-shop"></i><h3>Retail</h3><p>Kelola toko offline dan online. Pantau penjualan harian, stok barang, dan laporan laba rugi dengan mudah.</p></div>
             </div>
-            <div class="col-md-6 col-lg-3 reveal">
-                <div class="card-feature text-center">
-                    <div class="icon-box mx-auto"><i class="bi bi-cart"></i></div>
-                    <h3 class="h5 fw-bold">Grosir</h3>
-                    <p class="text-muted small mb-0">Kelola penjualan dalam jumlah besar, manajemen harga per tier customer, dan kontrol stok multi-lokasi.</p>
-                </div>
+            <div class="col-md-6 col-lg-3 reveal reveal-d1">
+                <div class="industry"><i class="bi bi-cart3"></i><h3>Grosir</h3><p>Kelola penjualan dalam jumlah besar, manajemen harga per tier customer, dan kontrol stok multi-lokasi.</p></div>
             </div>
-            <div class="col-md-6 col-lg-3 reveal">
-                <div class="card-feature text-center">
-                    <div class="icon-box mx-auto"><i class="bi bi-building"></i></div>
-                    <h3 class="h5 fw-bold">Distributor</h3>
-                    <p class="text-muted small mb-0">Manajemen stok multi-gudang, pelacakan pengiriman, dan kontrol utang piutang supplier secara efisien.</p>
-                </div>
+            <div class="col-md-6 col-lg-3 reveal reveal-d2">
+                <div class="industry"><i class="bi bi-building"></i><h3>Distributor</h3><p>Manajemen stok multi-gudang, pelacakan pengiriman, dan kontrol utang piutang supplier secara efisien.</p></div>
             </div>
-            <div class="col-md-6 col-lg-3 reveal">
-                <div class="card-feature text-center">
-                    <div class="icon-box mx-auto"><i class="bi bi-gear"></i></div>
-                    <h3 class="h5 fw-bold">Manufaktur</h3>
-                    <p class="text-muted small mb-0">Kontrol bahan baku dan barang jadi. Lacak biaya produksi dan valuasi inventori secara real-time.</p>
-                </div>
+            <div class="col-md-6 col-lg-3 reveal reveal-d3">
+                <div class="industry"><i class="bi bi-gear-wide-connected"></i><h3>Manufaktur</h3><p>Kontrol bahan baku dan barang jadi. Lacak biaya produksi dan valuasi inventori secara real-time.</p></div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Section Harga -->
-<section class="section-padding bg-light-custom" id="harga">
+<!-- Harga -->
+<section class="section" id="harga">
     <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold mb-3">Pilih Paket yang Sesuai untuk Bisnis Anda</h2>
-            <p class="text-muted mx-auto" style="max-width:600px;">Semua paket termasuk gratis trial 1 bulan, setup, dan training online. Tanpa biaya tersembunyi.</p>
+        <div class="section-head reveal">
+            <div class="eyebrow">Harga</div>
+            <h2>Harga sederhana, tanpa biaya tersembunyi</h2>
+            <p>Mulai gratis, upgrade saat bisnis Anda berkembang.</p>
         </div>
         <div class="row g-4 justify-content-center">
-            <!-- Paket Free -->
-            <div class="col-md-6 col-lg-4">
-                <div class="pricing-card h-100">
-                    <h3 class="h4 fw-bold mb-1">Gratisan</h3>
-                    <p class="text-muted small mb-3">Cocok untuk warung dan usaha kecil</p>
-                    <div class="mb-1">
-                        <span class="price-current">Rp 0</span><span class="price-period">/bulan</span>
-                    </div>
-                    <p class="text-muted small mb-4">Gratis selamanya</p>
-                    <hr>
-                    <ul class="list-unstyled mt-3 mb-4">
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Fitur lengkap: penjualan, pembelian, stok barang, utang, piutang</li>
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i><strong>1 user</strong></li>
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i><strong>1.000 produk</strong></li>
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i><strong>1.000 transaksi/bulan</strong></li>
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Akses cloud 24/7 dari Laptop/Tablet/HP</li>
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Support via WhatsApp</li>
+            <div class="col-md-6 col-lg-5 col-xl-4 reveal">
+                <div class="plan">
+                    <div class="plan-name">Gratisan</div>
+                    <p class="plan-desc">Cocok untuk warung dan usaha kecil</p>
+                    <div class="plan-price"><span class="amt">Rp 0</span><span class="per">/bulan</span></div>
+                    <p class="plan-note">Gratis selamanya</p>
+                    <ul>
+                        <li>Fitur lengkap: penjualan, pembelian, stok barang, utang, piutang</li>
+                        <li><strong>1 user</strong></li>
+                        <li><strong>1.000 produk</strong></li>
+                        <li><strong>1.000 transaksi/bulan</strong></li>
+                        <li>Akses cloud 24/7 dari Laptop/Tablet/HP</li>
+                        <li>Support via WhatsApp</li>
                     </ul>
-                    <a href="#demo" class="btn btn-outline-custom w-100">Mulai Trial Gratis</a>
+                    <a href="#demo" class="btn-c btn-c-ghost btn-c-block">Mulai Gratis</a>
                 </div>
             </div>
-            <!-- Paket Pro -->
-            <div class="col-md-6 col-lg-4">
-                <div class="pricing-card popular h-100">
-                    <span class="badge-popular">Paling Populer</span>
-                    <h3 class="h4 fw-bold mb-1">Juragan</h3>
-                    <p class="text-muted small mb-3">Untuk bisnis yang butuh fitur lengkap tanpa batas</p>
-                    <div class="mb-1">
-                        <span class="price-current">Rp 199.000</span><span class="price-period">/bulan</span>
-                    </div>
-                    <p class="text-muted small mb-4">+ Biaya implementasi Rp 5.000.000</p>
-                    <hr>
-                    <ul class="list-unstyled mt-3 mb-4">
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Fitur lengkap: penjualan, pembelian, stok barang, utang, piutang</li>
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Fitur ekstra: Akuntansi, laporan keuangan, dashboard, AI chat, salesman tracking</li>
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i><strong>Unlimited user</strong></li>
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i><strong>Unlimited produk</strong></li>
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i><strong>Unlimited transaksi</strong></li>
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Akses cloud 24/7 dari Laptop/Tablet/HP</li>
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Support khusus via WhatsApp <strong>dan remote</strong></li>
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Gratis trial 1 bulan</li>
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Gratis setup dan training online</li>
-                        <li class="d-flex align-items-center gap-2">
-                            <i class="bi bi-check-circle-fill text-success flex-shrink-0"></i>
-                            <span><strong>Priority Support</strong></span>
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#modalPrioritySupport"
-                                title="Lihat detail Priority Support"
-                                style="width: 18px; height: 18px; border-radius: 50%; background: var(--primary-light); border: 1.5px solid var(--primary); color: var(--primary); font-size: .68rem; font-weight: 700; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .2s, color .2s; flex-shrink: 0;"
-                                onmouseover="this.style.background='var(--primary)';this.style.color='#fff'" onmouseout="this.style.background='var(--primary-light)';this.style.color='var(--primary)'">?</button>
-                        </li>
+            <div class="col-md-6 col-lg-5 col-xl-4 reveal reveal-d1">
+                <div class="plan plan-featured">
+                    <div class="plan-name">Juragan <span class="plan-badge">Paling Populer</span></div>
+                    <p class="plan-desc">Untuk bisnis yang butuh fitur lengkap tanpa batas</p>
+                    <div class="plan-price"><span class="amt">Rp 199.000</span><span class="per">/bulan</span></div>
+                    <p class="plan-note">+ Biaya implementasi Rp 5.000.000</p>
+                    <ul>
+                        <li>Fitur lengkap: penjualan, pembelian, stok barang, utang, piutang</li>
+                        <li>Fitur ekstra: Akuntansi, laporan keuangan, dashboard, AI chat, salesman tracking</li>
+                        <li><strong>Unlimited</strong> user, produk &amp; transaksi</li>
+                        <li>Akses cloud 24/7 dari Laptop/Tablet/HP</li>
+                        <li>Support khusus via WhatsApp <strong>dan remote</strong></li>
+                        <li>Gratis trial 1 bulan</li>
+                        <li>Gratis setup dan training online</li>
+                        <li><strong>Priority Support</strong> <button type="button" class="info-dot" data-bs-toggle="modal" data-bs-target="#modalPrioritySupport" aria-label="Lihat detail Priority Support" title="Lihat detail Priority Support">?</button></li>
                     </ul>
-                    <a href="#demo" class="btn btn-primary-custom w-100">Mulai Trial Gratis</a>
+                    <a href="#demo" class="btn-c btn-c-light btn-c-block">Mulai Trial Gratis <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
         </div>
-
     </div>
 </section>
 
-<!-- CTA Section / Demo / Trial Form -->
-<section class="section-padding" id="demo">
+<!-- FAQ -->
+<section class="section section-alt" id="faq">
     <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-lg-6 mb-4 mb-lg-0">
-                <h2 class="fw-bold mb-3">Mulai Trial Gratis 1 Bulan Sekarang</h2>
-                <p class="text-muted mb-4">Daftar sekarang dan rasakan kemudahan mengelola penjualan, pembelian, stok, dan keuangan bisnis Anda. Tanpa kartu kredit, tanpa komitmen.</p>
-                <div class="d-flex flex-wrap gap-3 mb-4">
-                    <span class="trust-badge"><i class="bi bi-shield-lock-fill text-success"></i> Data Terenkripsi SSL</span>
-                    <span class="trust-badge"><i class="bi bi-clock-history text-primary"></i> Setup &lt; 5 Menit</span>
-                    <span class="trust-badge"><i class="bi bi-headset text-primary"></i> Support WhatsApp</span>
-                </div>
+        <div class="section-head reveal">
+            <div class="eyebrow">FAQ</div>
+            <h2>Pertanyaan yang sering diajukan</h2>
+        </div>
+        <div class="accordion faq reveal" id="faqAccordion">
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="false" aria-controls="faq1">Apakah paket Gratisan benar-benar gratis?</button></h3>
+                <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Ya, gratis selamanya. Paket Gratisan sudah mencakup penjualan, pembelian, stok barang, utang dan piutang untuk 1 user, hingga 1.000 produk dan 1.000 transaksi per bulan.</div></div>
             </div>
-            <div class="col-lg-5">
-                <div class="card-feature no-animation p-4" style="box-shadow: 0 4px 20px rgba(0,0,0,.08);">
-                    <h3 class="h5 fw-bold mb-3 text-center">Daftar Trial Gratis</h3>
-                    <form id="trialForm">
-                        <div class="mb-3">
-                            <label for="nama" class="form-label fw-semibold">Nama</label>
-                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="whatsapp" class="form-label fw-semibold">Nomor WhatsApp</label>
-                            <input type="tel" class="form-control" id="whatsapp" name="whatsapp" placeholder="08xxxxxxxxxx" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="perusahaan" class="form-label fw-semibold">Nama Perusahaan</label>
-                            <input type="text" class="form-control" id="perusahaan" name="perusahaan" placeholder="Masukkan nama perusahaan" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="bisnis" class="form-label fw-semibold">Jenis Bisnis</label>
-                            <select class="form-select" id="bisnis" name="bisnis" required>
-                                <option value="">Pilih jenis bisnis</option>
-                                <option value="retail">Retail</option>
-                                <option value="grosir">Grosir</option>
-                                <option value="distributor">Distributor</option>
-                                <option value="manufaktur">Manufaktur</option>
-                                <option value="lainnya">Lainnya</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary-custom w-100">Mulai Trial Gratis</button>
-                    </form>
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">Apa itu Priority Support di paket Juragan?</button></h3>
+                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Priority Support mencakup konsultasi unlimited via WhatsApp (respons maksimal 1 jam di jam kerja), pendampingan implementasi 30 hari pertama termasuk migrasi data, onsite support 6x kunjungan per tahun, 1 sesi training tim, dan akses grup khusus pengguna prioritas.</div></div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">Bisa diakses dari perangkat apa saja?</button></h3>
+                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">cocco.id berbasis cloud dan bisa diakses 24/7 dari laptop, tablet, maupun HP melalui browser. Tidak perlu install aplikasi.</div></div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">Apakah data bisnis saya aman?</button></h3>
+                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Data Anda dienkripsi dengan SSL dan disimpan di cloud dengan uptime 99.9%. Baca detailnya di <a href="kebijakan-privasi.html">Kebijakan Privasi</a> kami.</div></div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">Bagaimana cara mulai trial?</button></h3>
+                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Isi formulir di bawah, lalu Anda akan diarahkan ke WhatsApp untuk mengirim data pendaftaran ke tim kami. Tanpa kartu kredit, tanpa komitmen.</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA / Trial Form -->
+<section class="section" id="demo">
+    <div class="container">
+        <div class="cta-panel reveal">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6">
+                    <div class="eyebrow" style="color:#7DD3FC;">Mulai Sekarang</div>
+                    <h2>Mulai trial gratis 1 bulan</h2>
+                    <p class="lead-text">Rasakan kemudahan mengelola penjualan, pembelian, stok, dan keuangan bisnis Anda. Tanpa kartu kredit, tanpa komitmen.</p>
+                    <ul class="cta-list">
+                        <li><i class="bi bi-shield-lock"></i> Data terenkripsi SSL</li>
+                        <li><i class="bi bi-lightning-charge"></i> Setup kurang dari 5 menit</li>
+                        <li><i class="bi bi-whatsapp"></i> Support via WhatsApp</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-card">
+                        <h3>Daftar Trial Gratis</h3>
+                        <p class="sub">Data pendaftaran dikirim ke tim kami via WhatsApp.</p>
+                        <form id="trialForm" novalidate>
+                            <div class="row g-3">
+                                <div class="col-sm-6">
+                                    <label for="nama" class="form-label">Nama</label>
+                                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Anda" autocomplete="name" required>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="whatsapp" class="form-label">Nomor WhatsApp</label>
+                                    <input type="tel" class="form-control" id="whatsapp" name="whatsapp" placeholder="08xxxxxxxxxx" autocomplete="tel" inputmode="tel" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="perusahaan" class="form-label">Nama Perusahaan</label>
+                                    <input type="text" class="form-control" id="perusahaan" name="perusahaan" placeholder="Nama perusahaan" autocomplete="organization" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="bisnis" class="form-label">Jenis Bisnis</label>
+                                    <select class="form-select" id="bisnis" name="bisnis" required>
+                                        <option value="">Pilih jenis bisnis</option>
+                                        <option value="retail">Retail</option>
+                                        <option value="grosir">Grosir</option>
+                                        <option value="distributor">Distributor</option>
+                                        <option value="manufaktur">Manufaktur</option>
+                                        <option value="lainnya">Lainnya</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn-c btn-c-brand btn-c-block">Mulai Trial Gratis <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                            <p class="fine">Dengan mendaftar, Anda menyetujui <a href="syarat-dan-ketentuan.html">Syarat dan Ketentuan</a> kami.</p>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -996,55 +1000,57 @@
 </main>
 
 <!-- Footer -->
-<footer class="bg-dark text-white pt-5 pb-4">
+<footer>
     <div class="container">
         <div class="row g-4">
-            <div class="col-lg-4 mb-3">
-                <h4 class="h5 fw-bold mb-3">cocco.id</h4>
-                <p class="text-white-50 small">Software penjualan, pembelian, inventory, dan keuangan untuk bisnis Indonesia. Kelola bisnis Anda dengan kontrol, kejelasan, dan kepercayaan diri.</p>
+            <div class="col-lg-5 mb-2">
+                <img src="logo-icon.png" alt="cocco.id" height="30" class="mb-3">
+                <p style="max-width:340px;">Software penjualan, pembelian, inventory, dan keuangan untuk bisnis Indonesia. Kelola bisnis Anda dengan kontrol, kejelasan, dan kepercayaan diri.</p>
             </div>
             <div class="col-6 col-lg-2">
-                <h5 class="h6 fw-bold mb-3">Produk</h5>
-                <ul class="list-unstyled small">
-                    <li class="mb-2"><a href="#fitur" class="text-white-50">Fitur</a></li>
-                    <li class="mb-2"><a href="#harga" class="text-white-50">Harga</a></li>
-                    <li class="mb-2"><a href="#demo" class="text-white-50">Demo</a></li>
-                    <li><a href="https://app.cocco.id/" class="text-white-50">Login</a></li>
+                <h5>Produk</h5>
+                <ul>
+                    <li><a href="#fitur">Fitur</a></li>
+                    <li><a href="#harga">Harga</a></li>
+                    <li><a href="#demo">Demo</a></li>
+                    <li><a href="https://app.cocco.id/">Login</a></li>
                 </ul>
             </div>
             <div class="col-6 col-lg-2">
-                <h5 class="h6 fw-bold mb-3">Sumber Daya</h5>
-                <ul class="list-unstyled small">
-                    <li class="mb-2"><a href="syarat-dan-ketentuan.html" class="text-white-50">Syarat dan Ketentuan</a></li>
-                    <li><a href="kebijakan-privasi.html" class="text-white-50">Kebijakan Privasi</a></li>
+                <h5>Sumber Daya</h5>
+                <ul>
+                    <li><a href="syarat-dan-ketentuan.html">Syarat dan Ketentuan</a></li>
+                    <li><a href="kebijakan-privasi.html">Kebijakan Privasi</a></li>
                 </ul>
             </div>
-            <div class="col-lg-4">
-                <h5 class="h6 fw-bold mb-3">Hubungi Kami</h5>
-                <ul class="list-unstyled small text-white-50">
-                    <li class="mb-2"><i class="bi bi-envelope me-2"></i>info@cocco.id</li>
-                    <li class="mb-2"><i class="bi bi-whatsapp me-2"></i><a href="https://wa.me/6287882838508" target="_blank" rel="noopener noreferrer" class="text-white-50 text-decoration-none">+62 878-8283-8508</a></li>
+            <div class="col-lg-3">
+                <h5>Hubungi Kami</h5>
+                <ul>
+                    <li><i class="bi bi-envelope me-2"></i><a href="mailto:info@cocco.id">info@cocco.id</a></li>
+                    <li><i class="bi bi-whatsapp me-2"></i><a href="https://wa.me/6287882838508" target="_blank" rel="noopener noreferrer">+62 878-8283-8508</a></li>
                     <li><i class="bi bi-geo-alt me-2"></i>Indonesia</li>
                 </ul>
             </div>
         </div>
-        <hr class="border-secondary my-4">
-        <div class="text-center text-white-50 small">
-            <p class="mb-0">&copy; 2026 cocco.id</p>
+        <div class="footer-bottom">
+            <span>&copy; 2026 cocco.id. All rights reserved.</span>
+            <span>Dibuat untuk bisnis Indonesia 🇮🇩</span>
         </div>
     </div>
 </footer>
+
+<a href="https://wa.me/6287882838508" class="wa-fab" target="_blank" rel="noopener noreferrer" aria-label="Chat via WhatsApp"><i class="bi bi-whatsapp"></i></a>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 <!-- Lightbox Modal -->
 <div class="modal fade" id="modalLightbox" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
-        <div class="modal-content border-0 bg-transparent shadow-none">
+        <div class="modal-content">
             <div class="modal-body p-0 position-relative text-center">
-                <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Tutup" style="z-index:10; filter: drop-shadow(0 0 4px rgba(0,0,0,.8));"></button>
-                <img id="lightboxImg" src="" alt="" class="img-fluid rounded-3" style="max-height: 85vh; box-shadow: 0 20px 60px rgba(0,0,0,.5);">
-                <p id="lightboxLabel" class="text-white fw-semibold mt-3 mb-0" style="text-shadow: 0 1px 4px rgba(0,0,0,.8);"></p>
+                <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Tutup" style="z-index:10;"></button>
+                <img id="lightboxImg" src="" alt="" class="img-fluid">
+                <p id="lightboxLabel" class="text-white fw-semibold mt-3 mb-0"></p>
             </div>
         </div>
     </div>
@@ -1054,7 +1060,7 @@
 <div class="modal fade" id="modalPrioritySupport" tabindex="-1" aria-labelledby="modalPrioritySupportLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
         <div class="modal-content border-0 rounded-4 overflow-hidden">
-            <div class="modal-header text-white border-0 pb-2" style="background: linear-gradient(135deg, var(--p-sky) 0%, var(--p-blue) 50%, var(--p-navy) 100%);">
+            <div class="modal-header text-white border-0 pb-2" style="background: var(--grad);">
                 <div class="d-flex align-items-center gap-2">
                     <i class="bi bi-headset" style="font-size: 1.4rem;"></i>
                     <div>
@@ -1067,7 +1073,7 @@
                 <!-- Konsultasi -->
                 <div class="mb-3">
                     <div class="d-flex align-items-center gap-2 mb-2">
-                        <span class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:32px;height:32px;background:var(--primary-light);"><i class="bi bi-chat-dots-fill" style="color:var(--primary);font-size:.9rem;"></i></span>
+                        <span class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:32px;height:32px;background:var(--tint);"><i class="bi bi-chat-dots-fill" style="color:var(--blue);font-size:.9rem;"></i></span>
                         <span class="fw-semibold">Konsultasi Unlimited via WhatsApp</span>
                     </div>
                     <ul class="list-unstyled text-muted small ms-4 mb-0">
@@ -1080,7 +1086,7 @@
                 <!-- Implementasi -->
                 <div class="mb-3">
                     <div class="d-flex align-items-center gap-2 mb-2">
-                        <span class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:32px;height:32px;background:var(--primary-light);"><i class="bi bi-person-check-fill" style="color:var(--primary);font-size:.9rem;"></i></span>
+                        <span class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:32px;height:32px;background:var(--tint);"><i class="bi bi-person-check-fill" style="color:var(--blue);font-size:.9rem;"></i></span>
                         <span class="fw-semibold">Pendampingan Implementasi Awal</span>
                     </div>
                     <ul class="list-unstyled text-muted small ms-4 mb-0">
@@ -1091,8 +1097,8 @@
                 <!-- Onsite -->
                 <div class="mb-3">
                     <div class="d-flex align-items-center gap-2 mb-2">
-                        <span class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:32px;height:32px;background:var(--primary-light);"><i class="bi bi-geo-alt-fill" style="color:var(--primary);font-size:.9rem;"></i></span>
-                        <span class="fw-semibold">Onsite Support <span class="badge rounded-pill text-white ms-1" style="background: var(--primary); font-size:.75rem;">6x kunjungan/tahun</span></span>
+                        <span class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:32px;height:32px;background:var(--tint);"><i class="bi bi-geo-alt-fill" style="color:var(--blue);font-size:.9rem;"></i></span>
+                        <span class="fw-semibold">Onsite Support <span class="badge rounded-pill text-white ms-1" style="background: var(--blue); font-size:.75rem;">6x kunjungan/tahun</span></span>
                     </div>
                     <ul class="list-unstyled text-muted small ms-4 mb-0">
                         <li class="mb-1"><i class="bi bi-check2 me-2 text-success"></i>Tim kami datang langsung ke lokasi usaha Anda</li>
@@ -1103,8 +1109,8 @@
                 <!-- Training -->
                 <div class="mb-3">
                     <div class="d-flex align-items-center gap-2 mb-2">
-                        <span class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:32px;height:32px;background:var(--primary-light);"><i class="bi bi-mortarboard-fill" style="color:var(--primary);font-size:.9rem;"></i></span>
-                        <span class="fw-semibold">Training Tim <span class="badge rounded-pill text-white ms-1" style="background: var(--primary); font-size:.75rem;">1 sesi</span></span>
+                        <span class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:32px;height:32px;background:var(--tint);"><i class="bi bi-mortarboard-fill" style="color:var(--blue);font-size:.9rem;"></i></span>
+                        <span class="fw-semibold">Training Tim <span class="badge rounded-pill text-white ms-1" style="background: var(--blue); font-size:.75rem;">1 sesi</span></span>
                     </div>
                     <ul class="list-unstyled text-muted small ms-4 mb-0">
                         <li class="mb-1"><i class="bi bi-check2 me-2 text-success"></i>Pelatihan intensif 1–2 jam per sesi untuk tim Anda</li>
@@ -1115,7 +1121,7 @@
                 <!-- Akses Prioritas -->
                 <div class="mb-2">
                     <div class="d-flex align-items-center gap-2 mb-2">
-                        <span class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:32px;height:32px;background:var(--primary-light);"><i class="bi bi-shield-fill-check" style="color:var(--primary);font-size:.9rem;"></i></span>
+                        <span class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:32px;height:32px;background:var(--tint);"><i class="bi bi-shield-fill-check" style="color:var(--blue);font-size:.9rem;"></i></span>
                         <span class="fw-semibold">Akses Prioritas</span>
                     </div>
                     <ul class="list-unstyled text-muted small ms-4 mb-0">
@@ -1129,118 +1135,110 @@
     </div>
 </div>
 <script>
-/* ─── Scroll Reveal ─── */
-(function() {
-    var REVEAL_THRESHOLD  = 0.12;
-    var REVEAL_ROOT_MARGIN = '0px 0px -40px 0px';
-
-    var revealEls = document.querySelectorAll('.reveal');
-    if (!('IntersectionObserver' in window)) {
-        revealEls.forEach(function(el) { el.classList.add('visible'); });
-        return;
-    }
-    var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
+/* ─── Scroll reveal ─── */
+(function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
         });
-    }, { threshold: REVEAL_THRESHOLD, rootMargin: REVEAL_ROOT_MARGIN });
-    revealEls.forEach(function(el) { observer.observe(el); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(function (el) { io.observe(el); });
 })();
 
-/* ─── Counter Animation ─── */
-(function() {
+/* ─── Counter animation ─── */
+(function () {
     var counters = document.querySelectorAll('.counter');
     if (!counters.length || !('IntersectionObserver' in window)) return;
-
-    function animateCounter(el) {
-        var target = parseFloat(el.getAttribute('data-target'));
-        var isDecimal = el.getAttribute('data-decimal');
-        var divisor = isDecimal ? Math.pow(10, parseInt(isDecimal)) : 1;
-        var duration = 1800;
-        var start = null;
-
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    function run(el) {
+        var target = parseFloat(el.getAttribute('data-target')), start = null, dur = 1600;
         function step(ts) {
             if (!start) start = ts;
-            var progress = Math.min((ts - start) / duration, 1);
-            // Cubic ease-out for smooth deceleration
-            var ease = 1 - Math.pow(1 - progress, 3);
-            var current = Math.round(ease * target);
-            el.textContent = isDecimal
-                ? (current / divisor).toFixed(1)
-                : current.toLocaleString('id-ID');
-            if (progress < 1) requestAnimationFrame(step);
+            var p = Math.min((ts - start) / dur, 1), ease = 1 - Math.pow(1 - p, 3);
+            el.textContent = Math.round(ease * target).toLocaleString('id-ID');
+            if (p < 1) requestAnimationFrame(step);
         }
         requestAnimationFrame(step);
     }
-
-    var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-                animateCounter(entry.target);
-                observer.unobserve(entry.target);
-            }
-        });
+    var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { run(e.target); io.unobserve(e.target); } });
     }, { threshold: 0.5 });
-
-    counters.forEach(function(el) { observer.observe(el); });
+    counters.forEach(function (el) { io.observe(el); });
 })();
 
-/* ─── Navbar: glass + gradient on scroll ─── */
-(function() {
+/* ─── Navbar on scroll ─── */
+(function () {
     var nav = document.getElementById('mainNav');
-    var logo = document.getElementById('navLogo');
-    if (!nav) return;
-    window.addEventListener('scroll', function() {
-        var y = window.scrollY;
-        if (y > 80) {
-            nav.classList.remove('glass');
-            nav.classList.add('scrolled-gradient');
-            if (logo) logo.src = 'logo-icon-white.png';
-        } else if (y > 10) {
-            nav.classList.remove('scrolled-gradient');
-            nav.classList.add('glass');
-            if (logo) logo.src = 'logo-icon.png';
-        } else {
-            nav.classList.remove('glass', 'scrolled-gradient');
-            if (logo) logo.src = 'logo-icon.png';
-        }
-    }, { passive: true });
-})();
-
-/* ─── Close mobile menu on nav-link click ─── */
-document.querySelectorAll('#navMenu .nav-link').forEach(function(link) {
-    link.addEventListener('click', function() {
-        var collapse = bootstrap.Collapse.getInstance(document.getElementById('navMenu'));
-        if (collapse) collapse.hide();
+    function update() { nav.classList.toggle('scrolled', window.scrollY > 12); }
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    document.querySelectorAll('#navMenu .nav-link, #navMenu .btn-c').forEach(function (link) {
+        link.addEventListener('click', function () {
+            var c = bootstrap.Collapse.getInstance(document.getElementById('navMenu'));
+            if (c) c.hide();
+        });
     });
-});
+})();
 
 /* ─── Lightbox ─── */
 function openLightbox(src, label) {
-    document.getElementById('lightboxImg').src = src;
-    document.getElementById('lightboxImg').alt = label;
+    var img = document.getElementById('lightboxImg');
+    img.src = src; img.alt = label;
     document.getElementById('lightboxLabel').textContent = label;
-    new bootstrap.Modal(document.getElementById('modalLightbox')).show();
+    bootstrap.Modal.getOrCreateInstance(document.getElementById('modalLightbox')).show();
 }
-document.getElementById('modalLightbox').addEventListener('click', function(e) {
-    if (e.target === this) bootstrap.Modal.getInstance(this).hide();
+document.getElementById('modalLightbox').addEventListener('click', function (e) {
+    if (e.target === this || e.target.classList.contains('modal-dialog')) bootstrap.Modal.getInstance(this).hide();
 });
 
-/* ─── Trial Form ─── */
-document.getElementById('trialForm').addEventListener('submit', function(e) {
+/* ─── Showcase tabs ─── */
+(function () {
+    var tabs = document.querySelectorAll('.showcase-tab');
+    var img = document.getElementById('showcaseImg');
+    var url = document.getElementById('showcaseUrl');
+    var cap = document.getElementById('showcaseCaption');
+    var browser = document.getElementById('showcaseBrowser');
+    var current = tabs[0];
+
+    // Preload the other screenshots after the page has loaded
+    window.addEventListener('load', function () {
+        tabs.forEach(function (t) { new Image().src = t.dataset.src; });
+    });
+
+    tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+            if (tab === current) return;
+            current.classList.remove('active'); current.setAttribute('aria-selected', 'false');
+            tab.classList.add('active'); tab.setAttribute('aria-selected', 'true');
+            current = tab;
+            img.classList.add('fading');
+            setTimeout(function () {
+                img.src = tab.dataset.src; img.alt = tab.dataset.label;
+                url.textContent = tab.dataset.url; cap.textContent = tab.dataset.caption;
+                img.onload = function () { img.classList.remove('fading'); };
+                if (img.complete) img.classList.remove('fading');
+            }, 200);
+        });
+    });
+    function zoom() { openLightbox(current.dataset.src, current.dataset.label); }
+    browser.addEventListener('click', zoom);
+    browser.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); zoom(); } });
+})();
+
+/* ─── Trial form → WhatsApp ─── */
+document.getElementById('trialForm').addEventListener('submit', function (e) {
     e.preventDefault();
-    var nama = document.getElementById('nama').value;
-    var whatsapp = document.getElementById('whatsapp').value;
-    var perusahaan = document.getElementById('perusahaan').value;
-    var bisnisSelect = document.getElementById('bisnis');
-    var bisnisText = bisnisSelect.selectedOptions[0] ? bisnisSelect.selectedOptions[0].text : 'Tidak dipilih';
-    var paketSelect = document.getElementById('paket');
-    var paketText = paketSelect.selectedOptions[0] ? paketSelect.selectedOptions[0].text : 'Tidak dipilih';
-    var message = 'Halo, saya ingin mendaftar trial gratis cocco. \n\nNama: ' + nama + '\nWhatsApp: ' + whatsapp + '\nNama Perusahaan: ' + perusahaan + '\nJenis Bisnis: ' + bisnisText + '\nPaket yang dipilih: ' + paketText;
-    window.open('https://wa.me/6287882838508?text=' + encodeURIComponent(message), '_blank');
+    var form = this;
+    if (!form.checkValidity()) { form.classList.add('was-validated'); form.reportValidity(); return; }
+    var bisnis = document.getElementById('bisnis');
+    var message = 'Halo, saya ingin mendaftar trial gratis cocco.\n\n' +
+        'Nama: ' + document.getElementById('nama').value.trim() + '\n' +
+        'WhatsApp: ' + document.getElementById('whatsapp').value.trim() + '\n' +
+        'Nama Perusahaan: ' + document.getElementById('perusahaan').value.trim() + '\n' +
+        'Jenis Bisnis: ' + (bisnis.selectedOptions[0] ? bisnis.selectedOptions[0].text : '-');
+    window.open('https://wa.me/6287882838508?text=' + encodeURIComponent(message), '_blank', 'noopener');
 });
 </script>
 </body>
