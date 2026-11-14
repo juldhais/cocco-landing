@@ -206,7 +206,9 @@
             display: flex; align-items: center; justify-content: center; gap: 6px;
             background: #fff; border: 1px solid var(--line); border-radius: 8px;
             padding: 5px 12px; font-size: .78rem; color: var(--muted);
+            min-width: 0; white-space: nowrap; overflow: hidden;
         }
+        .browser-url span { overflow: hidden; text-overflow: ellipsis; }
         .browser img { display: block; width: 100%; height: auto; }
         .browser-spacer { width: 45px; }
         .phone {
@@ -291,21 +293,19 @@
         }
         .feature.is-green li::before { color: var(--green); }
         .feature.is-violet li::before { color: var(--violet); }
-        .feature-dark {
-            background: var(--ink); border-color: var(--ink); color: rgba(255,255,255,.75);
+        .feature-ai {
+            background: linear-gradient(135deg, #F3F7FF 0%, #F5F1FF 100%); border-color: #E3E3FA;
             position: relative; overflow: hidden;
         }
-        .feature-dark::after {
-            content: ''; position: absolute; width: 320px; height: 320px; right: -120px; bottom: -160px;
-            background: var(--grad); filter: blur(60px); opacity: .55; border-radius: 50%;
+        .feature-ai::after {
+            content: ''; position: absolute; width: 280px; height: 280px; right: -110px; bottom: -150px;
+            background: linear-gradient(135deg, #7DD3FC, #A78BFA); filter: blur(70px); opacity: .35; border-radius: 50%;
         }
-        .feature-dark > * { position: relative; z-index: 1; }
-        .feature-dark h3 { color: #fff; }
-        .feature-dark li { color: rgba(255,255,255,.72); }
-        .feature-dark li::before { color: #7DD3FC !important; }
-        .feature-dark .feature-ic { background: rgba(255,255,255,.1); color: #fff; }
-        .feature-dark .feature-tag { background: rgba(255,255,255,.12); color: #fff; }
-        .feature-dark:hover { border-color: var(--ink); }
+        .feature-ai > * { position: relative; z-index: 1; }
+        .feature-ai li { color: var(--ink-2); }
+        .feature-ai li::before { color: var(--violet) !important; }
+        .feature-ai .feature-ic { background: linear-gradient(135deg, var(--blue), var(--violet)); color: #fff; }
+        .feature-ai .feature-tag { background: #EDE9FE; color: var(--violet); }
 
         /* ─── Showcase tabs ─── */
         .showcase-tabs {
@@ -463,6 +463,9 @@
             .section { padding: 88px 0; }
             .cta-panel { padding: 48px 28px; border-radius: 24px; }
             .float-chip { display: none; }
+            .showcase-tabs { display: flex; flex-wrap: nowrap; justify-content: flex-start; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+            .showcase-tabs::-webkit-scrollbar { display: none; }
+            .showcase-tab { flex: 0 0 auto; }
         }
         @media (max-width: 767.98px) {
             .section { padding: 72px 0; }
@@ -476,8 +479,27 @@
             .browser-url { font-size: .7rem; }
         }
 
+        /* ─── Scroll-linked motion (variables set by script) ─── */
+        .scroll-progress {
+            position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 1100;
+            background: var(--grad); transform-origin: 0 50%; transform: scaleX(var(--progress, 0));
+            pointer-events: none;
+        }
+        .mockup-wrap .browser {
+            transform: perspective(1600px) rotateX(calc(var(--tilt, 0) * 14deg)) scale(calc(1 - var(--tilt, 0) * .06));
+            transform-origin: 50% 0;
+        }
+        .mockup-wrap .float-chip { translate: 0 calc(var(--lift, 0) * -60px); }
+        .mockup-wrap .float-chip-2 { translate: 0 calc(var(--lift, 0) * -110px); }
+        .mockup-wrap .phone { translate: 0 calc(var(--lift, 0) * -80px); }
+        .showcase-stage .browser { scale: calc(.92 + var(--grow, 1) * .08); }
+
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
+            .scroll-progress { display: none; }
+            .mockup-wrap .browser { transform: none; }
+            .mockup-wrap .float-chip, .mockup-wrap .phone { translate: none; }
+            .showcase-stage .browser { scale: none; }
             *, *::before, *::after { animation: none !important; transition: none !important; }
             .reveal { opacity: 1; transform: none; }
         }
@@ -563,7 +585,7 @@
                 <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
             </ul>
             <div class="nav-actions d-flex align-items-center gap-2">
-                <a href="https://app.cocco.id/" class="nav-login">Masuk</a>
+                <a href="https://toko.cocco.id/" class="nav-login">Masuk</a>
                 <a href="#demo" class="btn-c btn-c-primary btn-c-sm">Coba Gratis <i class="bi bi-arrow-right"></i></a>
             </div>
         </div>
@@ -596,7 +618,7 @@
             <div class="mockup-glow"></div>
             <div class="float-chip">
                 <div class="ic"><i class="bi bi-graph-up-arrow"></i></div>
-                <div class="text-start"><small>Penjualan bulan ini</small><strong>+5,0% vs periode lalu</strong></div>
+                <div class="text-start"><small>Penjualan bulan ini</small><strong>+12,4% vs periode lalu</strong></div>
             </div>
             <div class="float-chip float-chip-2">
                 <div class="ic"><i class="bi bi-stars"></i></div>
@@ -608,10 +630,10 @@
                     <div class="browser-url"><i class="bi bi-lock-fill"></i> app.cocco.id/dashboard</div>
                     <div class="browser-spacer"></div>
                 </div>
-                <img src="images/dashboard.jpg" alt="Dashboard cocco.id - Ringkasan bisnis real-time" width="1663" height="862" fetchpriority="high">
+                <img src="images/dashboard.jpg" alt="Dashboard cocco.id - Ringkasan bisnis real-time" width="2160" height="1215" fetchpriority="high">
             </div>
             <div class="phone">
-                <img src="images/penjualan-mobile.jpg" alt="Penjualan mobile cocco.id" width="393" height="757" loading="lazy">
+                <img src="images/penjualan-mobile.jpg" alt="Penjualan mobile cocco.id" width="786" height="1514" loading="lazy">
             </div>
         </div>
     </div>
@@ -705,6 +727,7 @@
                     <h3>Penjualan</h3>
                     <ul>
                         <li>Transaksi penjualan lengkap</li>
+                        <li>Kasir layar sentuh (Touch POS)</li>
                         <li>Invoice dan surat jalan</li>
                         <li>Multi level harga</li>
                         <li>Retur penjualan</li>
@@ -789,7 +812,7 @@
                 </div>
             </div>
             <div class="col-md-12 col-lg-4 reveal reveal-d2">
-                <div class="feature feature-dark">
+                <div class="feature feature-ai">
                     <div class="feature-top"><div class="feature-ic"><i class="bi bi-stars"></i></div><span class="feature-tag">Fitur AI</span></div>
                     <h3>AI Chat Assistant</h3>
                     <ul>
@@ -816,6 +839,9 @@
             <div class="showcase-tabs" role="tablist" aria-label="Tampilan aplikasi">
                 <button class="showcase-tab active" role="tab" aria-selected="true" data-src="images/dashboard.jpg" data-label="Dashboard" data-url="app.cocco.id/dashboard" data-caption="Ringkasan penjualan, piutang, stok, dan laba dalam satu layar."><i class="bi bi-grid-1x2"></i>Dashboard</button>
                 <button class="showcase-tab" role="tab" aria-selected="false" data-src="images/penjualan.jpg" data-label="Penjualan" data-url="app.cocco.id/penjualan" data-caption="Kelola transaksi penjualan, invoice, dan surat jalan."><i class="bi bi-receipt"></i>Penjualan</button>
+                <button class="showcase-tab" role="tab" aria-selected="false" data-src="images/kasir-pos.jpg" data-label="Kasir (Touch POS)" data-url="app.cocco.id/penjualan/tpos" data-caption="Kasir layar sentuh: pilih produk per kategori, atur jumlah, dan bayar dalam beberapa ketukan."><i class="bi bi-tablet"></i>Kasir</button>
+                <button class="showcase-tab" role="tab" aria-selected="false" data-src="images/inventory-dashboard.jpg" data-label="Inventory Dashboard" data-url="app.cocco.id/inventory-dashboard" data-caption="Nilai stok per kategori, status stok, dan produk yang perlu segera di-restock."><i class="bi bi-boxes"></i>Stok</button>
+                <button class="showcase-tab" role="tab" aria-selected="false" data-src="images/laporan-laba-rugi.jpg" data-label="Laporan Laba Rugi" data-url="app.cocco.id/laporan-keuangan/laba-rugi" data-caption="Laporan laba rugi, neraca, dan arus kas tersusun otomatis dari setiap transaksi."><i class="bi bi-journal-text"></i>Keuangan</button>
                 <button class="showcase-tab" role="tab" aria-selected="false" data-src="images/salesman-tracking.jpg" data-label="Salesman Tracking" data-url="app.cocco.id/salesman-tracking" data-caption="Pantau lokasi dan kunjungan tim lapangan secara real-time."><i class="bi bi-geo-alt"></i>Salesman Tracking</button>
                 <button class="showcase-tab" role="tab" aria-selected="false" data-src="images/cocco-ai-chat-assistant.jpg" data-label="AI Chat Assistant" data-url="app.cocco.id/ai-assistant" data-caption="Tanya apa saja tentang bisnis Anda dengan bahasa sehari-hari."><i class="bi bi-stars"></i>AI Assistant</button>
             </div>
@@ -827,7 +853,7 @@
                     <div class="browser-url"><i class="bi bi-lock-fill"></i> <span id="showcaseUrl">app.cocco.id/dashboard</span></div>
                     <div class="browser-spacer"></div>
                 </div>
-                <img id="showcaseImg" src="images/dashboard.jpg" alt="Dashboard" width="1663" height="862" loading="lazy">
+                <img id="showcaseImg" src="images/dashboard.jpg" alt="Dashboard" width="2160" height="1215" loading="lazy">
             </div>
             <p class="showcase-caption" id="showcaseCaption">Ringkasan penjualan, piutang, stok, dan laba dalam satu layar.</p>
         </div>
@@ -844,7 +870,7 @@
         </div>
         <div class="row g-4">
             <div class="col-md-6 col-lg-3 reveal">
-                <div class="industry"><i class="bi bi-shop"></i><h3>Retail</h3><p>Kelola toko offline dan online. Pantau penjualan harian, stok barang, dan laporan laba rugi dengan mudah.</p></div>
+                <div class="industry"><i class="bi bi-shop"></i><h3>Retail</h3><p>Kasir layar sentuh untuk toko offline dan online. Pantau penjualan harian, stok barang, dan laporan laba rugi dengan mudah.</p></div>
             </div>
             <div class="col-md-6 col-lg-3 reveal reveal-d1">
                 <div class="industry"><i class="bi bi-cart3"></i><h3>Grosir</h3><p>Kelola penjualan dalam jumlah besar, manajemen harga per tier customer, dan kontrol stok multi-lokasi.</p></div>
@@ -1013,7 +1039,7 @@
                     <li><a href="#fitur">Fitur</a></li>
                     <li><a href="#harga">Harga</a></li>
                     <li><a href="#demo">Demo</a></li>
-                    <li><a href="https://app.cocco.id/">Login</a></li>
+                    <li><a href="https://toko.cocco.id/">Login</a></li>
                 </ul>
             </div>
             <div class="col-6 col-lg-2">
@@ -1147,6 +1173,40 @@
     els.forEach(function (el) { io.observe(el); });
 })();
 
+/* ─── Scroll-linked motion: progress bar, hero tilt + parallax, showcase grow ─── */
+(function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var root = document.documentElement;
+    var bar = document.createElement('div');
+    bar.className = 'scroll-progress';
+    bar.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(bar);
+    var hero = document.querySelector('.mockup-wrap');
+    var stage = document.querySelector('.showcase-stage');
+    var clamp = function (v) { return Math.min(1, Math.max(0, v)); };
+    var ticking = false;
+    function update() {
+        ticking = false;
+        var vh = window.innerHeight;
+        var max = root.scrollHeight - vh;
+        root.style.setProperty('--progress', max > 0 ? (window.scrollY / max).toFixed(4) : 0);
+        if (hero) {
+            var top = hero.getBoundingClientRect().top;
+            // Tilted while the mockup sits low in the viewport, flat once it reaches the upper quarter.
+            hero.style.setProperty('--tilt', clamp((top - vh * .25) / (vh * .55)).toFixed(3));
+            hero.style.setProperty('--lift', clamp((vh - top) / (vh * 1.6)).toFixed(3));
+        }
+        if (stage) {
+            var r = stage.getBoundingClientRect();
+            stage.style.setProperty('--grow', clamp((vh - r.top) / (vh * .7)).toFixed(3));
+        }
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
+})();
+
 /* ─── Counter animation ─── */
 (function () {
     var counters = document.querySelectorAll('.counter');
@@ -1213,6 +1273,7 @@ document.getElementById('modalLightbox').addEventListener('click', function (e) 
             current.classList.remove('active'); current.setAttribute('aria-selected', 'false');
             tab.classList.add('active'); tab.setAttribute('aria-selected', 'true');
             current = tab;
+            tab.scrollIntoView({ block: 'nearest', inline: 'nearest' });
             img.classList.add('fading');
             setTimeout(function () {
                 img.src = tab.dataset.src; img.alt = tab.dataset.label;
