@@ -346,8 +346,8 @@
         }
         .plan-name { font-size: 1.05rem; font-weight: 700; color: var(--ink); display: flex; align-items: center; gap: 10px; }
         .plan-desc { color: var(--muted); font-size: .93rem; margin: 6px 0 24px; }
-        .plan-price { display: flex; align-items: baseline; gap: 6px; }
-        .plan-price .amt { font-size: 2.75rem; font-weight: 800; letter-spacing: -.03em; color: var(--ink); line-height: 1; }
+        .plan-price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; }
+        .plan-price .amt { white-space: nowrap; font-size: 2.75rem; font-weight: 800; letter-spacing: -.03em; color: var(--ink); line-height: 1; }
         .plan-price .per { color: var(--muted); font-size: .95rem; }
         .plan-note { color: var(--muted); font-size: .88rem; margin: 10px 0 28px; min-height: 1.3em; }
         .plan ul { list-style: none; padding: 0; margin: 0 0 32px; flex: 1; }
@@ -357,25 +357,98 @@
             width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center;
             font-size: .85rem; background: var(--tint); color: var(--blue);
         }
-        .plan-featured { background: var(--ink); border-color: var(--ink); box-shadow: var(--shadow-lg); overflow: hidden; }
-        .plan-featured::before {
-            content: ''; position: absolute; width: 420px; height: 420px; right: -180px; top: -200px;
-            background: var(--grad); filter: blur(70px); opacity: .5; border-radius: 50%; pointer-events: none;
+        .plan-featured {
+            background: linear-gradient(135deg, #F3F7FF 0%, #F5F1FF 100%); border-color: #E3E3FA;
+            box-shadow: var(--shadow-md); overflow: hidden;
+        }
+        .plan-featured::after {
+            content: ''; position: absolute; width: 320px; height: 320px; right: -130px; bottom: -170px;
+            background: linear-gradient(135deg, #7DD3FC, #A78BFA); filter: blur(70px); opacity: .35; border-radius: 50%; pointer-events: none;
         }
         .plan-featured > * { position: relative; z-index: 1; }
-        .plan-featured .plan-name, .plan-featured .plan-price .amt { color: #fff; }
-        .plan-featured .plan-desc, .plan-featured .plan-note, .plan-featured .plan-price .per { color: rgba(255,255,255,.62); }
-        .plan-featured li { color: rgba(255,255,255,.85); }
-        .plan-featured li strong { color: #fff; }
-        .plan-featured li::before { background: rgba(125,211,252,.16); color: #7DD3FC; }
+        .plan-featured li strong { color: var(--ink); }
+        .plan-featured li::before { background: linear-gradient(135deg, var(--blue), var(--violet)); color: #fff; }
         .plan-badge { font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: var(--grad); color: #fff; }
-        .info-dot {
-            width: 20px; height: 20px; border-radius: 50%; padding: 0; margin-left: 4px;
-            display: inline-grid; place-items: center; vertical-align: middle;
-            border: 1px solid rgba(255,255,255,.35); background: transparent; color: #fff; font-size: .7rem; font-weight: 700;
-            transition: background .2s, color .2s;
+
+        /* Priority Support add-on bar */
+        .addon {
+            display: flex; align-items: center; gap: 32px;
+            padding: 28px 32px; border-radius: 24px; background: #fff; border: 1px dashed #CBD5E1;
         }
-        .info-dot:hover { background: #fff; color: var(--ink); }
+        .addon-main { flex: 1; min-width: 0; }
+        .addon-pill {
+            display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+            padding: 4px 10px; border-radius: 999px; background: var(--tint); color: var(--blue); margin-bottom: 12px;
+        }
+        .addon-title { display: flex; align-items: center; gap: 10px; font-size: 1.15rem; font-weight: 700; color: var(--ink); margin: 0 0 4px; }
+        .addon-title .bi { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; font-size: 1rem; background: linear-gradient(135deg, var(--blue), var(--violet)); color: #fff; }
+        .addon-desc { color: var(--muted); font-size: .93rem; margin: 0 0 14px; }
+        .addon-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; }
+        .addon-list li { position: relative; padding-left: 24px; font-size: .9rem; color: var(--ink-2); }
+        .addon-list li::before { content: '\F633'; font-family: 'bootstrap-icons'; position: absolute; left: 0; top: 0; color: var(--blue); }
+        .addon-side { flex: 0 0 270px; padding-left: 32px; border-left: 1px solid var(--line); }
+        .addon-side .btn-c { white-space: nowrap; }
+        .addon-price { white-space: nowrap; font-size: 1.7rem; font-weight: 800; letter-spacing: -.02em; color: var(--ink); line-height: 1.1; }
+        .addon-price small { font-size: .9rem; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+        .addon-sub { color: var(--muted); font-size: .82rem; margin: 4px 0 16px; }
+        .addon-link { display: block; text-align: center; margin-top: 10px; font-size: .88rem; font-weight: 600; background: none; border: 0; padding: 0; width: 100%; color: var(--blue); }
+        .addon-link:hover { text-decoration: underline; }
+        @media (max-width: 767.98px) {
+            .addon { flex-direction: column; align-items: stretch; gap: 20px; padding: 24px 20px; }
+            .addon-list { grid-template-columns: 1fr; }
+            .addon-side { flex: none; padding: 20px 0 0; border-left: 0; border-top: 1px solid var(--line); }
+        }
+
+        /* Priority Support modal */
+        .ps-modal .modal-content { border: 0; border-radius: 24px; overflow: hidden; }
+        .ps-head {
+            position: relative; overflow: hidden; padding: 28px 28px 24px;
+            background: linear-gradient(135deg, #F3F7FF 0%, #F5F1FF 100%); border-bottom: 1px solid #E3E3FA;
+        }
+        .ps-head::after {
+            content: ''; position: absolute; width: 260px; height: 260px; right: -90px; top: -130px;
+            background: linear-gradient(135deg, #7DD3FC, #A78BFA); filter: blur(60px); opacity: .4; border-radius: 50%; pointer-events: none;
+        }
+        .ps-head, .ps-foot { flex-shrink: 0; }
+        .ps-head > * { position: relative; z-index: 1; }
+        .ps-head .btn-close { position: absolute; top: 20px; right: 20px; z-index: 2; }
+        .ps-head-row { display: flex; gap: 16px; align-items: flex-start; padding-right: 32px; }
+        .ps-head-ic { flex-shrink: 0; width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; font-size: 1.4rem; color: #fff; background: linear-gradient(135deg, var(--blue), var(--violet)); box-shadow: 0 10px 24px -10px rgba(124,58,237,.6); }
+        .ps-eyebrow { font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--violet); margin-bottom: 4px; }
+        .ps-title { font-size: 1.4rem; font-weight: 800; letter-spacing: -.02em; color: var(--ink); margin: 0 0 4px; }
+        .ps-lead { color: var(--ink-2); font-size: .93rem; margin: 0 0 12px; }
+        .ps-price { display: inline-block; padding: 6px 14px; border-radius: 14px; background: #fff; border: 1px solid #E3E3FA; font-size: .85rem; color: var(--muted); }
+        .ps-price strong { font-size: 1rem; color: var(--ink); white-space: nowrap; margin-right: 2px; }
+        .ps-body { padding: 24px 28px; background: var(--surface-2); }
+        .ps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .ps-tile { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 18px; }
+        .ps-tile-wide { grid-column: 1 / -1; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+        .ps-tile-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+        .ps-tile-wide .ps-tile-head { margin-bottom: 0; }
+        .ps-tile-ic { flex-shrink: 0; width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: var(--tint); color: var(--blue); font-size: 1rem; }
+        .ps-tile-title { font-weight: 700; font-size: .98rem; color: var(--ink); line-height: 1.25; }
+        .ps-tile-title small { display: block; font-weight: 500; font-size: .8rem; color: var(--muted); }
+        .ps-chip { margin-left: auto; flex-shrink: 0; font-size: .7rem; font-weight: 700; padding: 4px 9px; border-radius: 999px; background: #EDE9FE; color: var(--violet); }
+        .ps-tile ul { list-style: none; padding: 0; margin: 0; }
+        .ps-tile li { position: relative; padding-left: 22px; font-size: .88rem; color: var(--ink-2); margin-bottom: 6px; }
+        .ps-tile li:last-child { margin-bottom: 0; }
+        .ps-tile li::before { content: '\F633'; font-family: 'bootstrap-icons'; position: absolute; left: 0; top: 0; color: var(--green); }
+        .ps-tile-wide ul { display: flex; flex-wrap: wrap; gap: 6px 20px; }
+        .ps-tile-wide li { margin-bottom: 0; }
+        .ps-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 28px; background: #fff; border-top: 1px solid var(--line); }
+        .ps-foot-price { font-size: .85rem; color: var(--muted); line-height: 1.3; }
+        .ps-foot-price strong { display: block; font-size: 1.15rem; color: var(--ink); white-space: nowrap; }
+        .ps-foot .btn-c { white-space: nowrap; }
+        .btn-c-wa { color: #fff; background: #16A34A; box-shadow: 0 10px 24px -10px rgba(22,163,74,.7); }
+        .btn-c-wa:hover { color: #fff; background: #15803D; transform: translateY(-1px); }
+        @media (max-width: 575.98px) {
+            .ps-head { padding: 24px 20px 20px; }
+            .ps-head-row { flex-direction: column; gap: 12px; }
+            .ps-body { padding: 20px; }
+            .ps-grid { grid-template-columns: 1fr; }
+            .ps-foot { padding: 14px 20px; }
+            .ps-foot .btn-c { padding: 12px 18px; font-size: .9rem; }
+        }
 
         /* ─── FAQ ─── */
         .faq { max-width: 780px; margin: 0 auto; }
@@ -554,6 +627,19 @@
                 "price": "199000",
                 "priceCurrency": "IDR",
                 "priceValidUntil": "2027-12-31"
+            },
+            {
+                "@type": "Offer",
+                "name": "Priority Support (Add-on Sultan)",
+                "price": "3000000",
+                "priceCurrency": "IDR",
+                "priceValidUntil": "2027-12-31",
+                "priceSpecification": {
+                    "@type": "UnitPriceSpecification",
+                    "price": "3000000",
+                    "priceCurrency": "IDR",
+                    "unitCode": "ANN"
+                }
             }
         ],
         "aggregateRating": {
@@ -916,18 +1002,39 @@
                     <div class="plan-name">Sultan <span class="plan-badge">Paling Populer</span></div>
                     <p class="plan-desc">Untuk bisnis yang butuh fitur lengkap tanpa batas</p>
                     <div class="plan-price"><span class="amt">Rp 199.000</span><span class="per">/bulan</span></div>
-                    <p class="plan-note">+ Biaya implementasi Rp 5.000.000</p>
+                    <p class="plan-note">Gratis trial 1 bulan</p>
                     <ul>
                         <li>Fitur lengkap: penjualan, pembelian, stok barang, utang, piutang</li>
                         <li>Fitur ekstra: Akuntansi, laporan keuangan, dashboard, AI chat, salesman tracking</li>
                         <li><strong>Unlimited</strong> user, produk &amp; transaksi</li>
                         <li>Akses cloud 24/7 dari Laptop/Tablet/HP</li>
                         <li>Support khusus via WhatsApp <strong>dan remote</strong></li>
-                        <li>Gratis trial 1 bulan</li>
                         <li>Gratis setup dan training online</li>
-                        <li><strong>Priority Support</strong> <button type="button" class="info-dot" data-bs-toggle="modal" data-bs-target="#modalPrioritySupport" aria-label="Lihat detail Priority Support" title="Lihat detail Priority Support">?</button></li>
                     </ul>
-                    <a href="#demo" class="btn-c btn-c-light btn-c-block">Mulai Trial Gratis <i class="bi bi-arrow-right"></i></a>
+                    <a href="#demo" class="btn-c btn-c-primary btn-c-block">Mulai Trial Gratis <i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-10 col-xl-8 reveal reveal-d2">
+                <div class="addon">
+                    <div class="addon-main">
+                        <span class="addon-pill">Add-on khusus paket Sultan</span>
+                        <h3 class="addon-title"><i class="bi bi-headset"></i>Priority Support</h3>
+                        <p class="addon-desc">Pendampingan penuh dari tim kami agar bisnis Anda jalan tanpa hambatan.</p>
+                        <ul class="addon-list">
+                            <li>Respons prioritas maks. 1 jam</li>
+                            <li>Pendampingan implementasi 30 hari &amp; migrasi data</li>
+                            <li>Onsite support 6x kunjungan/tahun</li>
+                            <li>Training tim 1 sesi</li>
+                        </ul>
+                    </div>
+                    <div class="addon-side">
+                        <div class="addon-price">Rp 3.000.000 <small>/tahun</small></div>
+                        <p class="addon-sub">di luar langganan Sultan</p>
+                        <a href="https://wa.me/6287882838508?text=Halo%20cocco.id%2C%20saya%20tertarik%20dengan%20add-on%20Priority%20Support%20(Rp%203.000.000%2Ftahun)%20untuk%20paket%20Sultan.%20Boleh%20minta%20info%20lebih%20lanjut%3F" class="btn-c btn-c-brand btn-c-block btn-c-sm" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp"></i> Tanya Priority Support</a>
+                        <button type="button" class="addon-link" data-bs-toggle="modal" data-bs-target="#modalPrioritySupport">Lihat detail</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -947,8 +1054,8 @@
                 <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Ya, gratis selamanya. Paket Gratisan sudah mencakup penjualan, pembelian, stok barang, utang dan piutang untuk 1 user, hingga 1.000 produk dan 1.000 transaksi per bulan.</div></div>
             </div>
             <div class="accordion-item">
-                <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">Apa itu Priority Support di paket Sultan?</button></h3>
-                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Priority Support mencakup konsultasi unlimited via WhatsApp (respons maksimal 1 jam di jam kerja), pendampingan implementasi 30 hari pertama termasuk migrasi data, onsite support 6x kunjungan per tahun, 1 sesi training tim, dan akses grup khusus pengguna prioritas.</div></div>
+                <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">Apa itu add-on Priority Support?</button></h3>
+                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Priority Support adalah add-on opsional khusus paket Sultan seharga Rp 3.000.000 per tahun (di luar biaya langganan). Mencakup konsultasi unlimited via WhatsApp (respons maksimal 1 jam di jam kerja), pendampingan implementasi 30 hari pertama termasuk migrasi data, onsite support 6x kunjungan per tahun, 1 sesi training tim, dan akses grup khusus pengguna prioritas.</div></div>
             </div>
             <div class="accordion-item">
                 <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">Bisa diakses dari perangkat apa saja?</button></h3>
@@ -1083,83 +1190,85 @@
 </div>
 
 <!-- Modal Priority Support -->
-<div class="modal fade" id="modalPrioritySupport" tabindex="-1" aria-labelledby="modalPrioritySupportLabel" aria-hidden="true">
+<div class="modal fade ps-modal" id="modalPrioritySupport" tabindex="-1" aria-labelledby="modalPrioritySupportLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-        <div class="modal-content border-0 rounded-4 overflow-hidden">
-            <div class="modal-header text-white border-0 pb-2" style="background: var(--grad);">
-                <div class="d-flex align-items-center gap-2">
-                    <i class="bi bi-headset" style="font-size: 1.4rem;"></i>
+        <div class="modal-content">
+            <div class="ps-head">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                <div class="ps-head-row">
+                    <div class="ps-head-ic"><i class="bi bi-headset"></i></div>
                     <div>
-                        <h5 class="modal-title fw-bold mb-0" id="modalPrioritySupportLabel">Priority Support</h5>
+                        <div class="ps-eyebrow">Add-on khusus paket Sultan</div>
+                        <h5 class="ps-title" id="modalPrioritySupportLabel">Priority Support</h5>
+                        <p class="ps-lead">Pendampingan penuh dari tim kami agar bisnis Anda jalan lancar.</p>
+                        <span class="ps-price"><strong>Rp 3.000.000</strong>/tahun · di luar langganan Sultan</span>
                     </div>
-                </div>
-                <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="modal" aria-label="Tutup"></button>
-            </div>
-            <div class="modal-body p-4">
-                <!-- Konsultasi -->
-                <div class="mb-3">
-                    <div class="d-flex align-items-center gap-2 mb-2">
-                        <span class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:32px;height:32px;background:var(--tint);"><i class="bi bi-chat-dots-fill" style="color:var(--blue);font-size:.9rem;"></i></span>
-                        <span class="fw-semibold">Konsultasi Unlimited via WhatsApp</span>
-                    </div>
-                    <ul class="list-unstyled text-muted small ms-4 mb-0">
-                        <li class="mb-1"><i class="bi bi-check2 me-2 text-success"></i>Konsultasi bisnis &amp; teknis tanpa batas</li>
-                        <li class="mb-1"><i class="bi bi-check2 me-2 text-success"></i>Prioritas respons (maksimal 1 jam di jam kerja)</li>
-                        <li><i class="bi bi-check2 me-2 text-success"></i>Jam operasional: Senin–Sabtu 08.00–18.00 WIB</li>
-                    </ul>
-                </div>
-
-                <!-- Implementasi -->
-                <div class="mb-3">
-                    <div class="d-flex align-items-center gap-2 mb-2">
-                        <span class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:32px;height:32px;background:var(--tint);"><i class="bi bi-person-check-fill" style="color:var(--blue);font-size:.9rem;"></i></span>
-                        <span class="fw-semibold">Pendampingan Implementasi Awal</span>
-                    </div>
-                    <ul class="list-unstyled text-muted small ms-4 mb-0">
-                        <li><i class="bi bi-check2 me-2 text-success"></i>30 hari pertama: bantuan setup, konfigurasi, dan migrasi data</li>
-                    </ul>
-                </div>
-
-                <!-- Onsite -->
-                <div class="mb-3">
-                    <div class="d-flex align-items-center gap-2 mb-2">
-                        <span class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:32px;height:32px;background:var(--tint);"><i class="bi bi-geo-alt-fill" style="color:var(--blue);font-size:.9rem;"></i></span>
-                        <span class="fw-semibold">Onsite Support <span class="badge rounded-pill text-white ms-1" style="background: var(--blue); font-size:.75rem;">6x kunjungan/tahun</span></span>
-                    </div>
-                    <ul class="list-unstyled text-muted small ms-4 mb-0">
-                        <li class="mb-1"><i class="bi bi-check2 me-2 text-success"></i>Tim kami datang langsung ke lokasi usaha Anda</li>
-                        <li><i class="bi bi-check2 me-2 text-success"></i>Onsite darurat jika ada kendala yang tidak bisa diselesaikan secara remote <strong>(dijamin ada tim datang H+1 maksimal)</strong></li>
-                    </ul>
-                </div>
-
-                <!-- Training -->
-                <div class="mb-3">
-                    <div class="d-flex align-items-center gap-2 mb-2">
-                        <span class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:32px;height:32px;background:var(--tint);"><i class="bi bi-mortarboard-fill" style="color:var(--blue);font-size:.9rem;"></i></span>
-                        <span class="fw-semibold">Training Tim <span class="badge rounded-pill text-white ms-1" style="background: var(--blue); font-size:.75rem;">1 sesi</span></span>
-                    </div>
-                    <ul class="list-unstyled text-muted small ms-4 mb-0">
-                        <li class="mb-1"><i class="bi bi-check2 me-2 text-success"></i>Pelatihan intensif 1–2 jam per sesi untuk tim Anda</li>
-                        <li><i class="bi bi-check2 me-2 text-success"></i>Bisa offline <span class="text-muted">(tidak mengurangi kuota onsite support)</span> atau online via Zoom</li>
-                    </ul>
-                </div>
-
-                <!-- Akses Prioritas -->
-                <div class="mb-2">
-                    <div class="d-flex align-items-center gap-2 mb-2">
-                        <span class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:32px;height:32px;background:var(--tint);"><i class="bi bi-shield-fill-check" style="color:var(--blue);font-size:.9rem;"></i></span>
-                        <span class="fw-semibold">Akses Prioritas</span>
-                    </div>
-                    <ul class="list-unstyled text-muted small ms-4 mb-0">
-                        <li class="mb-1"><i class="bi bi-check2 me-2 text-success"></i>Grup khusus pengguna prioritas</li>
-                        <li><i class="bi bi-check2 me-2 text-success"></i>Laporan konsultasi bulanan</li>
-                    </ul>
                 </div>
             </div>
-
+            <div class="modal-body ps-body">
+                <div class="ps-grid">
+                    <div class="ps-tile">
+                        <div class="ps-tile-head">
+                            <span class="ps-tile-ic"><i class="bi bi-chat-dots-fill"></i></span>
+                            <div class="ps-tile-title">Konsultasi<small>Unlimited via WhatsApp</small></div>
+                        </div>
+                        <ul>
+                            <li>Respons maks. 1 jam di jam kerja</li>
+                            <li>Senin–Sabtu, 08.00–18.00 WIB</li>
+                        </ul>
+                    </div>
+                    <div class="ps-tile">
+                        <div class="ps-tile-head">
+                            <span class="ps-tile-ic"><i class="bi bi-person-check-fill"></i></span>
+                            <div class="ps-tile-title">Implementasi<small>30 hari pertama</small></div>
+                        </div>
+                        <ul>
+                            <li>Bantuan setup &amp; konfigurasi</li>
+                            <li>Migrasi data dari sistem lama</li>
+                        </ul>
+                    </div>
+                    <div class="ps-tile">
+                        <div class="ps-tile-head">
+                            <span class="ps-tile-ic"><i class="bi bi-geo-alt-fill"></i></span>
+                            <div class="ps-tile-title">Onsite Support<small>Kunjungan ke lokasi</small></div>
+                            <span class="ps-chip">6x/tahun</span>
+                        </div>
+                        <ul>
+                            <li>Tim datang langsung ke lokasi usaha</li>
+                            <li>Darurat: tim datang maks. H+1</li>
+                        </ul>
+                    </div>
+                    <div class="ps-tile">
+                        <div class="ps-tile-head">
+                            <span class="ps-tile-ic"><i class="bi bi-mortarboard-fill"></i></span>
+                            <div class="ps-tile-title">Training Tim<small>1–2 jam per sesi</small></div>
+                            <span class="ps-chip">1 sesi</span>
+                        </div>
+                        <ul>
+                            <li>Offline atau online via Zoom</li>
+                            <li>Tidak mengurangi kuota onsite</li>
+                        </ul>
+                    </div>
+                    <div class="ps-tile ps-tile-wide">
+                        <div class="ps-tile-head">
+                            <span class="ps-tile-ic"><i class="bi bi-shield-fill-check"></i></span>
+                            <div class="ps-tile-title">Akses Prioritas</div>
+                        </div>
+                        <ul>
+                            <li>Grup khusus pengguna prioritas</li>
+                            <li>Laporan konsultasi bulanan</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="ps-foot">
+                <div class="ps-foot-price"><strong>Rp 3.000.000</strong>per tahun</div>
+                <a href="https://wa.me/6287882838508?text=Halo%20cocco.id%2C%20saya%20tertarik%20dengan%20add-on%20Priority%20Support%20(Rp%203.000.000%2Ftahun)%20untuk%20paket%20Sultan.%20Boleh%20minta%20info%20lebih%20lanjut%3F" class="btn-c btn-c-wa" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp"></i> Tanya via WhatsApp</a>
+            </div>
         </div>
     </div>
 </div>
+
 <script>
 /* ─── Scroll reveal ─── */
 (function () {
